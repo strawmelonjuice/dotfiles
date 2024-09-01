@@ -29,6 +29,7 @@ end
 return { { "nvim-neo-tree/neo-tree.nvim", enabled = false },
   {
     "nvim-tree/nvim-tree.lua",
+    version = "1.6.0",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("nvim-tree").setup({
