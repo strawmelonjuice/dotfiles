@@ -1,1 +1,1 @@
-konsole
+alacritty
