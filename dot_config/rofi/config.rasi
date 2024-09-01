@@ -5,46 +5,56 @@
 # |  _ < (_) |  _| | 
 # |_| \_\___/|_| |_| 
 #                    
-# by Stephan Raabe (2023) 
 # ----------------------------------------------------- 
 */
+
+* {
+    background: rgba(0,0,1,0.5);
+    foreground: #FFFFFF;
+    color0:     #0A121B;
+    color1:     #056F93;
+    color2:     #039AA5;
+    color3:     #02C2BC;
+    color4:     #02A4D2;
+    color5:     #01AFEE;
+    color6:     #01D3D2;
+    color7:     #77e8e1;
+    color8:     #53a29d;
+    color9:     #056F93;
+    color10:    #039AA5;
+    color11:    #02C2BC;
+    color12:    #02A4D2;
+    color13:    #01AFEE;
+    color14:    #01D3D2;
+    color15:    #77e8e1;
+}
+
+* { border-width: 3px; }
 
 /* ---- Configuration ---- */
 configuration {
     modi:                       "drun,run";
     font:                       "Fira Sans 11";
-    show-icons:                 true;
+    show-icons:                 false;
     icon-theme:                 "kora";
     display-drun:               "APPS";
     display-run:                "RUN";
     display-filebrowser:        "FILES";
     display-window:             "WINDOW";
-	drun-display-format:        "{name}";
-    hover-select:               false;
+  	hover-select:               false;
     scroll-method:              1;
     me-select-entry:            "";
     me-accept-entry:            "MousePrimary";
+    drun-display-format:        "{name}";
     window-format:              "{w} · {c} · {t}";
     
 }
 
-/* ---- Load font ---- */
-@import "~/.config/ml4w/settings/rofi-font.rasi"
-
-/* ---- Load pywal colors (custom wal template) ---- */
-@import "~/.cache/wal/colors-rofi-pywal"
-
-/* ---- Load wallpaper ---- */
-@import "~/.config/ml4w/cache/current_wallpaper.rasi"
-
-/* ---- Load border width ---- */
-@import "~/.config/ml4w/settings/rofi-border.rasi"
-
 /* ---- Window ---- */
 window {
-    width:                        900px;
+    width:                        600px;
     x-offset:                     0px;
-    y-offset:                     0px;
+    y-offset:                     65px;
     spacing:                      0px;
     padding:                      0px;
     margin:                       0px; 
@@ -53,8 +63,8 @@ window {
     border-color:                 #FFFFFF;
     cursor:                       "default";
     transparency:                 "real";
-    location:                     center;
-    anchor:                       center;
+    location:                     north;
+    anchor:                       north;
     fullscreen:                   false;
     enabled:                      true;
     border-radius:                10px;
@@ -68,8 +78,7 @@ mainbox {
     spacing:                      0px;
     margin:                       0px;
     background-color:             @background;
-    background-image:             @current-image;
-    children:                     ["imagebox","listbox"];
+    children:                     ["listbox"];
 }
 
 /* ---- Imagebox ---- */
@@ -85,7 +94,7 @@ listbox {
     spacing:                     20px;
     background-color:            transparent;
     orientation:                 vertical;
-    children:                    [ "message", "listview" ];
+    children:                    [ "inputbar", "message", "listview" ];
 }
 
 /* ---- Dummy ---- */
@@ -99,7 +108,7 @@ inputbar {
     text-color:                   @foreground;
     spacing:                      10px;
     padding:                      15px;
-    border-radius:                10px;
+    border-radius:                0px;
     border-color:                 @foreground;
     background-color:             @background;
     children:                     [ "textbox-prompt-colon", "entry" ];
@@ -108,8 +117,8 @@ inputbar {
 textbox-prompt-colon {
     enabled:                      true;
     expand:                       false;
-    str:                          "";
     padding:                      0px 5px 0px 0px;
+    str:                          "";
     background-color:             transparent;
     text-color:                   inherit;
 }
@@ -261,5 +270,3 @@ error-message {
     background-color:            @background;
     text-color:                  @foreground;
 }
-
-# @theme "/usr/share/rofi/themes/purple.rasi"
