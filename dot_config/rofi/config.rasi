@@ -262,4 +262,4 @@ error-message {
     text-color:                  @foreground;
 }
 
-@theme "/usr/share/rofi/themes/purple.rasi"
+# @theme "/usr/share/rofi/themes/purple.rasi"
