@@ -1,1 +1,2 @@
-alacritty -e pacseek
+pamac-manager
+
