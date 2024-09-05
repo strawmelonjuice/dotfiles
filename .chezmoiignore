@@ -2,6 +2,6 @@
 */lazy-lock.json
 # Windows-specific files
 
-{{- if ne .chezmoi.os "windows" -}}
+{{ if ne .chezmoi.os "windows" }}
 ~\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
-{{- end -}}
+{{ end }}

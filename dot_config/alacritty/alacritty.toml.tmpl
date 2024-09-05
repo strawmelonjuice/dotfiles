@@ -1,4 +1,11 @@
 import = ["{{.chezmoi.sourceDir}}/dot_config/alacritty/themes/rose-pine.toml"]
+
+{{ if eq .chezmoi.os "windows" }}
+# Set shell for windows
+shell = "C:\\Program Files\\PowerShell\\7\\pwsh.exe"
+{{ end }}
+
+
 [window]
 opacity = 0.9
 
