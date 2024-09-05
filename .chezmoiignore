@@ -1,5 +1,5 @@
 # Neovim lazy lock to be ignored
-*/lazy-lock.json
+**/lazy-lock.json
 # Windows-specific files
 
 {{ if ne .chezmoi.os "windows" }}
