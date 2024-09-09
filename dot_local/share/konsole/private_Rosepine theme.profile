@@ -1,6 +1,6 @@
 [Appearance]
 BorderWhenActive=true
-ColorScheme=rose-pine
+ColorScheme=rose-pine-moon
 DimmValue=132
 EmojiFont=Noto Color Emoji,8.6,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 Font=FiraCode Nerd Font Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
@@ -18,7 +18,7 @@ TerminalCenter=true
 TerminalMargin=0
 
 [Keyboard]
-KeyBindings=default
+KeyBindings=linux
 
 [Terminal Features]
 BlinkingCursorEnabled=true
