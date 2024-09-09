@@ -51,6 +51,3 @@ eval "$(starship init zsh)"
 # Shipped Theme
 # eval "$(oh-my-posh init zsh --config /usr/share/oh-my-posh/themes/agnoster.omp.json)"
 
-
-# No suspending!
-stty -ixon
