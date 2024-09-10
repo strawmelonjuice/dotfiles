@@ -106,10 +106,10 @@ return {
         css = { "prettier" },
         scss = { "prettier" },
         less = { "prettier" },
+        pcss = { "prettier" },
         html = { "prettier" },
         json = { "biome" },
         jsonc = { "biome" },
-        pcss = { "prettier" },
         yaml = { "prettier" },
         markdown = { "prettier" },
         graphql = { "prettier" },
@@ -163,6 +163,8 @@ return {
     events = { "BufWritePost", "BufReadPost", "InsertLeave" },
     linters_by_ft = {
       fish = { "fish" },
+      postcss = { "prettier" },
+      css = { "prettier" },
       -- Use the "*" filetype to run linters on all filetypes.
       -- ['*'] = { 'global linter' },
       -- Use the "_" filetype to run linters on filetypes that don't have other linters configured.
