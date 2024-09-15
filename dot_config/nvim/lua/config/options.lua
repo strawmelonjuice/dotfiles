@@ -13,3 +13,9 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end
   end
 })
+
+-- Options on Neovide
+if vim.g.neovide then
+  vim.o.guifont = "ComicShannsMono Nerd Font:h11"     --
+  vim.notify_once("Neovide detected.")
+end
