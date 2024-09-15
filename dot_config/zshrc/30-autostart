@@ -8,7 +8,7 @@
 cat ~/.cache/wal/sequences
 
 # -----------------------------------------------------
-# Fastfetch
+# Hyfetch
 # -----------------------------------------------------
 if [[ $(tty) == *"pts"* ]]; then
     hyfetch
@@ -20,4 +20,9 @@ else
     if [ -f /bin/hyprctl ]; then
         echo "Start Hyprland with command Hyprland"
     fi
+fi
+
+
+if [[ $(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)) == "konsole" ]]; then
+    echo "You are using Konsole. Tip: use 'control+shift+m' to toggle the menu."
 fi
