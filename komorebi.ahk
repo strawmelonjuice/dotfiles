@@ -9,25 +9,25 @@ Komorebic(cmd) {
 #m::Komorebic("minimize")
 
 ; Focus windows
-#h::Komorebic("focus left")
-#j::Komorebic("focus down")
-#k::Komorebic("focus up")
-#l::Komorebic("focus right")
+#Left::Komorebic("focus left")
+#Down::Komorebic("focus down")
+#Up::Komorebic("focus up")
+#Right::Komorebic("focus right")
 
 #+[::Komorebic("cycle-focus previous")
 #+]::Komorebic("cycle-focus next")
 
 ; Move windows
-#+h::Komorebic("move left")
-#+j::Komorebic("move down")
-#+k::Komorebic("move up")
-#+l::Komorebic("move right")
+#+Left::Komorebic("move left")
+#+Down::Komorebic("move down")
+#+Up::Komorebic("move up")
+#+Right::Komorebic("move right")
 
 ; Stack windows
-#Left::Komorebic("stack left")
-#Down::Komorebic("stack down")
-#Up::Komorebic("stack up")
-#Right::Komorebic("stack right")
+#h::Komorebic("stack left")
+#j::Komorebic("stack down")
+#k::Komorebic("stack up")
+#l::Komorebic("stack right")
 #;::Komorebic("unstack")
 #[::Komorebic("cycle-stack previous")
 #]::Komorebic("cycle-stack next")
