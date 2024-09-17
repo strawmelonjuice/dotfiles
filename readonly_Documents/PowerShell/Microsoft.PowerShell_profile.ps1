@@ -48,6 +48,6 @@ if (test-path alias:qa) {
 }
 new-alias qa quit
 
-Write-Host "========================================================"
+Write-Host ""
 
 fastfetch
