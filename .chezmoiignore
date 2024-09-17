@@ -2,7 +2,7 @@
 **/lazy-lock.json
 # Windows-specific files
 
-{{- if ne .chezmoi.os "windows" -}}
-*
+{{ if ne .chezmoi.os "windows" }}
 /Documents
-{{- end -}}
+/komorebi*
+{{ end }}
