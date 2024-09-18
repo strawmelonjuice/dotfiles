@@ -17,11 +17,12 @@ if ($IsWindows) {
     	"JetBrains.Toolbox",
     	"StartIsBack.StartAllBack",
     	"bitwarden.bitwarden",
-   	"JesseDuffield.lazygit",
+   	    "JesseDuffield.lazygit",
     	"Git.Git",
     	"HermannSchinagl.LinkShellExtension",
     	"Valve.Steam",
-    	"Discord.Discord"
+    	"Discord.Discord",
+        "Gleam.Gleam"
     	)
     $packages | ForEach-Object {
     winget list -q $_ | Out-Null
