@@ -21,3 +21,11 @@ if vim.g.neovide then
   vim.g.neovide_cursor_vfx_mode = "pixiedust"
   vim.g.neovide_cursor_smooth_blink = true
 end
+
+-- When OS is Windows
+if vim.fn.has "win32" == 1 then
+  vim.o.shell = "pwsh.exe"
+  vim.o.shellcmdflag = "-command"
+  vim.o.shellquote = "\""
+  vim.o.shellxquote = ""
+end
