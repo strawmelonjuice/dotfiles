@@ -5,33 +5,34 @@ if (!$PSVersionTable.PSVersion.toString().startsWith("7")) {
     Write-Host "Exiting Powershell..."
     Stop-Process -Id $PID -Force -PassThru
 }
-
-# Checking installed packages
-$packages = @(
-	"ajeetdsouza.zoxide",
-	"Starship.Starship",
-	"Neovim.Neovim",
-	"Fastfetch-cli.Fastfetch",
-	"twpayne.chezmoi",
-	"Mozilla.Firefox.DeveloperEdition",
-	"JetBrains.Toolbox",
-	"StartIsBack.StartAllBack",
-	"bitwarden.bitwarden",
- 	"JesseDuffield.lazygit",
-	"Git.Git",
-	"HermannSchinagl.LinkShellExtension",
-	"Valve.Steam"
-	)
-$packages | ForEach-Object {
-winget list -q $_ | Out-Null
-if ($?) {
-    # Write-Host "$_ installed"
-} else {
-        Write-Host "Package $_ not found. Installing..."
-        winget install $_
+if ($IsWindows) {
+    # Checking installed packages
+    $packages = @(
+    	"ajeetdsouza.zoxide",
+    	"Starship.Starship",
+    	"Neovim.Neovim",
+    	"Fastfetch-cli.Fastfetch",
+    	"twpayne.chezmoi",
+    	"Mozilla.Firefox.DeveloperEdition",
+    	"JetBrains.Toolbox",
+    	"StartIsBack.StartAllBack",
+    	"bitwarden.bitwarden",
+   	"JesseDuffield.lazygit",
+    	"Git.Git",
+    	"HermannSchinagl.LinkShellExtension",
+    	"Valve.Steam",
+    	"Discord.Discord"
+    	)
+    $packages | ForEach-Object {
+    winget list -q $_ | Out-Null
+    if ($?) {
+        # Write-Host "$_ installed"
+    } else {
+            Write-Host "Package $_ not found. Installing..."
+            winget install $_
+        }
     }
 }
-
 
 # Zoxide
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
