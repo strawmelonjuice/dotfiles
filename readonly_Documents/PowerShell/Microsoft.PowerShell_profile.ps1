@@ -15,6 +15,7 @@ function make-link ($target, $link) {
 # Check if Windows
 if ($IsWindows) {
     # Checking installed packages
+    write-host "Checking installed packages..."
     $packages = @(
         "LLVM.clangd",
         "zig.zig",
@@ -46,26 +47,32 @@ if ($IsWindows) {
             winget install $_
         }
     }
+    write-host "All packages installed."
 
     # Create symbolic links
-    make-link ($ENV:UserProfile + "\.config\nvim") ($ENV:LocalAppdata + "\nvim")
-
+    Write-Host "Creating symbolic links..."
+    $symlinks = @(
+        @(($ENV:UserProfile + "\.config\nvim"), ($ENV:LocalAppdata + "\nvim")),
+        @(($ENV:UserProfile + "\.config\alacritty"), ($ENV:Appdata + "\Alacritty"))
+        @(($ENV:UserProfile + "\.config\zed"), ($ENV:Appdata + "\zed"))
+    )
+    foreach ($link in $symlinks) {
+        if (Test-Path -Path $link[1]) {
+        } else {
+            make-link $link[0] $link[1]
+        }
+    }
 }
 
-# Zoxide
-Invoke-Expression (& { (zoxide init powershell | Out-String) })
-if (test-path alias:cd) {
-    Remove-Item alias:cd
-}
-new-alias cd z
-Write-Host "Zoxide loaded."
+. ($ENV:Userprofile + "\Documents\PowerShell\simplerprofile.ps1")
 
 # Starship
+Write-Host "Loading Starship..."
 Invoke-Expression (&starship init powershell)
-echo "Starship loaded."
+
 
 # Other aliases
-
+Write-Host "Defining aliases..."
 if (test-path alias:cls) {
     Remove-Item alias:cls
 }
@@ -78,7 +85,7 @@ if (test-path alias:qa) {
     Remove-Item alias:qa
 }
 new-alias qa quit
-
+Write-Host "Preparing fastfetch..."
 Write-Host ""
 
 fastfetch
