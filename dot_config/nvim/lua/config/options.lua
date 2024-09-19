@@ -28,4 +28,5 @@ if vim.fn.has "win32" == 1 then
   vim.o.shellcmdflag = "-command"
   vim.o.shellquote = "\""
   vim.o.shellxquote = ""
+  vim.cmd("set nofsync")
 end
