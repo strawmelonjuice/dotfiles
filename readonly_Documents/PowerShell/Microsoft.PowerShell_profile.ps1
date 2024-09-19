@@ -16,6 +16,11 @@ function make-link ($target, $link) {
 if ($IsWindows) {
     # Checking installed packages
     $packages = @(
+        "LLVM.clangd",
+        "zig.zig",
+        "zigtools.zls",
+        "Oven-sh.Bun",
+        "Rustlang.Rustup",
     	"ajeetdsouza.zoxide",
     	"Starship.Starship",
     	"Neovim.Neovim",
