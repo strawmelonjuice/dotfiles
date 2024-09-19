@@ -5,6 +5,14 @@ if (!$PSVersionTable.PSVersion.toString().startsWith("7")) {
     Write-Host "Exiting Powershell..."
     Stop-Process -Id $PID -Force -PassThru
 }
+
+# Define functions
+function quit { exit }
+function make-link ($target, $link) {
+    New-Item -Path $link -ItemType SymbolicLink -Value $target
+}
+
+# Check if Windows
 if ($IsWindows) {
     # Checking installed packages
     $packages = @(
@@ -33,6 +41,10 @@ if ($IsWindows) {
             winget install $_
         }
     }
+
+    # Create symbolic links
+    make-link ($ENV:UserProfile + "\.config\nvim") ($ENV:LocalAppdata + "\nvim")
+
 }
 
 # Zoxide
@@ -48,8 +60,6 @@ Invoke-Expression (&starship init powershell)
 echo "Starship loaded."
 
 # Other aliases
-function quit { exit }
-
 
 if (test-path alias:cls) {
     Remove-Item alias:cls
