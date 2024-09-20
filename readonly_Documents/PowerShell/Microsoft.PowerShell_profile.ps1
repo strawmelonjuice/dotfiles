@@ -44,7 +44,9 @@ if ($IsWindows)
     "Gleam.Gleam",
     "Python.Python.3.12",
     "Anaconda.Anaconda3",
-    "junegunn.fzf"
+    "junegunn.fzf",
+    "GitHub.GitHubDesktop",
+    "GitHub.cli"
   )
   $packages | ForEach-Object {
     winget list -q $_ | Out-Null
