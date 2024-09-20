@@ -46,7 +46,8 @@ if ($IsWindows)
     "Anaconda.Anaconda3",
     "junegunn.fzf",
     "GitHub.GitHubDesktop",
-    "GitHub.cli"
+    "GitHub.cli",
+    "BurntSushi.ripgrep.MSVC"
   )
   $packages | ForEach-Object {
     winget list -q $_ | Out-Null
