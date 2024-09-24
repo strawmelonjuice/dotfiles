@@ -12,4 +12,4 @@ vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc')
 vim.keymap.set({ 'i', 'n', 'v' }, '<C-K>', '<cmd>Lspsaga hover_doc<CR>')
 
 vim.keymap.set("n", "<leader>C", LazyVim.ui.bufremove, { desc = "Close Buffer" })
-vim.keymap.set({ "i", "x", "n", "s" }, "<C-w>", "<cmd>q<cr><esc>", { desc = "Close buffer" })
+vim.keymap.set({ "i", "x", "n", "s" }, "<C-w>", LazyVim.ui.bufremove, { desc = "Close buffer" })
