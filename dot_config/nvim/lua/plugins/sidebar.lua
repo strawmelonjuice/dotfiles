@@ -1,4 +1,4 @@
-KEEP_SIDEBAR_OPEN = false
+AUTO_CLOSE_SIDEBAR = false
 
 vim.api.nvim_create_autocmd("BufEnter", {
   nested = true,
@@ -238,7 +238,7 @@ return { { "nvim-neo-tree/neo-tree.nvim", enabled = false },
             },
           },
           open_file = {
-            quit_on_open = ! KEEP_SIDEBAR_OPEN,
+            quit_on_open = AUTO_CLOSE_SIDEBAR,
             eject = true,
             resize_window = true,
             window_picker = {
@@ -359,7 +359,7 @@ return { { "nvim-neo-tree/neo-tree.nvim", enabled = false },
 
           -- Auto close the outline window if goto_location is triggered and not for
           -- peek_location
-          auto_close = ! KEEP_SIDEBAR_OPEN,
+          auto_close = AUTO_CLOSE_SIDEBAR,
           -- Automatically scroll to the location in code when navigating outline window.
           auto_jump = true,
           -- boolean or integer for milliseconds duration to apply a temporary highlight
