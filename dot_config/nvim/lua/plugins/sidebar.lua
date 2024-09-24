@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end
 })
 local w = 0;
-function switch_between_outline_and_filetree()
+function SWITCH_BETWEEN_OUTLINE_AND_FILETREE()
   return function()
     vim.cmd([[Outline]])
     vim.cmd([[OutlineClose]])
@@ -19,16 +19,16 @@ function switch_between_outline_and_filetree()
     if w == 0 then
       vim.cmd([[NvimTreeOpen]])
       vim.cmd([[OutlineClose]])
-      vim.notify("Helpers.lua: Open filetree")
+      vim.notify("Sidebar.lua: Open filetree")
       w = 1
     elseif w == 1 then
       vim.cmd([[OutlineOpen]])
-      vim.notify("Helpers.lua: Open symbols")
+      vim.notify("Sidebar.lua: Open symbols")
       w = 2
     elseif w == 2 then
       vim.cmd([[OutlineClose]])
       vim.cmd([[NvimTreeClose]])
-      vim.notify("Helpers.lua: Closed.")
+      vim.notify("Sidebar.lua: Closed.")
       w = 0
     end
   end
@@ -303,7 +303,7 @@ return { { "nvim-neo-tree/neo-tree.nvim", enabled = false },
     keys = {
       {
         "<C-\\>",
-        switch_between_outline_and_filetree(),
+        SWITCH_BETWEEN_OUTLINE_AND_FILETREE(),
         mode = { "n", "t", "i", "v" },
         desc = "Toggle nvim-tree"
       },
