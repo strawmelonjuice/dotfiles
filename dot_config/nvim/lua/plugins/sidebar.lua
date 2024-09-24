@@ -8,12 +8,15 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end
   end
 })
-local w = 0;
-local directory = vim.fn.isdirectory(data.file) == 1
+local sidebar_status = 0
+local function is_this_a_dir(data)
+  local directory = vim.fn.isdirectory(data.file) == 1
 
-if directory then
-  w = 1
+  if directory then
+    sidebar_status = 1
+  end
 end
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = is_this_a_dir })
 function SWITCH_BETWEEN_OUTLINE_AND_FILETREE()
   return function()
     vim.cmd([[Outline]])
@@ -23,20 +26,20 @@ function SWITCH_BETWEEN_OUTLINE_AND_FILETREE()
     while (os.clock() < sec) do
       -- Wait half a second so that the outline window can be closed
     end
-    if w == 0 then
+    if sidebar_status == 0 then
       vim.cmd([[NvimTreeOpen]])
       vim.cmd([[OutlineClose]])
       vim.notify("Sidebar.lua: Open filetree")
-      w = 1
-    elseif w == 1 then
+      sidebar_status = 1
+    elseif sidebar_status == 1 then
       vim.cmd([[OutlineOpen]])
       vim.notify("Sidebar.lua: Open symbols")
-      w = 2
-    elseif w == 2 then
+      sidebar_status = 2
+    elseif sidebar_status == 2 then
       vim.cmd([[OutlineClose]])
       vim.cmd([[NvimTreeClose]])
       vim.notify("Sidebar.lua: Closed.")
-      w = 0
+      sidebar_status = 0
     end
   end
 end
@@ -320,7 +323,7 @@ return { { "nvim-neo-tree/neo-tree.nvim", enabled = false },
         function()
           vim.cmd([[OutlineClose]])
           vim.cmd([[NvimTreeOpen]])
-          w = 0
+          sidebar_status = 0
           vim.cmd([[NvimTreeCollapse]])
         end,
         mode = { "n", "t" },
@@ -610,4 +613,5 @@ return { { "nvim-neo-tree/neo-tree.nvim", enabled = false },
         },
       }
     end,
-  }, }
+  }
+}
