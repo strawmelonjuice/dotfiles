@@ -9,6 +9,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end
 })
 local w = 0;
+local directory = vim.fn.isdirectory(data.file) == 1
+
+if directory then
+  w = 1
+end
 function SWITCH_BETWEEN_OUTLINE_AND_FILETREE()
   return function()
     vim.cmd([[Outline]])
