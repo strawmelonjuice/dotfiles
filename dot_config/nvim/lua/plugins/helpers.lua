@@ -16,12 +16,20 @@ function switch_between_outline_and_filetree()
     while (os.clock() < sec) do
       -- Wait half a second so that the outline window can be closed
     end
-    if w == 1 then
+    if w == 0 then
       vim.cmd([[NvimTreeOpen]])
-      w = 0
-    else
-      vim.cmd([[OutlineOpen]])
+      vim.cmd([[OutlineClose]])
+      vim.notify("Helpers.lua: Open filetree")
       w = 1
+    elseif w == 1 then
+      vim.cmd([[OutlineOpen]])
+      vim.notify("Helpers.lua: Open symbols")
+      w = 2
+    elseif w == 2 then
+      vim.cmd([[OutlineClose]])
+      vim.cmd([[NvimTreeClose]])
+      vim.notify("Helpers.lua: Closed.")
+      w = 0
     end
   end
 end
