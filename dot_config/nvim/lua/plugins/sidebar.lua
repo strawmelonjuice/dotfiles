@@ -29,6 +29,8 @@ function SWITCH_BETWEEN_OUTLINE_AND_FILETREE()
     if sidebar_status == 0 then
       vim.cmd([[NvimTreeOpen]])
       vim.cmd([[OutlineClose]])
+      vim.cmd([[OutlineClose]])
+      vim.cmd([[OutlineClose]])
       vim.notify("Sidebar.lua: Open filetree")
       sidebar_status = 1
     elseif sidebar_status == 1 then
