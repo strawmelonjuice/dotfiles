@@ -35,6 +35,11 @@ if ($IsWindows)
     "GitHub.GitHubDesktop",
     "GitHub.cli",
     "BurntSushi.ripgrep.MSVC"
+    , "Microsoft.DotNet.Runtime.8",
+    "Microsoft.DotNet.AspNetCore.8",
+    "Microsoft.DotNet.DesktopRuntime.8",
+    "Microsoft.DotNet.SDK.8",
+    "Microsoft.NuGet"
   )
   $packages | ForEach-Object {
     winget list -q $_ | Out-Null
