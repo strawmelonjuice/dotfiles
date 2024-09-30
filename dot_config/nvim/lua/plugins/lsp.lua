@@ -1,3 +1,4 @@
+local lspconfig = require "mason-lspconfig"
 return {
   --  { import = "lazyvim.plugins.extras.lang.json" },
   { import = "lazyvim.plugins.extras.lang.typescript" },
@@ -151,7 +152,7 @@ return {
           },
         }
 
-        require('mason-lspconfig').setup_handlers { ['rust_analyzer'] = function() end, }
+        lspconfig.gleam.setup({})
       end,
     }
   },
