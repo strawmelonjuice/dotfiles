@@ -39,7 +39,8 @@ if ($IsWindows)
     "Microsoft.DotNet.AspNetCore.8",
     "Microsoft.DotNet.DesktopRuntime.8",
     "Microsoft.DotNet.SDK.8",
-    "Microsoft.NuGet"
+    "Microsoft.NuGet",
+    "Kitware.CMake"
   )
   $packages | ForEach-Object {
     winget list -q $_ | Out-Null
