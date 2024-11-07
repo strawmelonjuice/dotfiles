@@ -142,7 +142,7 @@ return {
           noice = true,
         },
         term_colors = true,
-        transparent_background = true,
+        transparent_background = false,
       })
     end,
   },
@@ -174,10 +174,9 @@ return {
       colorscheme = get_colorscheme("tod")
     },
     keys = {
-      -- { "<C-M>d",     function() vim.cmd("colorscheme " .. default_dark) end,  mode = { "n", "t" }, desc = "Set to default dark mode theme." },
       { "<leader>Md", function() vim.cmd("colorscheme " .. default_dark) end,  mode = { "n", "t" }, desc = "Set to default dark mode theme." },
-      -- { "<C-M>l",     function() vim.cmd("colorscheme " .. default_light) end, mode = { "n", "t" }, desc = "Set to default light mode theme." },
       { "<leader>Ml", function() vim.cmd("colorscheme " .. default_light) end, mode = { "n", "t" }, desc = "Set to default light mode theme." },
+      { "<leader>Mg", function() vim.cmd("colorscheme catppuccin-frappe") end, mode = { "n", "t" }, desc = "Set to catpuccin frappe mode theme." },
 
     },
   },
