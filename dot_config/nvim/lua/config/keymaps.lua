@@ -11,5 +11,5 @@ vim.g.copilot_no_tab_map = true
 vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc')
 vim.keymap.set({ 'i', 'n', 'v' }, '<C-K>', '<cmd>Lspsaga hover_doc<CR>')
 
-vim.keymap.set("n", "<leader>C", vim.cmd("bd"), { desc = "Close Buffer" })
-vim.keymap.set({ "i", "x", "n", "s" }, "<C-w>", vim.cmd("bd"), { desc = "Close buffer" })
+vim.keymap.set("n", "<leader>C", '<cmd>bd', { desc = "Close Buffer" })
+vim.keymap.set({ "i", "x", "n", "s" }, "<C-w>", '<cmd>bd', { desc = "Close buffer" })
