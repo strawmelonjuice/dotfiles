@@ -1,6 +1,5 @@
 return { {
   "rcarriga/nvim-notify",
-  enabled = false,
   keys = {
     {
       "<leader>un",
@@ -20,7 +19,7 @@ return { {
   opts = {
     stages = "fade_in_slide_out",
     render = "wrapped-compact",
-    timeout = 3000,
+    timeout = 1400,
     position = "bottom_left",
     max_height = function()
       return math.floor(vim.o.lines * 0.75)

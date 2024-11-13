@@ -1,5 +1,11 @@
 return {
   {
+    "j-hui/fidget.nvim",
+    opts = {
+      -- options
+    },
+  },
+  {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
@@ -12,7 +18,7 @@ return {
         },
       },
       presets = {
-        command_palette = false,      -- position the cmdline and popupmenu together
+        command_palette = true,       -- position the cmdline and popupmenu together
         bottom_search = true,         -- use a classic bottom cmdline for search
         long_message_to_split = true, -- long messages will be sent to a split
         inc_rename = false,           -- enables an input dialog for inc-rename.nvim
@@ -33,15 +39,12 @@ return {
         },
       },
       popupmenu = {
-        relative = "editor",
+        relative = "buffer",
         position = {
           row = 8,
           col = "50%",
         },
-        size = {
-          width = 60,
-          height = 10,
-        },
+        size = "auto",
         border = {
           style = "rounded",
           padding = { 0, 1 },
@@ -70,11 +73,7 @@ return {
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      --   Mar: I love mini, it doesn't ruin my workflow, it keeps out of the way... I love it. Keep nvim-notify disabled!
-      -- "rcarriga/nvim-notify",
+      "rcarriga/nvim-notify",
       "hrsh7th/nvim-cmp"
     }
   }
