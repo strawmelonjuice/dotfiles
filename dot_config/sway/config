@@ -1,6 +1,7 @@
 # Basic Settings
 set $mod Mod4
 set $term alacritty
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Visual
 gaps inner 8
