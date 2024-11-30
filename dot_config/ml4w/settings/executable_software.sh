@@ -1,2 +1,0 @@
-pamac-manager
-
