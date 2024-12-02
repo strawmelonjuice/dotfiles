@@ -5,7 +5,10 @@
 	],
 	"installed_packages":
 	[
+		"Catppuccin color schemes",
+		"EditorConfig",
 		"Gleam",
+		"Package Control",
 		"Tailwind CSS",
 		"Theme - Rose Pine",
 	],
