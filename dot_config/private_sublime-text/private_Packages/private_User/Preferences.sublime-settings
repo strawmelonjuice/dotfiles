@@ -1,11 +1,11 @@
 // Settings in here override those in "Default/Preferences.sublime-settings",
 // and are overridden in turn by syntax-specific settings.
 {
-	"color_scheme": "Rosé Pine Moon.sublime-color-scheme",
+	"color_scheme": "Catppuccin Macchiato.sublime-color-scheme",
 	"theme": "Rosé Pine.sublime-theme",
 	"ignored_packages":
 	[
 		"Vintage",
 	],
-	"index_files": false,
+	"index_files": true,
 }
