@@ -5,6 +5,8 @@
 	],
 	"installed_packages":
 	[
-		"Theme - Rose Pine"
+		"Gleam",
+		"Tailwind CSS",
+		"Theme - Rose Pine",
 	],
 }

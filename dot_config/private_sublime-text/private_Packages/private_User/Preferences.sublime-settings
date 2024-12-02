@@ -3,4 +3,8 @@
 {
 	"color_scheme": "Rosé Pine Moon.sublime-color-scheme",
 	"theme": "Rosé Pine.sublime-theme",
+	"ignored_packages":
+	[
+		"Vintage",
+	],
 }
