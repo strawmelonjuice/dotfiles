@@ -42,7 +42,7 @@ input type:keyboard {
 }
 
 # Bindings
-bindsym Print+Ctrl+Shift exec grim -g "$(slurp -d)" - | wl-copy
+bindsym Print+Ctrl+Shift exec flameshot gui
 
 bindsym $mod+Return exec $term
 bindsym $mod+Control+Return exec wofi --show drun
