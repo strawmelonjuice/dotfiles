@@ -42,7 +42,10 @@ input type:keyboard {
 }
 
 # Bindings
+# Screenshot, flameshot does not work on Sway for some reason
 bindsym Print+Ctrl+Shift exec flameshot gui
+# We use grim and slurp for screenshots instead
+bindsym Print+Ctrl+Shift exec grim -g "$(slurp)" - | wl-copy
 
 bindsym $mod+Return exec $term
 bindsym $mod+Control+Return exec wofi --show drun
