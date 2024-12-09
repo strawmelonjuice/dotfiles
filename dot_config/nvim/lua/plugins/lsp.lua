@@ -1,5 +1,10 @@
 local lspconfig = require "mason-lspconfig"
 return {
+  {
+    "fladson/vim-kitty",
+    ft = "kitty",
+  }
+  ,
   --  { import = "lazyvim.plugins.extras.lang.json" },
   { import = "lazyvim.plugins.extras.lang.typescript" },
   {
