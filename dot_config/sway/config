@@ -31,7 +31,7 @@ workspace 3 output DP-1
 workspace 1
 exec firefox
 
-workspace 3
+workspace 3 
 exec discord
 
 exec 'sleep 3; swaymsg workspace 1'
@@ -48,6 +48,7 @@ input type:keyboard {
 bindsym Print+Ctrl+Shift exec grim -g "$(slurp)" - | wl-copy
 
 bindsym $mod+Return exec $term
+bindsym $mod+b exec firefox
 bindsym $mod+Control+Return exec wofi --show drun
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
