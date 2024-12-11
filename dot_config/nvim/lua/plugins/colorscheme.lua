@@ -42,6 +42,7 @@ local get_colorscheme = function(a)
   end
 end;
 return {
+  { "xiyaowong/transparent.nvim" },
   {
     "rebelot/kanagawa.nvim",
     name = "kanagawa",
@@ -177,6 +178,7 @@ return {
       { "<leader>Md", function() vim.cmd("colorscheme " .. default_dark) end,  mode = { "n", "t" }, desc = "Set to default dark mode theme." },
       { "<leader>Ml", function() vim.cmd("colorscheme " .. default_light) end, mode = { "n", "t" }, desc = "Set to default light mode theme." },
       { "<leader>Mg", function() vim.cmd("colorscheme catppuccin-frappe") end, mode = { "n", "t" }, desc = "Set to catpuccin frappe mode theme." },
+      { "<leader>Mf", function() vim.cmd("TransparentToggle") end,             mode = { "n", "t" }, desc = "Toggle transparency." },
 
     },
   },
