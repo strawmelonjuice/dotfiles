@@ -1,1 +1,2 @@
-thunar
+dolphin
+
