@@ -16,12 +16,15 @@ plugins=(
     web-search
     archlinux
     zsh-autosuggestions
-    zsh-syntax-highlighting
+ #   zsh-syntax-highlighting
+#    fast-syntax-highlighting
     copyfile
     copybuffer
     dirhistory
 )
-# If zsh-syntax-highlighting is not installed, install it with `yay -S zsh-syntax-highlighting`
+
+# # If zsh-syntax-highlighting is not installed, install it with `yay -S zsh-syntax-highlighting`
+
 # Set-up oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
