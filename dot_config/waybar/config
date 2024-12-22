@@ -11,8 +11,8 @@
 
     // Load Modules
     "include": [
-        "~/.config/waybar/quicklinks.json",
-        "~/.config/waybar/modules.json"
+        "~/.config/waybar/quicklinks.jsonc",
+        "~/.config/waybar/modules.jsonc"
     ],    
     "modules-left": [
         "custom/appmenu",
