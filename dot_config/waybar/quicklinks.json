@@ -1,13 +1,18 @@
 {
 	"custom/browser": {
 		"format": " ",
-		"on-click": "~/settings/browser.sh",
+		"on-click": "~/shellscripts/browser.sh",
 		"tooltip-format": "Open the browser"
 	},
 	"custom/files": {
 		"format": " ",
-		"on-click": "~/settings/filemanager.sh",
+		"on-click": "~/shellscripts/filemanager.sh",
 		"tooltip-format": "Open the filemanager"
+	},
+	"custom/oskrestart": {
+		"format": " ",
+		"on-click": "~/.config/hypr/scripts/keyboard-relaunch.sh",
+		"tooltip-format": "Restart the on-screen keyboard"
 	},
 	"custom/quicklinkempty": {},
 	"group/quicklinks": {
