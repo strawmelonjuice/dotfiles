@@ -14,11 +14,6 @@
 		"on-click": "discord",
 		"tooltip-format": "Open Discord"
 	},
-	"custom/quicklink4": {
-		"format": " ",
-		"on-click": "~/.config/hypr/scripts/keyboard-relaunch.sh",
-		"tooltip-format": "Toggle the on-screen keyboard (restarts the keyboard if needed.)"
-	},
 	"custom/quicklinkempty": {},
 	"group/quicklinks": {
 		"orientation": "horizontal",

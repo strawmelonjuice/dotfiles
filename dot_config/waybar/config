@@ -6,7 +6,7 @@
     "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     
-    "spacing": 4, // Gaps between modules (4px)
+    "spacing": 4, // Gaps between modules in pixels
     // Choose the order of the modules
 
     // Load Modules
@@ -20,9 +20,10 @@
         "hyprland/window"
     ],
     "modules-center": [
-        "hyprland/workspaces"
+        "hyprland/workspaces", 
     ],
     "modules-right": [
+        "custom/osktoggle",
         "mpd", 
         "pulseaudio", 
         "network", 
