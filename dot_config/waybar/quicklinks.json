@@ -9,19 +9,9 @@
 		"on-click": "~/shellscripts/filemanager.sh",
 		"tooltip-format": "Open the filemanager"
 	},
-	"custom/oskrestart": {
-		"format": " ",
-		"on-click": "~/.config/hypr/scripts/keyboard-relaunch.sh",
-		"tooltip-format": "Restart the on-screen keyboard"
-	},
 	"custom/quicklinkempty": {},
 	"group/quicklinks": {
 		"orientation": "horizontal",
-		"modules": [
-			"custom/browser",
-			"custom/files",
-			"custom/oskrestart",
-			"custom/quicklinkempty"
-		]
+		"modules": ["custom/browser", "custom/files", "custom/quicklinkempty"]
 	}
 }
