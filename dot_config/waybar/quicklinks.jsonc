@@ -10,9 +10,9 @@
 		"tooltip-format": "Open the filemanager"
 	},
 	"custom/quicklink3": {
-		"format": " ",
-		"on-click": "spotify",
-		"tooltip-format": "Open Spotify"
+		"format": "✉ ",
+		"on-click": "discord",
+		"tooltip-format": "Open Discord"
 	},
 	"custom/quicklink4": {
 		"format": " ",
