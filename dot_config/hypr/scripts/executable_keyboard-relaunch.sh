@@ -1,7 +1,7 @@
 #!/bin/bash
 # Relaunch the touch keyboard if it crashed
 
-line=$(ps aux | grep wvkbd-mobintl)
+line=$(ps -C wvkbd-mobintl --no-headers)
 if [ -z "$line" ]; then
   wvkbd-mobintl -L 400
 else
