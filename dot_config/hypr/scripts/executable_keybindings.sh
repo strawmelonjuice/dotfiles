@@ -8,7 +8,7 @@
 # by Stephan Raabe (2024)
 # -----------------------------------------------------
 
-config_file=~/.config/ml4w/scripts/keybindings.conf
+config_file=~/.config/hypr/scripts/keybindings.conf
 echo "Reading from: $config_file"
 
 keybinds=""
@@ -36,4 +36,3 @@ done <"$config_file"
 
 sleep 0.2
 rofi -dmenu -i -markup -eh 2 -replace -p "Keybinds" <<<"$keybinds"
-

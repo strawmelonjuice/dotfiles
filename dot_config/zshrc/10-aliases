@@ -6,6 +6,7 @@
 # General
 # -----------------------------------------------------
 alias c='clear'
+alias cls='clear'
 alias nf='fastfetch'
 alias pf='fastfetch'
 alias ff='fastfetch'
@@ -14,10 +15,10 @@ alias ll='eza -al --icons'
 alias lt='eza -a --tree --level=1 --icons'
 alias shutdown='systemctl poweroff'
 alias v='$EDITOR'
-alias vim='$EDITOR'
-alias ts='~/.config/ml4w/scripts/snapshot.sh'
+# alias vim='$EDITOR'
+alias ts='~/.config/hypr/scripts/snapshot.sh'
 alias wifi='nmtui'
-alias cleanup='~/.config/ml4w/scripts/cleanup.sh'
+alias cleanup='~/.config/hypr/scripts/cleanup.sh'
 
 # -----------------------------------------------------
 # ML4W Apps
@@ -54,7 +55,7 @@ alias gcredential="git config credential.helper store"
 # -----------------------------------------------------
 # Scripts
 # -----------------------------------------------------
-alias ascii='~/.config/ml4w/scripts/figlet.sh'
+alias ascii='~/.config/hypr/scripts/figlet.sh'
 
 # -----------------------------------------------------
 # System
@@ -76,7 +77,9 @@ alias cd='z'
 # -----------------------------------------------------
 # Custom
 # -----------------------------------------------------
-alias qa='exit' # I get Vim muscle memory in the terminal...
-alias q='exit' # I get Vim muscle memory in the terminal...
-
+# I get Vim muscle memory in the terminal...
+alias qa='exit' 
+alias q='exit'
+alias :qa='exit'
+alias :q='exit'
 
