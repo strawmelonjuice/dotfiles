@@ -44,7 +44,7 @@
 		"tooltip": false
 	},
 	"custom/osktoggle": {
-		"format": " ",
+		"format": " 󰌌 ",
 		"on-click": "~/.config/hypr/scripts/keyboard-relaunch.sh",
 		"tooltip-format": "Toggle the on-screen keyboard (restarts the keyboard if needed.)"
 	},

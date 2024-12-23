@@ -1,6 +1,6 @@
 {
 	"custom/quicklink1": {
-		"format": " ",
+		"format": " ",
 		"on-click": "~/shellscripts/browser.sh",
 		"tooltip-format": "Open the browser"
 	},
@@ -10,7 +10,7 @@
 		"tooltip-format": "Open the filemanager"
 	},
 	"custom/quicklink3": {
-		"format": "📷 ",
+		"format": " ",
 		"on-click": "~/shellscripts/screenshot.sh",
 		"tooltip-format": "Take a screenshot"
 	},
