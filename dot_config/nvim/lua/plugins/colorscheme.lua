@@ -1,5 +1,6 @@
 vim.opt.termguicolors = true
-local default_light = "peachpuff"
+local default_light = "rose-pine-dawn"
+-- local default_light = "peachpuff"
 -- local default_light = "kanagawa-lotus"
 -- local default_dark = "yellow-moon"
 local default_dark = "fluoromachine"
