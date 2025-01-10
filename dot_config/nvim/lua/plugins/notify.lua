@@ -8,13 +8,6 @@ return { {
       end,
       desc = "Dismiss All Notifications",
     },
-    {
-      "<leader>Nh",
-      function()
-        require("notify").history()
-      end,
-      desc = "Show message history"
-    }
   },
   opts = {
     stages = "fade_in_slide_out",
