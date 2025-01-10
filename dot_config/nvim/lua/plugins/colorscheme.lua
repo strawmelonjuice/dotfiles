@@ -3,7 +3,8 @@ local default_light = "rose-pine-dawn"
 -- local default_light = "peachpuff"
 -- local default_light = "kanagawa-lotus"
 -- local default_dark = "yellow-moon"
-local default_dark = "fluoromachine"
+local default_dark = "kanagawa-dragon"
+-- local default_dark = "fluoromachine"
 -- local default_dark = "rose-pine-main"
 
 local get_time_of_day = function()
@@ -56,7 +57,7 @@ return {
         keywordStyle = { italic = true },
         statementStyle = { bold = true },
         typeStyle = {},
-        transparent = false,   -- do not set background color
+        transparent = true,    -- do not set background color
         dimInactive = false,   -- dim inactive window `:h hl-NormalNC`
         terminalColors = true, -- define vim.g.terminal_color_{0,17}
         colors = {             -- add/modify theme and palette colors
@@ -163,7 +164,7 @@ return {
       fm.setup {
         glow = true,
         theme = 'fluoromachine',
-        transparent = true,
+        transparent = false,
       }
     end
   }
