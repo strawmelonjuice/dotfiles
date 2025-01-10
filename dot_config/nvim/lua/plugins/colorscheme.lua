@@ -3,7 +3,7 @@ local default_light = "rose-pine-dawn"
 -- local default_light = "peachpuff"
 -- local default_light = "kanagawa-lotus"
 -- local default_dark = "yellow-moon"
-local default_dark = "kanagawa-dragon"
+local default_dark = "kanagawa-wave"
 -- local default_dark = "fluoromachine"
 -- local default_dark = "rose-pine-main"
 
