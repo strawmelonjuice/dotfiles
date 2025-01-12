@@ -62,6 +62,7 @@ install_package "fzf"
 install_package "flatpak"
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 install_package "ripgrep"
+install_package "spotify"
 install_package "dunst"
 install_package "ark"
 install_package "bombardier"
@@ -90,6 +91,7 @@ install_package "hyprland"
 install_package "hyprlock"
 install_package "hyprpolkitagent"
 install_package "hyprshot"
+install_package "waybar"
 
 # Neovim and Lazygit need to be downloaded manually for Debian. Otherwise it'll be too outdated.
 
