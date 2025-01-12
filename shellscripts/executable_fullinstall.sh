@@ -15,6 +15,7 @@ if [ -f /etc/debian_version ]; then
       echo "Ubuntu version is newer than 24.10. Continuing..."
       sudo add-apt-repository universe
       sudo snap install chezmoi --classic
+      sudo apt-get install --install-recommends linux-generic-hwe-16.04
     else
       echo Your Ubuntu version is too old. Please upgrade to 24.10 or newer.
       exit 1
