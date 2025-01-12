@@ -90,6 +90,7 @@ install_package "zsh-fast-syntax-highlighting"
 
 ## Hyprland and its dependencies
 install_package "hyprland"
+install_package "hyprpaper"
 install_package "hyprlock"
 install_package "hyprpolkitagent"
 install_package "hyprshot"
