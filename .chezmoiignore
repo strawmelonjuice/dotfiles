@@ -1,9 +1,19 @@
 # Neovim lazy lock to be ignored
 **/lazy-lock.json
-# Windows-specific files
 
 {{ if ne .chezmoi.os "windows" }}
+# Windows-specific files
 /Documents
 /komorebi*
 /AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json
+ {{ else }}
+# Unix-specific files
+/.config/kitty
+/.config/hypr
+/.config/rofi
+/.config/sway
+/.config/waybar
+/.config/wlogout
+/.config/settings
+/.config/zshrc
 {{ end }}
