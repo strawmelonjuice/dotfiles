@@ -10,3 +10,10 @@ vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
 vim.g.copilot_no_tab_map = true
 vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc')
 vim.keymap.set({ 'i', 'n', 'v' }, '<C-K>', '<cmd>Lspsaga hover_doc<CR>')
+
+-- Exit insert mode when using the bad habit of pressing the arrow keys, but still move
+-- I am actively making things hard for-- well, me probably
+vim.api.nvim_set_keymap("i", "<Up>", "<ESC>gk", {})
+vim.api.nvim_set_keymap("i", "<Left>", "<ESC>h", {})
+vim.api.nvim_set_keymap("i", "<Down>", "<ESC>gj", {})
+vim.api.nvim_set_keymap("i", "<Right>", "<ESC>l", {})
