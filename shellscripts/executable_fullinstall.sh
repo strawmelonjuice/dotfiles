@@ -3,7 +3,7 @@
 echo This is supposed to be a full install script for my dotfiles. It will install chezmoi, neovim, and other necessary packages.
 echo Please do note I am still mapping out the necessary packages for this script to work on all distributions.
 echo also note that this script is not yet complete and may not work as intended.
-echo Installation takes about 15 minutes to complete.
+echo Installation takes about 20 minutes to complete.
 
 cd
 sudo echo Root access granted. || exit 1
