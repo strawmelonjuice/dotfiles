@@ -76,8 +76,10 @@ bindm = SUPER CTRL, mouse:272, resizewindow # Resize window
 bind = SUPER SHIFT, S, exec, ~/shellscripts/screenshot.sh  # Take a screenshot
 bind =, Print, exec, ~/shellscripts/screenshot.sh  # Take a screenshot
 
+{{- if eq .chezmoi.hostname "Fennekin" }}
 # Touchscreen adaptments
 hyprgrass-bind = , edge:d:u, exec, kill -34 $(ps -C wvkbd-mobintl) # Toggle the virtual keyboard
+{{- end }}
 
 # Audio control
 binde =, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+
