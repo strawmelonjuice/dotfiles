@@ -1,6 +1,11 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+# On debian, add nvim to path
+if [ -f /etc/debian_version ]; then
+  export PATH="$PATH:/opt/nvim-linux64/bin"
+fi
+
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 

@@ -24,5 +24,5 @@ fi
 
 
 if [[ $(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)) == "konsole" ]]; then
-    echo "You are using Konsole. Tip: use 'control+shift+m' to toggle the menu."
+    echo "You seem to be using Konsole. Tip: use 'control+shift+m' to toggle the menu."
 fi

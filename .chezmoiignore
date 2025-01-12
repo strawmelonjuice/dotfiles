@@ -16,4 +16,6 @@
 /.config/wlogout
 /.config/settings
 /.config/zshrc
+/shellscripts
+/dot_zshrc
 {{ end }}
