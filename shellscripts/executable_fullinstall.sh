@@ -90,6 +90,15 @@ install_package "zsh-fast-syntax-highlighting"
 
 ## Hyprland and its dependencies
 install_package "hyprland"
+if [ -f /etc/debian_version ]; then
+  # https://github.com/hyprwm/hyprpaper/releases/download/v0.7.3/v0.7.3.tar.gz
+  PAPER_VERSION=$(curl -s "https://api.github.com/repos/hyprwm/hyprpaper/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+  curl -Lo hyprpaper.tar.gz "https://github.com/hyprwm/hyprpaper/releases/latest/download/v${PAPER_VERSION}.tar.gz"
+  tar xf hyprpaper.tar.gz hyprpaper/hyprpaper
+  sudo install ./hyprpaper/hyprpaper /usr/local/bin
+elif [ -f /etc/arch-release ]; then
+  install_package "xcb-util-xkb"
+fi
 install_package "hyprpaper"
 install_package "hyprlock"
 install_package "hyprpolkitagent"
