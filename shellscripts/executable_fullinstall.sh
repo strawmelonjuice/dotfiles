@@ -10,7 +10,7 @@ sudo echo Root access granted. || exit 1
 if [ -f /etc/debian_version ]; then
   if grep -q "Ubuntu" /etc/os-release; then
     VERSION_ID=$(grep "VERSION_ID" /etc/os-release | cut -d '"' -f 2)
-    if [ "$(echo "$VERSION_ID" | awk -F. '{print $1$2}')" -gt "2410" ]; then
+    if [ "$(echo "$VERSION_ID" | awk -F. '{print $1$2}')" -gt "2409" ]; then
       echo "Ubuntu version is newer than 24.10. Continuing..."
       sudo add-apt-repository universe
     else
