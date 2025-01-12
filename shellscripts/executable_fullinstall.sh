@@ -35,7 +35,7 @@ fi
 install_package() {
   PACKAGE_NAME=$1
   if [ -f /etc/debian_version ]; then
-    sudo apt-get install -y "$PACKAGE_NAME"
+    sudo apt-get install -y "$PACKAGE_NAME" --install-recommends
   elif [ -f /etc/arch-release ]; then
     if command -v yay &>/dev/null; then
       yay -S --noconfirm "$PACKAGE_NAME"
@@ -65,27 +65,10 @@ install_package "pkg-config"
 install_package "libssl-dev"
 install_package "wayland-scanner++"
 install_package "libgles2-mesa-dev"
-install_package "uuid"
-install_package "xkbcommon"
-install_package "wayland-server"
-install_package "wayland-client"
-install_package "wayland-protocols"
-install_package "wayland-cursor"
-install_package "cairo"
-install_package "pango"
-install_package "pangocairo"
-install_package "pixman-1"
-install_package "libdrm"
-install_package "libinput"
-install_package "libseat"
-install_package "libdisplay-info"
-install_package "libliftoff"
-install_package "libudev"
-install_package "gbm"
-install_package "hyprlang"
-install_package "hyprcursor"
-install_package "hyprutils"
 install_package "fzf"
+install_package "htop"
+install_package "pavucontrol"
+install_package "pulseaudio"
 install_package "flatpak"
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 install_package "ripgrep"
@@ -129,7 +112,7 @@ install_package "hyprlock"
 install_package "hyprpolkitagent"
 install_package "hyprshot"
 install_package "waybar"
-install_package "waylogout"
+install_package "wlogout"
 
 # Neovim and Lazygit need to be downloaded manually for Debian. Otherwise it'll be too outdated.
 
