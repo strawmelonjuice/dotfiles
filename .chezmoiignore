@@ -8,6 +8,7 @@
 /AppData/
 {{ else }}
 # Unix-specific files
+/.config/nvim/lua/plugins/image.lua
 /.config/kitty
 /.config/hypr
 /.config/rofi
