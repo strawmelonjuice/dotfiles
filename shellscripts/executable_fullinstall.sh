@@ -51,7 +51,7 @@ install_package "git"
 install_package "alacritty"
 install_package "fzf"
 install_package "flatpak"
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 install_package "ripgrep"
 install_package "dunst"
 install_package "ark"
