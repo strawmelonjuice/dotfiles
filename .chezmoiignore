@@ -18,5 +18,5 @@
 /.config/settings
 /.config/zshrc
 /shellscripts
-/dot_zshrc
+/.zshrc
 {{ end }}
