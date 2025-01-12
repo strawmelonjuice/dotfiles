@@ -14,7 +14,7 @@ if [ -f /etc/debian_version ]; then
     if [ "$(echo "$VERSION_ID" | awk -F. '{print $1$2}')" -gt "2409" ]; then
       echo "Ubuntu version is newer than 24.10. Continuing..."
       sudo add-apt-repository universe
-      sudo snap install chezmoi --classic
+      sudo snap install chezmoi --classic -y
     else
       echo Your Ubuntu version is too old. Please upgrade to 24.10 or newer.
       exit 1
@@ -51,6 +51,9 @@ install_package() {
 install_package "curl"
 install_package "git"
 install_package "alacritty"
+install_package "clang"
+install_package "cmake"
+install_package "build-essential"
 install_package "fzf"
 install_package "flatpak"
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
