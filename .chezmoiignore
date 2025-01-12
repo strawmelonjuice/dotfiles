@@ -5,8 +5,8 @@
 # Windows-specific files
 /Documents
 /komorebi*
-/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json
- {{ else }}
+/AppData/
+{{ else }}
 # Unix-specific files
 /.config/kitty
 /.config/hypr
