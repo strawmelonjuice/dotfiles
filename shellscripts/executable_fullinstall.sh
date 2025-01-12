@@ -59,6 +59,7 @@ install_package "ninja"
 install_package "cpio"
 install_package "cmake"
 install_package "build-essential"
+install_package "mesa-utils"
 install_package "fzf"
 install_package "flatpak"
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
