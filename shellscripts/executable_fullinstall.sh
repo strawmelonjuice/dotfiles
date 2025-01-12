@@ -14,6 +14,7 @@ if [ -f /etc/debian_version ]; then
     if [ "$(echo "$VERSION_ID" | awk -F. '{print $1$2}')" -gt "2409" ]; then
       echo "Ubuntu version is newer than 24.10. Continuing..."
       sudo add-apt-repository universe
+      sudo snap install chezmoi --classic
     else
       echo Your Ubuntu version is too old. Please upgrade to 24.10 or newer.
       exit 1
@@ -72,6 +73,7 @@ install_package "kitty"
 install_package "slurp"
 install_package "wev"
 install_package "wofi"
+install_package "zsh"
 install_package "zoxide"
 install_package "zsh-syntax-highlighting"
 install_package "zsh-fast-syntax-highlighting"
@@ -103,8 +105,8 @@ else
   install_package "neovim"
   install_package "lazygit"
 fi
-
-install_package "zsh"
+source ~/.bashrc
+nvim --headless '+Lazy! sync' +qa
 
 # Self-installers
 ## Rust
@@ -117,8 +119,13 @@ echo 'alias bun="~/.bun/bin/bun"' >>~/.bashrc
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 sudo chsh $(whoami) -s /bin/zsh
 ## ASDF
-git clone https://aur.archlinux.org/asdf-vm.git && cd asdf-vm && makepkg -si
-cd
+if [ -f /etc/debian_version ]; then
+  sudo apt-get install -y curl git
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.15.0
+elif [ -f /etc/arch-release ]; then
+  git clone https://aur.archlinux.org/asdf-vm.git && cd asdf-vm && makepkg -si
+  cd
+fi
 
 # Cargo installs
 ## Bananen
