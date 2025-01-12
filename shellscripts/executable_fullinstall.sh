@@ -3,6 +3,7 @@
 echo This is supposed to be a full install script for my dotfiles. It will install chezmoi, neovim, and other necessary packages.
 echo Please do note I am still mapping out the necessary packages for this script to work on all distributions.
 echo also note that this script is not yet complete and may not work as intended.
+echo Installation takes about 15 minutes to complete.
 
 cd
 sudo echo Root access granted. || exit 1
@@ -113,11 +114,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 curl -fsSL https://bun.sh/install | bash
 echo 'alias bun="~/.bun/bin/bun"' >>~/.bashrc
 ## OMZ
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-## Starship
-curl -sS https://starship.rs/install.sh | sh
-
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+sudo chsh $(whoami) -s /bin/zsh
 ## ASDF
 git clone https://aur.archlinux.org/asdf-vm.git && cd asdf-vm && makepkg -si
 cd
@@ -131,8 +129,11 @@ cargo install binstall
 ## Watchexec
 cargo install watchexec
 
+## Starship
+cargo install starship --locked
+
 # Flatpak packages
-flatpak install com.visualstudio.code
+flatpak install com.visualstudio.code -y
 
 # Install chezmoi dotfiles
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply strawmelonjuice
