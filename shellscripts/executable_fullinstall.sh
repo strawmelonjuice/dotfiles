@@ -51,7 +51,11 @@ install_package() {
 install_package "curl"
 install_package "git"
 install_package "alacritty"
+install_package "bat"
 install_package "clang"
+install_package "meson"
+install_package "ninja"
+install_package "cpio"
 install_package "cmake"
 install_package "build-essential"
 install_package "fzf"
@@ -133,8 +137,11 @@ fi
 # Cargo installs
 ## Bananen
 cargo install bananen
-## Binstall
-cargo install binstall
+## Cargo binstall
+cargo install cargo-binstall
+
+## Cargo watch
+cargo install cargo-watch
 
 ## Watchexec
 cargo install watchexec
