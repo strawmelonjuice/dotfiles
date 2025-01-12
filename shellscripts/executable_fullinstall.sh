@@ -14,7 +14,7 @@ if [ -f /etc/debian_version ]; then
     if [ "$(echo "$VERSION_ID" | awk -F. '{print $1$2}')" -gt "2409" ]; then
       echo "Ubuntu version is newer than 24.10. Continuing..."
       sudo add-apt-repository universe
-      sudo snap install chezmoi --classic -y
+      sudo snap install chezmoi --classic
     else
       echo Your Ubuntu version is too old. Please upgrade to 24.10 or newer.
       exit 1
