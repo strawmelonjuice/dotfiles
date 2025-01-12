@@ -54,12 +54,14 @@ install_package "git"
 install_package "alacritty"
 install_package "bat"
 install_package "clang"
+install_package "clangd"
 install_package "meson"
 install_package "ninja"
 install_package "cpio"
 install_package "cmake"
 install_package "build-essential"
 install_package "mesa-utils"
+install_package "pkg-config"
 install_package "fzf"
 install_package "flatpak"
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -104,6 +106,7 @@ install_package "hyprlock"
 install_package "hyprpolkitagent"
 install_package "hyprshot"
 install_package "waybar"
+install_package "waylogout"
 
 # Neovim and Lazygit need to be downloaded manually for Debian. Otherwise it'll be too outdated.
 
