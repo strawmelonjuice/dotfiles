@@ -13,5 +13,4 @@ select = "underline"
 hidden = false
 
 [keys.normal]
-C-s = ":w"
-"," = "space_mode"
+C-s = ":write"
