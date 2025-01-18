@@ -16,4 +16,4 @@ hidden = false
 C-s = ":write"
 
 [keys.insert]
-C-s = "<C-o>:write<CR>"
+C-s = ":write"
