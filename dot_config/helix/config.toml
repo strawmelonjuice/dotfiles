@@ -12,5 +12,8 @@ select = "underline"
 [editor.file-picker]
 hidden = false
 
-[keys]
+[keys.normal]
 C-s = ":write"
+
+[keys.insert]
+C-s = "<C-o>:write<CR>"
