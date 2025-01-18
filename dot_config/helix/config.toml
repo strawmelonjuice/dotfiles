@@ -2,7 +2,7 @@ theme = "rose_pine_moon"
 
 [editor]
 line-number = "relative"
-mouse = false
+mouse = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -14,3 +14,4 @@ hidden = false
 
 [keys.normal]
 C-s = ":w"
+"," = "space_mode"
