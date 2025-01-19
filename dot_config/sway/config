@@ -45,10 +45,12 @@ input type:keyboard {
 bindsym Print exec grim -g "$(slurp)" - | wl-copy
 
 bindsym $mod+Return exec $term
+bindsym $mod+q kill
 bindsym $mod+b exec ~/shellscripts/browser.sh
 bindsym $mod+Control+Return exec wofi --show drun
-bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
+bindsym $mod+Shift+b exec ~/.config/hypr/scripts/reload-waybar.sh
+bindsym $mod+Shift+w exec ~/.config/hypr/scripts/reload-hyprpaper.sh
 bindsym $mod+Shift+l exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
 bindsym $mod+Left focus left
