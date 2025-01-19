@@ -22,17 +22,15 @@ client.unfocused        $cl_back $cl_back $cl_fore $cl_back $cl_back
 client.urgent           $cl_urge $cl_urge $cl_fore $cl_urge $cl_urge
 
 # Display
-output * background '~/Wallpapers/canva-pink-and-blue-cute-desktop-wallpaper-EQcU9lTQ_-Q.jpg' fill
+output * background '~/Wallpapers/landscape-pink-3840x2160-19677.jpg' fill
 
-workspace 1 output DP-1
-workspace 2 output HDMI-A-1
-workspace 3 output DP-1
+# workspace 1 output DP-1
+# workspace 2 output HDMI-A-1
+# workspace 3 output DP-1
 
-workspace 2
-exec firefox
+workspace 2 exec ~/shellscripts/browser.sh
 
-workspace 4 
-exec spotify
+workspace 4 exec spotify
 
 exec 'sleep 3; swaymsg workspace 1'
 
