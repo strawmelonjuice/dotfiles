@@ -5,7 +5,6 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Visual
 gaps inner 8
-
 font pango: Iosevka 9
 
 default_border pixel 2
@@ -46,7 +45,7 @@ input type:keyboard {
 bindsym Print exec grim -g "$(slurp)" - | wl-copy
 
 bindsym $mod+Return exec $term
-bindsym $mod+b exec firefox
+bindsym $mod+b exec ~/shellscripts/browser.sh
 bindsym $mod+Control+Return exec wofi --show drun
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
