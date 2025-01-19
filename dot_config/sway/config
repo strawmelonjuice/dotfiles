@@ -22,7 +22,7 @@ client.unfocused        $cl_back $cl_back $cl_fore $cl_back $cl_back
 client.urgent           $cl_urge $cl_urge $cl_fore $cl_urge $cl_urge
 
 # Display
-output * background '~/Wallpapers/landscape-pink-3840x2160-19677.jpg' fill
+exec hyprpaper
 
 # workspace 1 output DP-1
 # workspace 2 output HDMI-A-1
