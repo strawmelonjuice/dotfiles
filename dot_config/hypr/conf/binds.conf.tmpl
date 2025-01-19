@@ -2,20 +2,47 @@
 
 # Actions
 bind = SUPER, RETURN, exec, kitty # Open Kitty terminal
-bind = SUPER, Q, killactive # Close current window
 bind = SUPER SHIFT, L, exit # Exit Hyprland
 bind = SUPER, L, exec, hyprlock # Lock Hyprland
+bind = SUPER SHIFT, S, exec, ~/shellscripts/screenshot.sh  # Take a screenshot
+bind =, Print, exec, ~/shellscripts/screenshot.sh  # Take a screenshot
 bind = SUPER, T, togglefloating # Toggle between tiling and floating window
 bind = SUPER, F, fullscreen # Open the window in fullscreen
 bind = SUPER CTRL, RETURN, exec, wofi --show drun -I  # Open wofi
 bind = SUPER, P, pseudo, # dwindle
-bind = SUPER, J, togglesplit, # dwindle
 bind = SUPER, B, exec, ~/shellscripts/browser.sh # Opens the browser
 bind = SUPER, E, exec, ~/shellscripts/filemanager.sh # Opens file manager
+bind = SHIFT, F1, exec, obs --startrecording # Start recording with OBS
+bind = SUPER, Z, exec, ~/.config/hypr/scripts/perftoggle.sh # Perf mode toggle, based on whatever Hypr docs call game mode
+
+# Window actions
+bind = SUPER, Q, killactive # Close current window
+bind = SUPER, J, togglesplit, # dwindle
 bind = SUPER SHIFT, B, exec, ~/.config/hypr/scripts/reload-waybar.sh # Reload Waybar
 bind = SUPER SHIFT, W, exec, ~/.config/hypr/scripts/reload-hyprpaper.sh # Reload hyprpaper after a changing the wallpaper
 bind = SUPER, R, togglegroup # Toggle grouping
 bind = SUPER, TAB, changegroupactive # Change active window in group
+
+{{- if eq .chezmoi.hostname "Fennekin" }}
+# Touchscreen adaptments
+hyprgrass-bind = , edge:d:u, exec, kill -34 $(ps -C wvkbd-mobintl) # Toggle the virtual keyboard
+{{- end }}
+
+# Audio control
+binde =, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+
+binde =, XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-
+bind =, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle 
+
+# Media control
+bindl=,XF86AudioPlay,exec,playerctl play-pause
+bindl=,XF86AudioPause,exec,playerctl pause
+bindl=,XF86AudioStop,exec,playerctl stop
+bindl=,XF86AudioNext,exec,playerctl next
+bindl=,XF86AudioPrev,exec,playerctl previous
+
+# Brightness control
+bind =, XF86MonBrightnessUp, exec, brightnessctl s +5%
+bind =, XF86MonBrightnessDown, exec, brightnessctl s 5%-
 
 # Resize windows with mainMod + ALT + arrow keys
 bind = SUPER ALT, left, resizeactive, -10 0 # Resize window left
@@ -73,34 +100,5 @@ bindm = SUPER, mouse:272, movewindow # Move window
 bindm = SUPER, mouse:273, resizewindow # Resize window
 bindm = SUPER CTRL, mouse:272, resizewindow # Resize window
 
-# Screenshots
-bind = SUPER SHIFT, S, exec, ~/shellscripts/screenshot.sh  # Take a screenshot
-bind =, Print, exec, ~/shellscripts/screenshot.sh  # Take a screenshot
-
-{{- if eq .chezmoi.hostname "Fennekin" }}
-# Touchscreen adaptments
-hyprgrass-bind = , edge:d:u, exec, kill -34 $(ps -C wvkbd-mobintl) # Toggle the virtual keyboard
-{{- end }}
-
-# Audio control
-binde =, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+
-binde =, XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-
-bind =, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle 
-
-# Media control
-bindl=,XF86AudioPlay,exec,playerctl play-pause
-bindl=,XF86AudioPause,exec,playerctl pause
-bindl=,XF86AudioStop,exec,playerctl stop
-bindl=,XF86AudioNext,exec,playerctl next
-bindl=,XF86AudioPrev,exec,playerctl previous
-
-# Brightness control
-bind =, XF86MonBrightnessUp, exec, brightnessctl s +5%
-bind =, XF86MonBrightnessDown, exec, brightnessctl s 5%-
 
 
-# Perf mode toggle, based on whatever Hypr docs call game mode
-bind = SUPER, Z, exec, ~/.config/hypr/scripts/perftoggle.sh
-
-# OBS Recording
-bind = SHIFT, F1, exec, obs --startrecording
