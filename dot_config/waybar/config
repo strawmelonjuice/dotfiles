@@ -17,10 +17,13 @@
     "modules-left": [
         "custom/appmenu",
         "group/quicklinks",
-        "hyprland/window"
+        "sway/mode",
+        "hyprland/window",
+        "sway/window"
     ],
     "modules-center": [
         "hyprland/workspaces", 
+        "sway/workspaces"
     ],
     "modules-right": [
         "custom/osktoggle",
