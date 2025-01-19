@@ -5,6 +5,7 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Visual
 gaps inner 8
+gaps outer 24
 font pango: Fira Sans Semibold 9
 
 default_border pixel 2
