@@ -1,20 +1,20 @@
 # Autostarts
-include ~/.config/sway/conf/autostart.conf
+include conf/autostart.conf
 
 # Binds
-include ~/.config/sway/conf/binds.conf
+include conf/binds.conf
 
 # Display
-include ~/.config/sway/conf/displays.conf
+include conf/displays.conf
 
 # General Settings
-include ~/.config/sway/conf/general.conf
+include conf/general.conf
 
 # Modes
-include ~/.config/sway/conf/modes.conf
+include conf/modes.conf
 
 # Visual
-include ~/.config/sway/conf/visual.conf
+include conf/visual.conf
 
 
 # Built-in
