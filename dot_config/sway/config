@@ -28,11 +28,11 @@ workspace 1 output DP-1
 workspace 2 output HDMI-A-1
 workspace 3 output DP-1
 
-workspace 1
+workspace 2
 exec firefox
 
-workspace 3 
-exec discord
+workspace 4 
+exec spotify
 
 exec 'sleep 3; swaymsg workspace 1'
 
@@ -52,7 +52,7 @@ bindsym $mod+b exec firefox
 bindsym $mod+Control+Return exec wofi --show drun
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+Shift+l exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
