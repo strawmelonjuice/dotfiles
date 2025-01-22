@@ -2,8 +2,8 @@
 BorderWhenActive=true
 ColorScheme=rose-pine-moon
 DimmValue=132
-EmojiFont=Noto Color Emoji,8.6,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
-Font=Maple Mono SC NF,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+EmojiFont=Noto Sans,10,-1,0,50,0,0,0,0,0
+Font=Sarasa Term SC Nerd,10,-1,5,50,0,0,0,0,0
 IgnoreWcWidth=true
 TabColor=255,255,255
 UseFontLineChararacters=true
