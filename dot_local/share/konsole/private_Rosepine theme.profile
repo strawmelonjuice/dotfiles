@@ -12,7 +12,8 @@ UseFontLineChararacters=true
 WordModeBrahmic=true
 
 [General]
-DimWhenInactive=true
+Command=/bin/zsh
+DimWhenInactive=false
 Name=Rosepine theme
 Parent=/usr/share/konsole/Breath.profile
 ShowTerminalSizeHint=true
