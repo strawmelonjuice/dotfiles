@@ -1,3 +1,6 @@
+# Some features here are commented out because powershell is terribly slow.
+# Thank you for coming to my ted talk.
+
 # Check powershell version
 if (!$PSVersionTable.PSVersion.toString().startsWith("7"))
 {
@@ -16,9 +19,9 @@ function quit
 }
 
 
-# Starship
-Write-Host "Loading Starship..."
-Invoke-Expression (&starship init powershell)
+## Starship
+#Write-Host "Loading Starship..."
+#Invoke-Expression (&starship init powershell)
 
 # Aliases
 Write-Host "Defining aliases..."
@@ -52,7 +55,7 @@ Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
 # }
 # new-alias cd z
 
-Write-Host "Preparing fastfetch..."
-Write-Host ""
+#Write-Host "Preparing fastfetch..."
+#Write-Host ""
 
-fastfetch
+#fastfetch
