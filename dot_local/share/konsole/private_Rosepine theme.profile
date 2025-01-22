@@ -1,4 +1,6 @@
 [Appearance]
+AntiAliasFonts=true
+BoldIntense=false
 BorderWhenActive=true
 ColorScheme=rose-pine-moon
 DimmValue=132

@@ -8,7 +8,7 @@
 		"custom_colors": [],
 		"fore_back": null
 	},
-	"backend": "fastfetch",
+	"backend": "neofetch",
 	"args": null,
 	"distro": null,
 	"pride_month_shown": [],
