@@ -23,5 +23,8 @@ TerminalMargin=0
 [Keyboard]
 KeyBindings=linux
 
+[Scrolling]
+HistoryMode=2
+
 [Terminal Features]
 BlinkingCursorEnabled=true
