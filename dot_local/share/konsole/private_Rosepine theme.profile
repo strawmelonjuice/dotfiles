@@ -20,11 +20,15 @@ ShowTerminalSizeHint=true
 TerminalCenter=true
 TerminalMargin=0
 
+[Interaction Options]
+AllowMouseTracking=true
+
 [Keyboard]
-KeyBindings=linux
+KeyBindings=default
 
 [Scrolling]
 HistoryMode=2
+ScrollBarPosition=1
 
 [Terminal Features]
 BlinkingCursorEnabled=true
