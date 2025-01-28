@@ -177,3 +177,4 @@ flatpak install com.visualstudio.code -y
 
 # Install chezmoi dotfiles
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply strawmelonjuice
+cp ~/.config/zed/set-settings.json ~/.config/zed/settings.json
