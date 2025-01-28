@@ -1,9 +1,9 @@
 {
   "custom/quicklink1": {
 {{- if eq .chezmoi.arch "arm64" }}
-    "format": " ",
-{{- else }}
     "format": " ",
+{{- else }}
+    "format": " ",
 {{- end }}
     "on-click": "~/shellscripts/browser.sh",
     "tooltip-format": "Open the browser"
