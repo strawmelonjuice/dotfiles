@@ -10,8 +10,12 @@ if [[ $(tty) == *"pts"* ]]; then
   up=${up%.*}
   if [ $up -lt 300 ]; then
     hyfetch
+  else
+    echo "Been up for $up seconds"
   fi
-  echo "Been up for $up seconds"
+  if [[ $(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)) == "konsole" ]]; then
+    echo "You seem to be using Konsole. Tip: use 'control+shift+m' to toggle the menu."
+  fi
 else
     echo
     if [ -f /bin/qtile ]; then
@@ -23,6 +27,4 @@ else
 fi
 
 
-if [[ $(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)) == "konsole" ]]; then
-    echo "You seem to be using Konsole. Tip: use 'control+shift+m' to toggle the menu."
-fi
+
