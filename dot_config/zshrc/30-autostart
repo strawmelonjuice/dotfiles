@@ -6,7 +6,9 @@
 # Hyfetch
 # -----------------------------------------------------
 if [[ $(tty) == *"pts"* ]]; then
+  if (( RANDOM % 2 )); then
     hyfetch
+    fi
 else
     echo
     if [ -f /bin/qtile ]; then
