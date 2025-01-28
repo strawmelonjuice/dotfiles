@@ -6,9 +6,12 @@
 # Hyfetch
 # -----------------------------------------------------
 if [[ $(tty) == *"pts"* ]]; then
-  if (( RANDOM % 2 )); then
+  up=`awk '{print $1}' /proc/uptime`
+  up=${up%.*}
+  if [ $up -lt 300 ]; then
     hyfetch
-    fi
+  fi
+  echo "Been up for $up seconds"
 else
     echo
     if [ -f /bin/qtile ]; then
