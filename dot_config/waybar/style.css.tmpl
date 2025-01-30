@@ -169,11 +169,11 @@ window#waybar.empty #window {
 
 #custom-osktoggle {
   border-radius: {{ .stylings.hoverOvers.bradius1 }};
-  font-size: 18px;
-  padding: 4px 10px 2px 10px;
-  background-color: @backgrounddark;
+  font-size: 20px;
+  padding: 4px;
+  background-color: @backgroundlight;
   color: @textcolor1;
-  margin: 5px 1px 6px 1px;
+  margin: 10px 20px 10px 10px;
   border-radius: {{ .stylings.hoverOvers.bradius1 }};
   border: 0px;
   font-weight: bold;
@@ -215,7 +215,7 @@ window#waybar.empty #window {
   margin: 10px;
   padding: 0px;
   font-size: 14px;
-  color: @iconcolor;
+  color: {{ .stylings.hoverOvers.text2 }};
   border-radius: {{ .stylings.hoverOvers.bradius1 }};
   background-color: @backgroundlight;
 }
@@ -260,17 +260,18 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 
 #pulseaudio {
-  background-color: @backgroundlight;
   font-size: 16px;
-  color: @textcolor2;
   border-radius: {{ .stylings.hoverOvers.bradius1 }};
   margin: 10px 10px 10px 0px;
+background-color: {{ .stylings.hoverOvers.background4 }};
+  color: {{ .stylings.hoverOvers.text2 }};
+
 }
 
 #pulseaudio.muted {
-  background-color: @backgrounddark;
-  color: @textcolor1;
-}
+  color: white;
+  background-color: black;
+  }
 
 /* -----------------------------------------------------
  * Network
