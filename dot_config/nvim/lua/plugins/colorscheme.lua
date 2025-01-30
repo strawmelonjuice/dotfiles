@@ -1,11 +1,8 @@
 vim.opt.termguicolors = true
-local default_light = "rose-pine-dawn"
--- local default_light = "peachpuff"
--- local default_light = "kanagawa-lotus"
--- local default_dark = "yellow-moon"
+local default_light = "peachpuff"
 local default_dark = "kanagawa-wave"
--- local default_dark = "fluoromachine"
--- local default_dark = "rose-pine-main"
+-- redo: this was "catppuccin frappe"
+local default_show = "duskfox"
 
 local get_time_of_day = function()
   local hour = tonumber(os.date("%H"))
@@ -177,10 +174,10 @@ return {
       colorscheme = get_colorscheme("tod")
     },
     keys = {
-      { "<leader>Md", function() vim.cmd("colorscheme " .. default_dark) end,  mode = { "n", "t" }, desc = "Set to default dark mode theme." },
-      { "<leader>Ml", function() vim.cmd("colorscheme " .. default_light) end, mode = { "n", "t" }, desc = "Set to default light mode theme." },
-      { "<leader>Mg", function() vim.cmd("colorscheme catppuccin-frappe") end, mode = { "n", "t" }, desc = "Set to catpuccin frappe mode theme." },
-      { "<leader>Mf", function() vim.cmd("TransparentToggle") end,             mode = { "n", "t" }, desc = "Toggle transparency." },
+      { "<leader>Md", function() vim.cmd("colorscheme " .. default_dark) end,  mode = { "n", "t" }, desc = "Set to " .. default_dark .. " theme." },
+      { "<leader>Ml", function() vim.cmd("colorscheme " .. default_light) end, mode = { "n", "t" }, desc = "Set to " .. default_light .. " theme." },
+      { "<leader>Mg", function() vim.cmd("colorscheme " .. default_show) end,  mode = { "n", "t" }, desc = "Set to " .. default_show .. " theme." },
+      -- { "<leader>Mf", function() vim.cmd("TransparentToggle") end,             mode = { "n", "t" }, desc = "Toggle transparency." },
 
     },
   },
