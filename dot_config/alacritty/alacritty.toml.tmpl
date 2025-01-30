@@ -1,11 +1,5 @@
 [general]
-import = ["{{.chezmoi.sourceDir}}/dot_config/alacritty/themes/rose-pine-moon.toml"]
+import = ["{{.chezmoi.destDir}}/.config/alacritty/theme.toml"]
 [window]
 opacity = 0.85
 padding = { x = 2, y = 2 }
-
-
-[font]
-normal = { family = "{{ .stylings.fonts.Mono.family }}", style = "Regular" }
-size = {{ .stylings.fonts.Mono.size }}
-

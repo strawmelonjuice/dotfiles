@@ -1,9 +1,13 @@
 /* The name of the window itself */
+:root {
+    font-size: {{ .stylings.fonts.UI.size }}px;
+}
 #window {
   background-color: {{ .stylings.hoverOvers.background1 }};
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  border-radius: 1rem;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }};
   font-size: 1.2rem;
+  font-family: {{ .stylings.fonts.UI.family }};
   /* The name of the box that contains everything */
 }
 #window #outer-box {
@@ -17,7 +21,7 @@
   border-bottom: 1px solid rgba(24, 24, 24, 0.2);
   padding: 0.8rem 1rem;
   font-size: 1.5rem;
-  border-radius: 1rem 1rem 0 0;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }} {{ .stylings.hoverOvers.bradius1 }} 0 0;
 }
 #window #outer-box #input:focus, #window #outer-box #input:focus-visible, #window #outer-box #input:active {
   border: none;

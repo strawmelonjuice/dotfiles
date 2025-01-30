@@ -1,31 +1,19 @@
-/*
- * __        __          _                  ____  _         _       
- * \ \      / /_ _ _   _| |__   __ _ _ __  / ___|| |_ _   _| | ___  
- *  \ \ /\ / / _` | | | | '_ \ / _` | '__| \___ \| __| | | | |/ _ \ 
- *   \ V  V / (_| | |_| | |_) | (_| | |     ___) | |_| |_| | |  __/ 
- *    \_/\_/ \__,_|\__, |_.__/ \__,_|_|    |____/ \__|\__, |_|\___| 
- *                 |___/                              |___/         
- *  
- * by Stephan Raabe (2024) 
- * ----------------------------------------------------- 
-*/
-
-@define-color backgroundlight #FFFFFF;
-@define-color backgrounddark #FFFFFF;
-@define-color workspacesbackground1 #FFFFFF;
-@define-color workspacesbackground2 #CCCCCC;
-@define-color bordercolor #FFFFFF;
-@define-color textcolor1 #000000;
-@define-color textcolor2 #000000;
-@define-color textcolor3 #FFFFFF;
-@define-color iconcolor #FFFFFF;
+@define-color backgroundlight {{ .stylings.hoverOvers.background4 }};
+@define-color backgrounddark {{ .stylings.hoverOvers.background2 }};
+@define-color workspacesbackground1 {{ .stylings.hoverOvers.background2 }};
+@define-color workspacesbackground2 {{ .stylings.hoverOvers.background3 }};
+@define-color bordercolor {{ .stylings.hoverOvers.background2 }};
+@define-color textcolor1 {{ .stylings.hoverOvers.text2 }};
+@define-color textcolor2  {{ .stylings.hoverOvers.text2 }};
+@define-color textcolor3 {{ .stylings.hoverOvers.background2 }};
+@define-color iconcolor {{ .stylings.hoverOvers.background5 }};
 
 /* -----------------------------------------------------
  * General 
  * ----------------------------------------------------- */
 
 * {
-  font-family: "Fira Sans Semibold", "Font Awesome 6 Free", FontAwesome, Roboto, Helvetica, Arial,
+  font-family: {{ .stylings.fonts.UI.family }}, "Font Awesome 6 Free", FontAwesome, Ubuntu, Arial,
     sans-serif;
   border: none;
   border-radius: 0px;
@@ -33,7 +21,7 @@
 
 window#waybar {
   background-color: {{ .stylings.hoverOvers.background1 }};
-  border-bottom: 0px solid #ffffff;
+  border-bottom: 3px solid {{ .stylings.hoverOvers.border1 }};
   /* color: #FFFFFF; */
   transition-property: background-color;
   transition-duration: 0.5s;
@@ -46,7 +34,7 @@ window#waybar {
 #workspaces {
   margin: 5px 1px 6px 1px;
   padding: 0px 1px;
-  border-radius: 15px;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }};
   border: 0px;
   font-weight: bold;
   font-style: normal;
@@ -57,7 +45,7 @@ window#waybar {
 #workspaces button {
   padding: 0px 5px;
   margin: 4px 3px;
-  border-radius: 15px;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }};
   border: 0px;
   color: @textcolor3;
   transition: all 0.3s ease-in-out;
@@ -66,15 +54,16 @@ window#waybar {
 #workspaces button.active, #workspaces button.focused {
   color: @textcolor1;
   background: @workspacesbackground2;
-  border-radius: 15px;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }};
   min-width: 40px;
-  transition: all 0.3s ease-in-out;
+  transition: all 1.0s ease-in-out;
+  border: 2px {{ .stylings.hoverOvers.border2 }} solid;
 }
 
 #workspaces button:hover {
   color: @textcolor1;
   background: @workspacesbackground2;
-  border-radius: 15px;
+  border-radius: 6px;
 }
 
 /* -----------------------------------------------------
@@ -119,7 +108,7 @@ window#waybar.empty #window {
   background: @backgroundlight;
   margin: 6px 15px 6px 0px;
   padding: 0px;
-  border-radius: 15px;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }};
   font-weight: normal;
   font-style: normal;
   border: 3px solid @backgroundlight;
@@ -127,7 +116,7 @@ window#waybar.empty #window {
 
 #taskbar button {
   margin: 0;
-  border-radius: 15px;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }};
   padding: 0px 5px 0px 5px;
 }
 
@@ -179,13 +168,13 @@ window#waybar.empty #window {
 }
 
 #custom-osktoggle {
-  border-radius: 15px;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }};
   font-size: 18px;
   padding: 4px 10px 2px 10px;
   background-color: @backgrounddark;
   color: @textcolor1;
   margin: 5px 1px 6px 1px;
-  border-radius: 15px;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }};
   border: 0px;
   font-weight: bold;
   font-style: normal;
@@ -196,9 +185,9 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 
 #custom-appmenu {
-  background-color: @backgrounddark;
+  background-color: @backgroundlight;
   color: @textcolor1;
-  border-radius: 15px;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }};
   margin: 10px 10px 10px 10px;
 }
 
@@ -207,10 +196,12 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 
 #custom-exit {
-  margin: 2px 20px 0px 0px;
-  padding: 0px;
+  margin: 10px 20px 10px 10px;
+  padding: 4px;
   font-size: 20px;
   color: @iconcolor;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }};
+  background-color: @backgroundlight;
 }
 
 /* -----------------------------------------------------
@@ -221,10 +212,31 @@ window#waybar.empty #window {
 #memory,
 #cpu,
 #language {
-  margin: 0px;
+  margin: 10px;
   padding: 0px;
-  font-size: 16px;
+  font-size: 14px;
   color: @iconcolor;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }};
+  background-color: @backgroundlight;
+}
+/* glue cpu and memory together */
+#cpu {
+  margin-right: 0px;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }} 0px 0px {{ .stylings.hoverOvers.bradius1 }};
+  padding: 0px 10px 0px 10px;
+}
+#memory {
+  margin-left: 0px;
+  border-radius: 0px {{ .stylings.hoverOvers.bradius1 }} {{ .stylings.hoverOvers.bradius1 }} 0px;
+  padding: 0px 10px 0px 10px;
+}
+
+#keyboard-state {
+  background-color: @backgroundlight;
+  font-size: 12px;
+  color: @textcolor2;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }};
+  margin: 10px 10px 10px 0px;
 }
 
 #language {
@@ -236,10 +248,10 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 
 #clock {
-  background-color: @backgrounddark;
+  background-color: @backgroundlight;
   font-size: 16px;
   color: @textcolor1;
-  border-radius: 15px;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }};
   margin: 10px 7px 10px 0px;
 }
 
@@ -251,7 +263,7 @@ window#waybar.empty #window {
   background-color: @backgroundlight;
   font-size: 16px;
   color: @textcolor2;
-  border-radius: 15px;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }};
   margin: 10px 10px 10px 0px;
 }
 
@@ -268,7 +280,7 @@ window#waybar.empty #window {
   background-color: @backgroundlight;
   font-size: 16px;
   color: @textcolor2;
-  border-radius: 15px;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }};
   margin: 10px 10px 10px 0px;
 }
 
@@ -292,7 +304,7 @@ window#waybar.empty #window {
   background-color: @backgroundlight;
   font-size: 16px;
   color: @textcolor2;
-  border-radius: 15px;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }};
   margin: 10px 15px 10px 0px;
 }
 
@@ -310,7 +322,7 @@ window#waybar.empty #window {
   background-color: @backgroundlight;
   font-size: 16px;
   color: @textcolor2;
-  border-radius: 15px;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }};
   margin: 10px 15px 10px 0px;
 }
 

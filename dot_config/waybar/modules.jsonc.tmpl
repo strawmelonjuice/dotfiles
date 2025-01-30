@@ -25,7 +25,7 @@
       "default": ""
     },
     "persistent-workspaces": {
-      "*": 5
+      "*": 3
     }
   },
   "sway/workspaces": {
@@ -45,9 +45,7 @@
     "persistent-workspaces": {
       "1": "1",
       "2": "2",
-      "3": "3",
-      "4": "4",
-      "5": "5"
+      "3": "3"
     }
   },
   "sway/mode": {
@@ -76,10 +74,10 @@
   },
   // Wofi Application Launcher
   "custom/appmenu": {
-    "format": "Apps",
+    "format": "Drun",
     "tooltip-format": "Left: Open the application launcher\nRight: Show all keybindings",
     "on-click": "wofi --show drun -I -m",
-    "on-click-right": "~/.config/ml4w/scripts/keybindings.sh",
+    "on-click-right": "alacritty -e bat ~/.config/hypr/conf/binds.conf",
     "tooltip": false
   },
 {{- if eq .chezmoi.hostname "Fennekin" }}
