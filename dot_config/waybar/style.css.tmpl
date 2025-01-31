@@ -340,6 +340,21 @@ background-color: {{ .stylings.hoverOvers.background4 }};
   }
 }
 
+#battery.warning:not(.charging) {
+  background-color: #f1c40f;
+  color: @textcolor3;
+}
+
+#battery.full {
+  color: @textcolor3;
+  background-color: #2ecc71;
+}
+
+#battery.good:not(.charging) {
+  background-color: #3498db;
+  color: @textcolor3;
+}
+
 #battery.critical:not(.charging) {
   background-color: #f53c3c;
   color: @textcolor3;
@@ -355,7 +370,10 @@ background-color: {{ .stylings.hoverOvers.background4 }};
  * ----------------------------------------------------- */
 
 #tray {
-  margin: 0px 10px 0px 0px;
+  border-radius: {{ .stylings.hoverOvers.bradius1 }};
+  border: 2px {{ .stylings.hoverOvers.border1 }} solid;
+  padding: 4px;
+  margin: 10px 15px 10px 0px;
 }
 
 #tray > .passive {
