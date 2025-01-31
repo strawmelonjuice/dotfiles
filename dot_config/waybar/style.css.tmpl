@@ -21,7 +21,7 @@
 
 window#waybar {
   background-color: {{ .stylings.hoverOvers.background1 }};
-  border-bottom: 3px solid {{ .stylings.hoverOvers.border1 }};
+  border-bottom: 3px groove {{ .stylings.hoverOvers.border1 }};
   /* color: #FFFFFF; */
   transition-property: background-color;
   transition-duration: 0.5s;
@@ -111,7 +111,7 @@ window#waybar.empty #window {
   border-radius: {{ .stylings.hoverOvers.bradius1 }};
   font-weight: normal;
   font-style: normal;
-  border: 3px solid @backgroundlight;
+  border: 3px dotted @backgroundlight;
 }
 
 #taskbar button {
@@ -323,6 +323,7 @@ background-color: {{ .stylings.hoverOvers.background4 }};
   background-color: @backgroundlight;
   font-size: 16px;
   color: @textcolor2;
+  border: 2px {{ .stylings.hoverOvers.border2 }} dotted;
   border-radius: {{ .stylings.hoverOvers.bradius1 }};
   margin: 10px 15px 10px 0px;
 }
@@ -371,7 +372,7 @@ background-color: {{ .stylings.hoverOvers.background4 }};
 
 #tray {
   border-radius: {{ .stylings.hoverOvers.bradius1 }};
-  border: 2px {{ .stylings.hoverOvers.border1 }} solid;
+  border: 2px {{ .stylings.hoverOvers.border2 }} dotted;
   padding: 4px;
   margin: 10px 15px 10px 0px;
 }

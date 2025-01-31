@@ -122,13 +122,13 @@
   },
   // CPU
   "cpu": {
-    "format": "/ C {usage}% ",
+    "format": "CPU: {usage}% ",
     "on-click": "alacritty -e htop"
   },
   // Memory
   "memory": {
-    "format": "/ M {}% ",
-    "on-click": "alacritty -e htop"
+    "format": "MEM: {}% ",
+    "on-click": "alacritty -e btop"
   },
   // Harddisc space used
   "disk": {
@@ -159,9 +159,9 @@
   // Network
   "network": {
     "format": "{ifname}",
-    "format-wifi": "   {signalStrength}%",
-    "format-ethernet": "  {ipaddr}",
-    "format-disconnected": "Not connected", //An empty format will hide the module.
+    "format-wifi": " ",
+    "format-ethernet": " ",
+    "format-disconnected": "Not connected",
     "tooltip-format": " {ifname} via {gwaddri}",
     "tooltip-format-wifi": "   {essid} ({signalStrength}%)",
     "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
