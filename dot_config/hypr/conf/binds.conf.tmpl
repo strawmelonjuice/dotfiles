@@ -98,9 +98,11 @@ bind = SUPER SHIFT, 9, movetoworkspace, 9 #  Move window to workspace 9
 bind = SUPER SHIFT, 0, movetoworkspace, 10 #  Move window to workspace 10
 
 # Scroll through existing workspaces with mainMod + scroll or slide through them with mainMod + CTRL + arrow keys
-bind = SUPER, mouse_down, workspace, e+1 # Scroll workspaces 
+bind = SUPER, mouse_down, workspace, e+1 # Scroll active workspaces
+bind = SUPER CTRL, mouse_down, workspace, +1 # Scroll all workspaces 
 bind = SUPER CTRL, right, workspace, +1 # Slide workspaces
-bind = SUPER, mouse_up, workspace, e-1 # Scroll workspaces
+bind = SUPER, mouse_up, workspace, e-1 # Scroll active workspaces
+bind = SUPER CTRL, mouse_up, workspace, -1 # Scroll all workspaces
 bind = SUPER CTRL, left, workspace, -1 # Slide workspaces
 bind = SUPER CTRL, up, changegroupactive, f # Slide groupped windows
 bind = SUPER CTRL, down, changegroupactive, b # Slide groupped windows
