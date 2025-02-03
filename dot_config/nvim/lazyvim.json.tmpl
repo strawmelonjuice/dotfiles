@@ -22,7 +22,9 @@
     "lazyvim.plugins.extras.lang.yaml",
     "lazyvim.plugins.extras.test.core",
     "lazyvim.plugins.extras.ui.treesitter-context",
-    "lazyvim.plugins.extras.util.chezmoi",
+   {{- if eq .chezmoi.os "windows" }}   
+     "lazyvim.plugins.extras.util.chezmoi",
+    {{- end}}
     "lazyvim.plugins.extras.util.project",
     "lazyvim.plugins.extras.vscode"
   ],
