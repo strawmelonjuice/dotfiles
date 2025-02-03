@@ -1,9 +1,12 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Add any additional options here
 
-vim.cmd.let 'mapleader = ","'
+-- // Set mapleader to ','
+-- vim.cmd.let 'mapleader = ","'
 
--- vim.opt.relativenumber = false
+-- // disable relative numbers
+vim.opt.relativenumber = false
+
 vim.api.nvim_create_autocmd("BufEnter", {
   nested = true,
   callback = function()
