@@ -29,3 +29,4 @@ vim.keymap.set('n', '<Space>S', function() Snacks.picker.lsp_symbols({ cwd = tru
   { desc = "Open symbol picker (cwd)" })
 vim.keymap.set('n', '<Space>?', function() Snacks.picker.commands() end, { desc = "Open command picker" })
 vim.keymap.set('n', '<Space>r', function() Snacks.picker.resume() end, { desc = "Resume last search" })
+vim.keymap.set('n', '<Space>c', "<cmd>normal gcc<CR>", { desc = "Comment line" })
