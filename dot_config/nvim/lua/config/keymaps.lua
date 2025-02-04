@@ -21,6 +21,7 @@ vim.api.nvim_set_keymap("i", "<Down>", "<ESC>gj", {})
 -- I can't get rid of my ,-leaderkey. But I do wanna use space in the Helix-like space menu way... so yes!
 ---@diagnostic disable-next-line: assign-type-mismatch
 vim.keymap.set('n', '<Space>f', function() Snacks.picker.files({ cwd = true }) end, { desc = "Open file picker (cwd)" })
+vim.keymap.set('n', '<Space><Space>', function() Snacks.picker.files() end, { desc = "Open file picker" })
 vim.keymap.set('n', '<Space>g', function() Snacks.picker.grep() end, { desc = "Grep" })
 vim.keymap.set('n', '<Space>b', function() Snacks.picker.buffers() end, { desc = "Open buffer picker" })
 vim.keymap.set('n', '<Space>s', function() Snacks.picker.lsp_symbols() end, { desc = "Open symbol picker" })
