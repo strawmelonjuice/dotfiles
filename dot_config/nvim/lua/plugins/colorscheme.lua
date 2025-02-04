@@ -1,8 +1,7 @@
 vim.opt.termguicolors = true
 local default_light = "peachpuff"
-local default_dark = "kanagawa-wave"
--- redo: this was "catppuccin frappe"
-local default_show = "duskfox"
+local default_dark = "duskfox"
+local default_show = "kanagawa-wave"
 
 local get_time_of_day = function()
   local hour = tonumber(os.date("%H"))
