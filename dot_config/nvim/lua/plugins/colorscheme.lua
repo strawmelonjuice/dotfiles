@@ -1,7 +1,7 @@
 vim.opt.termguicolors = true
 local default_light = "peachpuff"
-local default_dark = "rose-pine-main"
--- local default_dark = "kanagawa-wave"
+local default_dark = "kanagawa-wave"
+-- local default_dark = "rose-pine-main"
 local default_show = "duskfox"
 
 local get_time_of_day = function()
