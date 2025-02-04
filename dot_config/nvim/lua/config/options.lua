@@ -2,7 +2,7 @@
 -- Add any additional options here
 
 -- // Set mapleader to ','
--- vim.cmd.let 'mapleader = ","'
+vim.cmd.let 'mapleader = ","'
 
 -- // disable relative numbers
 vim.opt.relativenumber = false
