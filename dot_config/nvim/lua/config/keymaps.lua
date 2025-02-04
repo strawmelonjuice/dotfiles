@@ -22,7 +22,9 @@ vim.api.nvim_set_keymap("i", "<Down>", "<ESC>gj", {})
 ---@diagnostic disable-next-line: assign-type-mismatch
 vim.keymap.set('n', '<Space>f', function() Snacks.picker.files({ cwd = true }) end, { desc = "Open file picker (cwd)" })
 vim.keymap.set('n', '<Space>g', function() Snacks.picker.grep() end, { desc = "Grep" })
-vim.keymap.set('n', '<Space>b', "<cmd>lua Snacks.dashboard.pick('buffers')<CR>", { desc = "Open buffer picker" })
-vim.keymap.set('n', '<Space>s', "<cmd>lua Snacks.dashboard.pick('lsp_symbols')<CR>", { desc = "Open symbol picker" })
-vim.keymap.set('n', '<Space>?', "<cmd>lua Snacks.dashboard.pick('commands')<CR>", { desc = "Open command picker" })
+vim.keymap.set('n', '<Space>b', function() Snacks.picker.buffers() end, { desc = "Open buffer picker" })
+vim.keymap.set('n', '<Space>s', function() Snacks.picker.lsp_symbols() end, { desc = "Open symbol picker" })
+vim.keymap.set('n', '<Space>S', function() Snacks.picker.lsp_symbols({ workspace = true }) end,
+  { desc = "Open symbol picker" })
+vim.keymap.set('n', '<Space>?', function() Snacks.picker.commands() end, { desc = "Open command picker" })
 vim.keymap.set('n', '<Space>r', function() Snacks.picker.resume() end, { desc = "Resume last search" })
