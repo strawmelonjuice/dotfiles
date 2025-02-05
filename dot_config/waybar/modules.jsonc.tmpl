@@ -111,7 +111,7 @@
   },
   // Clock
   "clock": {
-    // "timezone": "America/New_York",
+    "timezone": "Europe/Berlin",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format-alt": "{:%Y-%m-%d}"
   },
@@ -122,12 +122,12 @@
   },
   // CPU
   "cpu": {
-    "format": "CPU: {usage}% ",
+    "format": " {usage}% ",
     "on-click": "alacritty -e htop"
   },
   // Memory
   "memory": {
-    "format": "MEM: {}% ",
+    "format": " {}% ",
     "on-click": "alacritty -e btop"
   },
   // Harddisc space used
@@ -160,7 +160,7 @@
   "network": {
     "format": "{ifname}",
     "format-wifi": " ",
-    "format-ethernet": " ",
+    "format-ethernet": "  ",
     "format-disconnected": "Not connected",
     "tooltip-format": " {ifname} via {gwaddri}",
     "tooltip-format-wifi": "   {essid} ({signalStrength}%)",
