@@ -11,6 +11,9 @@ if [ "$HYPRGAMEMODE" = 1 ]; then
         keyword decoration:rounding 0;\
         keyword decoration:active_opacity 1;\
         keyword decoration:inactive_opacity 1"
+  hyprctl notify -1 10000 "rgb(ff1ea3)" "" " Performance Mode Enabled"
   exit
+
 fi
+hyprctl notify -1 10000 "rgb(ff1ea3)" "" " Performance Mode Disabled"
 hyprctl reload
