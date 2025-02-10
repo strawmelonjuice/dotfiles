@@ -17,7 +17,7 @@ bind = SUPER, E, exec, ~/shellscripts/filemanager.sh # Opens file manager
 bind = SHIFT, F1, exec, obs --startrecording # Start recording with OBS
 bind = SUPER, Z, exec, ~/.config/hypr/scripts/perftoggle.sh # Perf mode toggle, based on whatever Hypr docs call game mode
 bind = SUPER, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy # Open clipboard history
-bindr = SUPER ALT, Alt_L, overview:toggle # Toggle overview
+# bindr = SUPER ALT, Alt_L, overview:toggle # Toggle overview
 bind = SUPER, PERIOD, exec, [float] gnome-characters # Open the character map
 
 # Window actions
@@ -37,7 +37,7 @@ hyprgrass-bind = , edge:l:u, exec, brightnessctl s +10% # Increase brightness
 hyprgrass-bind = , edge:l:d, exec, brightnessctl s 10%- # Decrease brightness
 hyprgrass-bind = , edge:r:u, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 10%+ # Increase volume
 hyprgrass-bind = , edge:r:d, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 10%- # Decrease volume
-hyprgrass-bind = , edge:u:d, overview:toggle # Toggle overview
+# hyprgrass-bind = , edge:u:d, overview:toggle # Toggle overview
 {{- end }}
 
 
