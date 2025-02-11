@@ -20,6 +20,7 @@ bind = SUPER, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy 
 # bindr = SUPER ALT, Alt_L, overview:toggle # Toggle overview
 bind = SUPER, PERIOD, exec, [float] gnome-characters # Open the character map
 bindl=,switch:off:Lid Switch, exec, hyprlock --immediate
+bind = , XF86PowerOff, exec, wlogout
 
 # Window actions
 bind = SUPER, Q, killactive # Close current window
