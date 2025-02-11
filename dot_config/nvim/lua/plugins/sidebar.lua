@@ -28,16 +28,16 @@ function SWITCH_BETWEEN_OUTLINE_AND_FILETREE()
     end
     if sidebar_status == 0 then
       vim.cmd([[NvimTreeOpen]])
-      vim.notify("Sidebar: Open filetree (NvimTree)")
+      -- vim.notify("Sidebar: Open filetree (NvimTree)")
       sidebar_status = 1
     elseif sidebar_status == 1 then
       vim.cmd([[AerialOpen]])
-      vim.notify("Sidebar: Open symbols (Aerial)")
+      -- vim.notify("Sidebar: Open symbols (Aerial)")
       sidebar_status = 2
     elseif sidebar_status == 2 then
       vim.cmd([[AerialClose]])
       vim.cmd([[NvimTreeClose]])
-      vim.notify("Sidebar: Closed")
+      -- vim.notify("Sidebar: Closed")
       sidebar_status = 0
     end
   end
