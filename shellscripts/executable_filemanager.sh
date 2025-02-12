@@ -1,2 +1,1 @@
-dolphin
-
+nautilus $@
