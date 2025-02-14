@@ -29,5 +29,8 @@ else
 . "$HOME/.asdf/asdf.sh"
 fi
 
+# Initialize rebar3
+export PATH=/home/mar/.cache/rebar3/bin:$PATH
+
 # Initialize zoxide
 eval "$(zoxide init zsh --cmd cd)"
