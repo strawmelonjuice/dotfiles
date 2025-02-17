@@ -80,7 +80,7 @@ install_package "brightnessctl"
 install_package "unzip"
 install_package "wget"
 install_package "discord"
-install_package "dolphin"
+install_package "nautilus"
 install_package "fastfetch"
 install_package "firefox"
 install_package "github-cli"
@@ -160,6 +160,7 @@ fi
 # Cargo installs
 ## Bananen
 cargo install bananen
+
 ## Cargo binstall
 cargo install cargo-binstall
 
@@ -171,6 +172,9 @@ cargo install watchexec
 
 ## Starship
 cargo install starship --locked
+
+## Zellij
+cargo install --locked zellij
 
 # Flatpak packages
 flatpak install com.visualstudio.code -y
