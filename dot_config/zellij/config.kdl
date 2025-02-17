@@ -308,8 +308,8 @@ on_force_close "quit"
 
 // Choose the theme that is specified in the themes section.
 // Default: default
-//
-theme "catpuccin-latte"
+
+theme "kanagawa"
 
 // The name of the default layout to load on startup
 // Default: "default"
