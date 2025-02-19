@@ -9,7 +9,7 @@ local config = wezterm.config_builder()
 -- For example, changing the color scheme:
 config.color_scheme = "Dracula"
 config.enable_tab_bar = false
-config.font = "{{ .stylings.fonts.Mono.family }}"
+config.font = wezterm.font("{{ .stylings.fonts.Mono.family }}")
 config.font_size = {{ .stylings.fonts.Mono.size }}
 -- and finally, return the configuration to wezterm
 return config
