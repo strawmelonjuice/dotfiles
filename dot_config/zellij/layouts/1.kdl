@@ -1,0 +1,20 @@
+
+layout {
+    pane split_direction="horizontal" {
+        pane size="80%"
+        pane split_direction="vertical" {
+            pane size="70%"
+            pane size="30%"
+
+        }
+    }
+    pane size=1 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+}
+
+keybinds {
+    shared {
+      bind "Ctrl q" { Quit; }
+    }
+}

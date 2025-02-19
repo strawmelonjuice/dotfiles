@@ -314,8 +314,7 @@ theme "kanagawa"
 // The name of the default layout to load on startup
 // Default: "default"
 // (Requires restart)
-//
-// default_layout "compact"
+default_layout "1"
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal
