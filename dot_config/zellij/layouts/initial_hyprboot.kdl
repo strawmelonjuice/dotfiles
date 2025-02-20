@@ -15,12 +15,3 @@ layout {
 
 }
 
-keybinds {
-    shared {
-      bind "Enter" "Space" "Ctrl g" {
-       NewTab {
-           layout "1"
-       }; }
-      bind "Ctrl q" { Quit; }
-    }
-}
