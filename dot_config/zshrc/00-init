@@ -2,9 +2,14 @@
 # INIT
 # -----------------------------------------------------
 
-# export ZELLIJ_AUTO_ATTACH=true
-export ZELLIJ_AUTO_EXIT=true
-eval "$(zellij setup --generate-auto-start zsh)"
+# Zellij if on Alacritty
+if [ -z "${ALACRITTY_WINDOW_ID}" ]; then
+    echo "Not running in Alacritty, not autostarting Zellij"
+else
+  # export ZELLIJ_AUTO_ATTACH=true
+  export ZELLIJ_AUTO_EXIT=true
+  eval "$(zellij setup --generate-auto-start zsh)"
+fi
 
 
 # -----------------------------------------------------
