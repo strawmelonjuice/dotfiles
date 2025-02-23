@@ -13,3 +13,10 @@ layout {
     }
 }
 
+keybinds {
+  unbind "Ctrl q"
+  shared {
+    bind "Ctrl q" { CloseTab; SwitchToMode "Normal"; }
+  }
+}
+
