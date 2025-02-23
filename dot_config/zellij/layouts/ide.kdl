@@ -1,10 +1,10 @@
 
 layout {
     pane split_direction="horizontal" size="100%" {
-        pane size="80%" borderless=true
+        pane size="80%" borderless=true command="nvim"
         pane {
             split_direction "vertical"
-            pane size="70%"
+                       pane size="70%"
             pane
         }
     }
@@ -13,8 +13,3 @@ layout {
     }
 }
 
-keybinds {
-    shared {
-      bind "Ctrl q" { Quit; }
-    }
-}

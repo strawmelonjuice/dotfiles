@@ -20,6 +20,7 @@ alias cat='bat'
 alias ts='~/.config/hypr/scripts/snapshot.sh'
 alias wifi='nmtui'
 alias cleanup='~/.config/hypr/scripts/cleanup.sh'
+alias ide='zellij --layout ide'
 
 
 # -----------------------------------------------------
