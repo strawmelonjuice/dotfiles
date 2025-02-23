@@ -3,7 +3,7 @@
 # -----------------------------------------------------
 
 # Zellij if on Alacritty
-if [ -z "${ALACRITTY_WINDOW_ID}" ] && [ -z "${GHOSTTY_BIN_DIR}" ]; then
+if [ "${TERM}" != "alacritty" ] && [ "${TERM}" != "xterm-ghostty" ] && [ "${TERM}" != "foot" ]; then
     echo "Not autostarting Zellij as terminal is different from usual."
 else
   # export ZELLIJ_AUTO_ATTACH=true
