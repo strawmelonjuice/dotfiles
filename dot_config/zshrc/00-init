@@ -3,8 +3,8 @@
 # -----------------------------------------------------
 
 # Zellij if on Alacritty
-if [ -z "${ALACRITTY_WINDOW_ID}" ]; then
-    echo "Not running in Alacritty, not autostarting Zellij"
+if [ -z "${ALACRITTY_WINDOW_ID}" ] && [ -z "${GHOSTTY_BIN_DIR}" ]; then
+    echo "Not autostarting Zellij as terminal is different from usual."
 else
   # export ZELLIJ_AUTO_ATTACH=true
   export ZELLIJ_AUTO_EXIT=true

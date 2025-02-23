@@ -1,8 +1,16 @@
 # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
+{{- if eq .chezmoi.arch "arm64" }}
+$primary_term = "alacritty"
+$secondary_term = "kitty"
+{{- else }}
+$primary_term = "ghostty"
+$secondary_term = "alacritty"
+{{- end }}
+
 
 # Actions
-bind = SUPER, RETURN, exec, alacritty # Open Alacritty terminal
-bind = SUPER SHIFT, RETURN, exec, kitty # Open Kitty terminal
+bind = SUPER, RETURN, exec, $primary_term # Open primary terminal
+bind = SUPER SHIFT, RETURN, exec, $secondary_term # Open secondary terminal
 bind = SUPER SHIFT, L, exit # Exit Hyprland
 bind = SUPER, L, exec, hyprlock # Lock Hyprland
 bind = SUPER SHIFT, S, exec, ~/shellscripts/screenshot.sh  # Take a screenshot
