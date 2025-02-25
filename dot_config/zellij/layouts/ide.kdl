@@ -1,7 +1,8 @@
 
 layout {
     pane split_direction="horizontal" size="100%" {
-        pane size="80%" borderless=true command="nvim"
+      // The editor pane, but I won't set nvim as command, because that'll disable it from using LSP's
+        pane size="80%" borderless=true 
         pane {
             split_direction "vertical"
                        pane size="70%"
