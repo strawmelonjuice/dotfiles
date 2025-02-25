@@ -5,7 +5,7 @@
 # -----------------------------------------------------
 # oh-myzsh themes: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # -----------------------------------------------------
-ZSH_THEME=xiong-chiamiov-plus
+ZSH_THEME=fino-time
 
 # -----------------------------------------------------
 # oh-myzsh plugins
