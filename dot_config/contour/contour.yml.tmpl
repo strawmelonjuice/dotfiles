@@ -743,7 +743,7 @@ color_schemes:
 # - WriteScreen       Writes VT sequence in `chars` member to the screen (bypassing the application).
 input_mapping:
   - { mods: [Alt], key: "Enter", action: ToggleFullscreen }
-  - { mods: [], key: "Escape", action: CancelSelection }
+  - { mods: [Shift], key: "Escape", action: CancelSelection }
   - { mods: [Shift], key: "DownArrow", action: ScrollOneDown }
   - { mods: [Shift], key: "End", action: ScrollToBottom }
   - { mods: [Shift], key: "Home", action: ScrollToTop }
