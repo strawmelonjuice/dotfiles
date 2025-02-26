@@ -184,7 +184,9 @@ keybinds {
         bind "Ctrl n" { SwitchToMode "Resize"; }
     }
     shared_except "scroll" "locked" {
-        bind "Ctrl s" { SwitchToMode "Scroll"; }
+        bind "Ctrl Shift s" { SwitchToMode "Scroll"; }
+        // I save in neovim with Ctrl s, so I unbind it here because ANNOYING!
+        unbind "Ctrl s"
     }
     shared_except "session" "locked" {
         bind "Ctrl o" { SwitchToMode "Session"; }
