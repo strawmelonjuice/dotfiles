@@ -1,5 +1,10 @@
 #!/bin/env bash
 
+distribution="$(cat /etc/os-release | grep "ID_LIKE" | cut -d "=" -f 2)"
+if [ -z "$distribution" ]; then
+  # If ID_LIKE is not found, default to ID (Fedora, for example)
+  distribution="$(cat /etc/os-release | grep "ID" | cut -d "=" -f 2)"
+fi
 echo This is supposed to be a full install script for my dotfiles. It will install chezmoi, neovim, and other necessary packages.
 echo Please do note I am still mapping out the necessary packages for this script to work on all distributions.
 echo also note that this script is not yet complete and may not work as intended.
@@ -8,7 +13,27 @@ echo Installation takes about 20 minutes to complete.
 cd
 sudo echo Root access granted. || exit 1
 
-if [ -f /etc/debian_version ]; then
+if [ "$distribution" == "debian" ]; then
+  echo "\n\n\n"
+  echo "*****************************************WARNING*****************************************"
+  echo "*                                                                                       *"
+  echo "*                                                                                       *"
+  echo "*                                                                                       *"
+  echo "*                                                                                       *"
+  echo "*                                                                                       *"
+  echo "*                                                                                       *"
+  echo "*                                                                                       *"
+  echo "*                         Debian and Ubuntu repositories are usually                    *"
+  echo "*                         outdated. Please be advised and ready for error.              *"
+  echo "*                         If you want a more stable experience, consider a              *"
+  echo "*                         distribution like Arch Linux or even Fedora.                  *"
+  echo "*                                                                                       *"
+  echo "*                                                                                       *"
+  echo "*                                                                                       *"
+  echo "*                                                                                       *"
+  echo "*                                                                                       *"
+  echo "*                                                                                       *"
+  echo "*****************************************WARNING*****************************************"
   if grep -q "Ubuntu" /etc/os-release; then
     VERSION_ID=$(grep "VERSION_ID" /etc/os-release | cut -d '"' -f 2)
     if [ "$(echo "$VERSION_ID" | awk -F. '{print $1$2}')" -gt "2409" ]; then
@@ -22,7 +47,7 @@ if [ -f /etc/debian_version ]; then
     fi
   fi
   sudo apt-get update || exit 1
-else
+elif [ "$distribution" == "arch" ]; then
   sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
   sudo pacman-key --lsign-key 3056513887B78AEB
   sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
@@ -30,18 +55,24 @@ else
   echo "[chaotic-aur]
 Include = /etc/pacman.d/chaotic-mirrorlist" >>/etc/pacman.conf
   sudo pacman -Syu
+  # Install yoghurt
+  sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+elif ["$distribution" == "fedora"]; then
+  sudo dnf copr enable solopasha/hyprland
 fi
 
 install_package() {
   PACKAGE_NAME=$1
-  if [ -f /etc/debian_version ]; then
+  if [ "$distribution" == "debian" ]; then
     sudo apt-get install -y "$PACKAGE_NAME" --install-recommends
-  elif [ -f /etc/arch-release ]; then
+  elif [ "$distribution" == "arch" ]; then
     if command -v yay &>/dev/null; then
       yay -S --noconfirm "$PACKAGE_NAME"
     else
       sudo pacman -S --noconfirm "$PACKAGE_NAME"
     fi
+  elif [ "$distribution" == "fedora" ]; then
+    sudo dnf install -y "$PACKAGE_NAME"
   else
     echo "Unsupported distribution"
     exit 1
@@ -52,6 +83,7 @@ install_package() {
 install_package "curl"
 install_package "git"
 install_package "alacritty"
+install_package "contour"
 install_package "bat"
 install_package "clang"
 install_package "clangd"
@@ -72,17 +104,17 @@ install_package "pulseaudio"
 install_package "flatpak"
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 install_package "ripgrep"
-install_package "spotify"
 install_package "dunst"
 install_package "ark"
-install_package "bombardier"
 install_package "brightnessctl"
 install_package "unzip"
 install_package "wget"
-install_package "discord"
+install_package "snapd"
+install_package "go"
 install_package "nautilus"
 install_package "fastfetch"
 install_package "firefox"
+install_package "zen-browser"
 install_package "github-cli"
 install_package "google-chrome"
 install_package "hyfetch"
@@ -98,13 +130,13 @@ install_package "zsh-fast-syntax-highlighting"
 
 ## Hyprland and its dependencies
 install_package "hyprland"
-if [ -f /etc/debian_version ]; then
+if [ "$distribution" == "debian" ]; then
   # https://github.com/hyprwm/hyprpaper/releases/download/v0.7.3/v0.7.3.tar.gz
   PAPER_VERSION=$(curl -s "https://api.github.com/repos/hyprwm/hyprpaper/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
   curl -Lo hyprpaper.tar.gz "https://github.com/hyprwm/hyprpaper/releases/latest/download/v${PAPER_VERSION}.tar.gz"
   tar xf hyprpaper.tar.gz hyprpaper/hyprpaper
   sudo install ./hyprpaper/hyprpaper /usr/local/bin
-elif [ -f /etc/arch-release ]; then
+elif [ "$distribution" == "arch" ]; then
   install_package "xcb-util-xkb"
 fi
 install_package "hyprpaper"
@@ -114,9 +146,9 @@ install_package "hyprshot"
 install_package "waybar"
 install_package "wlogout"
 
-# Neovim and Lazygit need to be downloaded manually for Debian. Otherwise it'll be too outdated.
+## Neovim and Lazygit need to be downloaded manually for Debian.
 
-if [ -f /etc/debian_version ]; then
+if [ "$distribution" == "debian" ]; then
   curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
   sudo rm -rf /opt/nvim
   sudo tar -C /opt -xzf nvim-linux64.tar.gz
@@ -130,13 +162,11 @@ if [ -f /etc/debian_version ]; then
   sudo install lazygit /usr/local/bin
   rm lazygit.tar.gz
   rm -r ./lazygit
-
 else
   install_package "neovim"
   install_package "lazygit"
 fi
 source ~/.bashrc
-nvim --headless '+Lazy! sync' +qa
 
 # Self-installers
 ## Rust
@@ -149,10 +179,10 @@ echo 'alias bun="~/.bun/bin/bun"' >>~/.bashrc
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 sudo chsh $(whoami) -s /bin/zsh
 ## ASDF
-if [ -f /etc/debian_version ]; then
+if [ $distribution == "debian" ]; then
   sudo apt-get install -y curl git
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.15.0
-elif [ -f /etc/arch-release ]; then
+elif [ "$distribution" == "arch" ]; then
   git clone https://aur.archlinux.org/asdf-vm.git && cd asdf-vm && makepkg -si
   cd
 fi
@@ -176,9 +206,23 @@ cargo install starship --locked
 ## Zellij
 cargo install --locked zellij
 
+# Go installs
+## Bombardier
+go install github.com/codesenberg/bombardier@latest
+
 # Flatpak packages
-flatpak install com.visualstudio.code -y
+flatpak install chat.revolt.RevoltDesktop -y
+flatpak install me.timtimschneeberger.GalaxyBudsClient -y
+
+# Snap packages
+sudo snap install discord -y
+sudo snap install spotify -y
+sudo snap install gnome-taquin -y
 
 # Install chezmoi dotfiles
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply strawmelonjuice
 cp ~/.config/zed/set-settings.json ~/.config/zed/settings.json
+nvim --headless '+Lazy! sync' +qa
+
+# ready
+echo "Installation complete. Please consider restarting your system to apply some changes."
