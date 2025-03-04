@@ -59,6 +59,7 @@ Include = /etc/pacman.d/chaotic-mirrorlist" >>/etc/pacman.conf
   sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 elif ["$distribution" == "fedora"]; then
   sudo dnf copr enable solopasha/hyprland
+  curl -fsSL https://repo.librewolf.net/librewolf.repo | pkexec tee /etc/yum.repos.d/librewolf.repo
 fi
 
 install_package() {
@@ -79,7 +80,8 @@ install_package() {
   fi
 }
 
-# Install necessary packages.
+# install the package
+install_package librewolf
 install_package "curl"
 install_package "git"
 install_package "alacritty"
