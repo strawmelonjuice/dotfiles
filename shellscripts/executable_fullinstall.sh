@@ -1,10 +1,14 @@
 #!/bin/env bash
 
-distribution="$(cat /etc/os-release | grep "ID_LIKE" | cut -d "=" -f 2)"
+distribution="$(cat /etc/os-release | grep "ID_LIKE" | cut -d "=" -f 2 | sed 's/\n.*//')"
 if [ -z "$distribution" ]; then
   # If ID_LIKE is not found, default to ID (Fedora, for example)
-  distribution="$(cat /etc/os-release | grep "ID" | cut -d "=" -f 2)"
+  distribution="$(grep '^ID=' /etc/os-release | cut -d '=' -f 2 | sed 's/\n.*//')"
+
 fi
+
+echo "Detected distribution: $distribution"
+
 echo This is supposed to be a full install script for my dotfiles. It will install chezmoi, neovim, and other necessary packages.
 echo Please do note I am still mapping out the necessary packages for this script to work on all distributions.
 echo also note that this script is not yet complete and may not work as intended.
