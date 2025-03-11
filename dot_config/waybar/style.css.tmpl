@@ -197,7 +197,9 @@ window#waybar.empty #window {
 
 #custom-exit {
   margin: 10px 20px 10px 10px;
-  padding: 4px;
+  padding: 5px 10px 5px 10px;
+  /* Add a little extra padding to the right. to make it look more centered. */
+  padding-right: 15px;
   font-size: 20px;
   color: @iconcolor;
   border-radius: {{ .stylings.hoverOvers.bradius1 }};
@@ -263,14 +265,14 @@ window#waybar.empty #window {
   font-size: 16px;
   border-radius: {{ .stylings.hoverOvers.bradius1 }};
   margin: 10px 10px 10px 0px;
-background-color: {{ .stylings.hoverOvers.background4 }};
+  background-color: {{ .stylings.hoverOvers.background4 }};
   color: {{ .stylings.hoverOvers.text2 }};
 
 }
 
 #pulseaudio.muted {
-  color: white;
-  background-color: black;
+  color: {{ .stylings.hoverOvers.background6.two }};
+  background-color: {{ .stylings.hoverOvers.background6.five }};
   }
 
 /* -----------------------------------------------------
@@ -357,8 +359,8 @@ background-color: {{ .stylings.hoverOvers.background4 }};
 }
 
 #battery.critical:not(.charging) {
-  background-color: #f53c3c;
-  color: @textcolor3;
+  color: {{ .stylings.hoverOvers.background6.two }};
+  background-color: {{ .stylings.hoverOvers.background6.five }};
   animation-name: blink;
   animation-duration: 0.5s;
   animation-timing-function: linear;
