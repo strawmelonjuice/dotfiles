@@ -11,14 +11,14 @@ ZSH_THEME=fino-time
 # oh-myzsh plugins
 # -----------------------------------------------------
 plugins=(
-    git
-    sudo
-    web-search
-    archlinux
-    zsh-autosuggestions
-    copyfile
-    copybuffer
-    dirhistory
+  git
+  sudo
+  web-search
+  archlinux
+  zsh-autosuggestions
+  copyfile
+  copybuffer
+  dirhistory
 )
 
 # # If zsh-syntax-highlighting is not installed, install it with `yay -S zsh-syntax-highlighting`
@@ -41,4 +41,3 @@ setopt appendhistory
 # Starship promt
 # -----------------------------------------------------
 eval "$(starship init zsh)"
-

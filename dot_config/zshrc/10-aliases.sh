@@ -22,7 +22,6 @@ alias wifi='nmtui'
 alias cleanup='~/.config/hypr/scripts/cleanup.sh'
 alias ide='zellij --layout ide'
 
-
 # -----------------------------------------------------
 # Window Managers
 # -----------------------------------------------------
@@ -60,14 +59,11 @@ alias res1='xrandr --output DisplayPort-0 --mode 2560x1440 --rate 120'
 alias res2='xrandr --output DisplayPort-0 --mode 1920x1080 --rate 120'
 alias setkb='setxkbmap de;echo "Keyboard set back to de."'
 
-
-
 # -----------------------------------------------------
 # Custom
 # -----------------------------------------------------
 # I get Vim muscle memory in the terminal...
-alias qa='exit' 
+alias qa='exit'
 alias q='exit'
 alias :qa='exit'
 alias :q='exit'
-
