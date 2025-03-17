@@ -70,4 +70,7 @@ alias qa='exit'
 alias q='exit'
 alias :qa='exit'
 alias :q='exit'
+# I'm lazy and don't want to type the full command
 alias ide='zellij --layout ide'
+# Cleans up the cargo caches interactively
+alias cargock='cargo clean-all --keep-days 21 ~ -i'

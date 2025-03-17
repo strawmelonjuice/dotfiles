@@ -212,6 +212,9 @@ cargo install cargo-binstall
 ## Cargo watch
 cargo install cargo-watch
 
+## Cargo clean all
+cargo install cargo-clean-all
+
 ## Watchexec
 cargo install watchexec
 
