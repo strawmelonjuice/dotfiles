@@ -20,7 +20,10 @@ alias cat='bat'
 alias ts='~/.config/hypr/scripts/snapshot.sh'
 alias wifi='nmtui'
 alias cleanup='~/.config/hypr/scripts/cleanup.sh'
-alias ide='zellij --layout ide'
+# // if helix is not found as hx, create hx alias
+if ! command -v hx &>/dev/null; then
+  alias hx='helix'
+fi
 
 # -----------------------------------------------------
 # Window Managers
@@ -67,3 +70,4 @@ alias qa='exit'
 alias q='exit'
 alias :qa='exit'
 alias :q='exit'
+alias ide='zellij --layout ide'
