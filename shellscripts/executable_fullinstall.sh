@@ -64,6 +64,7 @@ Include = /etc/pacman.d/chaotic-mirrorlist" >>/etc/pacman.conf
 elif ["$distribution" == "fedora"]; then
   sudo dnf copr enable solopasha/hyprland
   curl -fsSL https://repo.librewolf.net/librewolf.repo | pkexec tee /etc/yum.repos.d/librewolf.repo
+  sudo dnf install -y gtk-layer-shell gtk-layer-shell-devel gtk3-devel hyprland-devel
 fi
 
 install_package() {
