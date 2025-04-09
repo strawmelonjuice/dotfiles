@@ -1,15 +1,27 @@
 
 layout {
     pane split_direction="horizontal" size="100%" {
-      // The editor pane, but I won't set nvim as command, because that'll disable it from using LSP's
-        pane size="80%" borderless=true 
+        pane size="75%" {
+          split_direction "vertical"
+          // The editor pane, but I won't set nvim as command, because that'll disable it from using LSP's
+          pane size="80%" stacked=true {
+            pane borderless=true command="bash" args="~/.config/zellij/scripts/ide.sh" close_on_exit=true
+            pane borderless=true focus=true
+          }
+          // pane size="15%" borderless=false {
+          //   borderless true
+          //      plugin location="zellij:strider"
+          //      focus true
+          // }
+        }
         pane {
             split_direction "vertical"
-                       pane size="70%"
-            pane
+             pane size="60%" 
+             children
+             pane
         }
     }
-    pane size=1 borderless=true  {
+    pane borderless=true size=1 {
         plugin location="zellij:status-bar"
     }
 }
