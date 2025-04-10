@@ -16,7 +16,12 @@
 				},
 				"Mono": {
 					"family": "Lilex Nerd Font",
+{{- if eq .chezmoi.hostname "Fennekin" }}
+          "size": 11
+{{- else }}
 					"size": 9
+
+{{- end }}
 				}
 			},
 			"hoverOvers": {

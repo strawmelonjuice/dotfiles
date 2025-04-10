@@ -1,12 +1,13 @@
 
 layout {
     pane split_direction="horizontal" size="100%" {
-        pane size="80%" {
+        pane size="85%" {
           split_direction "vertical"
           // The editor pane, but I won't set nvim as command, because that'll disable it from using LSP's
-          pane size="80%" stacked=true {
+          pane size="80%"           {
+            // stacked true 
             pane borderless=true command="~/.config/zellij/scripts/ide.sh"  focus=true
-            pane borderless=true
+            // pane borderless=true
           }
           // pane size="15%" borderless=false {
           //   borderless true
