@@ -63,6 +63,8 @@ Include = /etc/pacman.d/chaotic-mirrorlist" >>/etc/pacman.conf
   sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
 elif [ "$distribution" == "fedora" ]; then
   sudo dnf copr enable solopasha/hyprland
+  sudo dnf copr enable varlad/zellij
+  sudo dnf install zellij
   curl -fsSL https://repo.librewolf.net/librewolf.repo | pkexec tee /etc/yum.repos.d/librewolf.repo
   sudo dnf install -y gtk-layer-shell gtk-layer-shell-devel gtk3-devel hyprland-devel
 fi
@@ -219,7 +221,9 @@ cargo install watchexec
 cargo install starship --locked
 
 ## Zellij
-cargo install --locked zellij
+if [ "$distribution" != "fedora" ]
+  cargo install --locked zellij
+fi
 
 # Go installs
 ## Bombardier
