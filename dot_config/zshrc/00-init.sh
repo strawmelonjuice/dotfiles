@@ -31,7 +31,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 export EDITOR=nvim
 # // Snaps in path for on Debian-based systems with older packages outside of snap
-export PATH="/usr/lib/ccache/bin/:/snap/bin/:$PATH"
+export PATH="/usr/lib/ccache/bin/:/snap/bin/:$HOME/bin/:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
 
 # Initialize nvm
