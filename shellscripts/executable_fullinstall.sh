@@ -156,12 +156,7 @@ install_package "waybar"
 install_package "wlogout"
 
 ## Anyrun
-git clone https://github.com/anyrun-org/anyrun && cd anyrun
-cargo build --release
-cargo install --path anyrun/
-mkdir -p ~/.config/anyrun/plugins
-cp target/release/*.so ~/.config/anyrun/plugins
-cp examples/config.ron ~/.config/anyrun/config.ron
+git clone https://github.com/anyrun-org/anyrun && cd anyrun && cargo build --release && cargo install --path anyrun/ && mkdir -p ~/.config/anyrun/plugins && cp target/release/*.so ~/.config/anyrun/plugins && cp examples/config.ron ~/.config/anyrun/config.ron && cd .. && rm -rf ./anyrun
 
 ## Neovim and Lazygit need to be downloaded manually for Debian.
 
