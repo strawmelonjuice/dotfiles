@@ -60,8 +60,8 @@ elif [ "$distribution" == "arch" ]; then
 Include = /etc/pacman.d/chaotic-mirrorlist" >>/etc/pacman.conf
   sudo pacman -Syu
   # Install yoghurt
-  sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
-elif ["$distribution" == "fedora"]; then
+  sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
+elif [ "$distribution" == "fedora" ]; then
   sudo dnf copr enable solopasha/hyprland
   curl -fsSL https://repo.librewolf.net/librewolf.repo | pkexec tee /etc/yum.repos.d/librewolf.repo
   sudo dnf install -y gtk-layer-shell gtk-layer-shell-devel gtk3-devel hyprland-devel
@@ -231,8 +231,8 @@ cargo install --locked zellij
 go install github.com/codesenberg/bombardier@latest
 
 # Flatpak packages
-flatpak install chat.revolt.RevoltDesktop -y
-flatpak install me.timtimschneeberger.GalaxyBudsClient -y
+flatpak install chat.revolt.RevoltDesktop
+flatpak install me.timtimschneeberger.GalaxyBudsClient
 
 # Snap packages
 sudo snap install discord -y
