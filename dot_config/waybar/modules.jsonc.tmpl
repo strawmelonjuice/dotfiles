@@ -25,7 +25,7 @@
       "default": ""
     },
     "persistent-workspaces": {
-      "*": 3
+      // "*": 3
     }
   },
   "sway/workspaces": {
@@ -43,9 +43,9 @@
       "default": ""
     },
     "persistent-workspaces": {
-      "1": "1",
-      "2": "2",
-      "3": "3"
+      // "1": "1",
+      // "2": "2",
+      // "3": "3"
     }
   },
   "sway/mode": {
@@ -55,6 +55,9 @@
   "hyprland/window": {
     "rewrite": {
       "(.*) - Brave": "$1",
+      "(.*) — LibreWolf": "$1",
+      "(.*) — Mozilla Firefox": "$1",
+      "(.*) — Zen Browser": "$1",
       "(.*) - Chromium": "$1",
       "(.*) - Brave Search": "$1",
       "(.*) - Outlook": "$1",
@@ -65,6 +68,9 @@
   "sway/window": {
     "rewrite": {
       "(.*) - Brave": "$1",
+      "(.*) — LibreWolf": "$1",
+      "(.*) — Mozilla Firefox": "$1",
+      "(.*) — Zen Browser": "$1",
       "(.*) - Chromium": "$1",
       "(.*) - Brave Search": "$1",
       "(.*) - Outlook": "$1",
@@ -74,11 +80,11 @@
   },
   // Wofi Application Launcher
   "custom/appmenu": {
-    "format": "Drun",
+    "format": "Launch",
     "tooltip-format": "Left: Open the application launcher\nRight: Show all keybindings",
-    "on-click": "wofi --show drun -I -m",
+    "on-click": "anyrun",
     "on-click-right": "alacritty -e bat ~/.config/hypr/conf/binds.conf",
-    "tooltip": false
+    "tooltip": true
   },
 {{- if eq .chezmoi.hostname "Fennekin" }}
   "custom/osktoggle": {
@@ -167,7 +173,7 @@
     "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
     "tooltip-format-disconnected": "Disconnected",
     "max-length": 50,
-    "on-click": "alacritty -e nmtui"
+    "on-click": "alacritty -e nmtui connect"
   },
   // Battery
   "battery": {
@@ -195,8 +201,8 @@
     // "scroll-step": 1, // %, can be a float
     "format": "{icon}  {volume}%",
     "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": " {format_source}",
+    "format-bluetooth-muted": " {icon}",
+    "format-muted": " ",
     "format-source": "{volume}% ",
     "format-source-muted": "",
     "format-icons": {

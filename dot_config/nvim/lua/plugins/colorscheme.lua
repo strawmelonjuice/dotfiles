@@ -1,10 +1,10 @@
 vim.opt.termguicolors = true
-local default_light = "peachpuff"
+local default_light = "zellner"
 -- local default_light = "carbonized-light"
-local default_dark = "melange"
+local default_dark = "tokyonight-night"
 -- local default_dark = "kanagawa-wave"
 -- local default_dark = "rose-pine-main"
-local default_show = "zaibatsu"
+local default_show = "koehler"
 
 local get_time_of_day = function()
   local hour = tonumber(os.date("%H"))

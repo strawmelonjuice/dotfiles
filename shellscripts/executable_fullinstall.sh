@@ -60,10 +60,13 @@ elif [ "$distribution" == "arch" ]; then
 Include = /etc/pacman.d/chaotic-mirrorlist" >>/etc/pacman.conf
   sudo pacman -Syu
   # Install yoghurt
-  sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
-elif ["$distribution" == "fedora"]; then
+  sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
+elif [ "$distribution" == "fedora" ]; then
   sudo dnf copr enable solopasha/hyprland
+  sudo dnf copr enable varlad/zellij
+  sudo dnf install zellij
   curl -fsSL https://repo.librewolf.net/librewolf.repo | pkexec tee /etc/yum.repos.d/librewolf.repo
+  sudo dnf install -y gtk-layer-shell gtk-layer-shell-devel gtk3-devel hyprland-devel
 fi
 
 install_package() {
@@ -101,6 +104,7 @@ install_package "cmake"
 install_package "build-essential"
 install_package "mesa-utils"
 install_package "pkg-config"
+install_package "tidal-hifi"
 install_package "libssl-dev"
 install_package "wayland-scanner++"
 install_package "libgles2-mesa-dev"
@@ -154,12 +158,7 @@ install_package "waybar"
 install_package "wlogout"
 
 ## Anyrun
-git clone https://github.com/anyrun-org/anyrun && cd anyrun
-cargo build --release
-cargo install --path anyrun/
-mkdir -p ~/.config/anyrun/plugins
-cp target/release/*.so ~/.config/anyrun/plugins
-cp examples/config.ron ~/.config/anyrun/config.ron
+git clone https://github.com/anyrun-org/anyrun && cd anyrun && cargo build --release && cargo install --path anyrun/ && mkdir -p ~/.config/anyrun/plugins && cp target/release/*.so ~/.config/anyrun/plugins && cp examples/config.ron ~/.config/anyrun/config.ron && cd .. && rm -rf ./anyrun
 
 ## Neovim and Lazygit need to be downloaded manually for Debian.
 
@@ -212,6 +211,9 @@ cargo install cargo-binstall
 ## Cargo watch
 cargo install cargo-watch
 
+## Cargo clean all
+cargo install cargo-clean-all
+
 ## Watchexec
 cargo install watchexec
 
@@ -219,15 +221,17 @@ cargo install watchexec
 cargo install starship --locked
 
 ## Zellij
-cargo install --locked zellij
+if [ "$distribution" != "fedora" ]
+  cargo install --locked zellij
+fi
 
 # Go installs
 ## Bombardier
 go install github.com/codesenberg/bombardier@latest
 
 # Flatpak packages
-flatpak install chat.revolt.RevoltDesktop -y
-flatpak install me.timtimschneeberger.GalaxyBudsClient -y
+flatpak install chat.revolt.RevoltDesktop
+flatpak install me.timtimschneeberger.GalaxyBudsClient
 
 # Snap packages
 sudo snap install discord -y

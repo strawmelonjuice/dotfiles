@@ -1,4 +1,7 @@
 return {
-  -- { "vimsence/vimsence", name = "vimsence", lazy = false },
-  { "andweeb/presence.nvim" }
+  {
+    'vyfor/cord.nvim',
+    build = ':Cord update',
+    -- opts = {}
+  }
 }

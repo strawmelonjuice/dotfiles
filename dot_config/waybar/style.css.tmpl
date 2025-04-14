@@ -185,8 +185,9 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 
 #custom-appmenu {
-  background-color: @backgroundlight;
-  color: @textcolor1;
+    color: {{ .stylings.hoverOvers.background4 }};
+  background-color: {{ .stylings.hoverOvers.background6.three }};
+
   border-radius: {{ .stylings.hoverOvers.bradius1 }};
   margin: 10px 10px 10px 10px;
 }
@@ -405,5 +406,6 @@ label:focus {
 }
 
 #network.disconnected {
-  background-color: #f53c3c;
+  color: {{ .stylings.hoverOvers.background6.two }};
+  background-color: {{ .stylings.hoverOvers.background6.five }};
 }
