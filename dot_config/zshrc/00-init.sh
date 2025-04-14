@@ -34,27 +34,25 @@ export EDITOR=nvim
 export PATH="/usr/lib/ccache/bin/:/snap/bin/:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
 
-# Initialize nvm
-export NVM_DIR="$HOME/.nvm"
-if [ -s "$NVM_DIR/nvm.sh" ]; then
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+# Install and activate mise
+if [ -f $HOME/.local/bin/mise ]; then
+  # Activate mise
+  eval "$(~/.local/bin/mise activate zsh)"
 else
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+  # Install mise
+  curl https://mise.run | sh
+  # Activate mise
+  eval "$(~/.local/bin/mise activate zsh)"
+  # JS runtimes
+  ~/.local/bin/mise use -g node@23
+  ~/.local/bin/mise use -g bun@latest
+  # BEAM tools/languages
+  ~/.local/bin/mise use -g erlang@latest
+  ~/.local/bin/mise use -g gleam@latest
+  ~/.local/bin/mise use -g elixir@latest
+  ~/.local/bin/mise plugin install rebar https://github.com/Stratus3D/asdf-rebar.git
+  ~/.local/bin/mise use -g rebar@latest
 fi
-
-# Initialize asdf
-if [ -f $HOME/.asdf/asdf.sh ]; then
-  . "$HOME/.asdf/asdf.sh"
-else
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.15.0
-  . "$HOME/.asdf/asdf.sh"
-fi
-
-# Initialize rebar3
-export PATH=/home/mar/.cache/rebar3/bin:$PATH
 
 # Initialize zoxide
 eval "$(zoxide init zsh --cmd cd)"
