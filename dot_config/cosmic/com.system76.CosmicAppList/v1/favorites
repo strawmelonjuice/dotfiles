@@ -1,5 +1,6 @@
 [
     "com.system76.CosmicFiles",
+    "kitty",
     "com.system76.CosmicTerm",
     "com.system76.CosmicStore",
 ]
