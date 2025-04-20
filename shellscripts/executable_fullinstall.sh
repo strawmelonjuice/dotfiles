@@ -183,6 +183,8 @@ fi
 source ~/.bashrc
 
 # Self-installers
+#
+# Note: Mise en place gets installed on first launch of either zsh or bash.
 ## Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 . "$HOME/.cargo/env"
@@ -192,14 +194,6 @@ echo 'alias bun="~/.bun/bin/bun"' >>~/.bashrc
 ## OMZ
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 sudo chsh $(whoami) -s /bin/zsh
-## ASDF
-if [ $distribution == "debian" ]; then
-  sudo apt-get install -y curl git
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.15.0
-elif [ "$distribution" == "arch" ]; then
-  git clone https://aur.archlinux.org/asdf-vm.git && cd asdf-vm && makepkg -si
-  cd
-fi
 
 # Cargo installs
 ## Bananen
