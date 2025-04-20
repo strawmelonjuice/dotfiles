@@ -2,6 +2,9 @@
 # INIT
 # -----------------------------------------------------
 
+# Initialise compdef
+autoload -Uz compinit && compinit
+
 # Zellij if on Alacritty
 if [ "${TERM}" != "alacritty" ] && [ "${TERM}" != "xterm-ghostty" ] && [ "${TERM}" != "foot" ] && [ "${TERM}" != "contour" ]; then
   # no need to state this for kitty, as it is the default terminal but does not need to autostart Zellij.
@@ -21,13 +24,6 @@ fi
 if [ -f /etc/debian_version ]; then
   export PATH="$PATH:/opt/nvim-linux64/bin"
 fi
-
-# bun completions
-[ -s "/root/.bun/_bun" ] && source "/root/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 export EDITOR=nvim
 # // Snaps in path for on Debian-based systems with older packages outside of snap
