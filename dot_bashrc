@@ -1,8 +1,10 @@
 # If not running interactively, don't do anything but source mise shims and return
 [[ $- != *i* ]] && {
   if [ -f $HOME/.local/bin/mise ]; then
-    ~/.local/bin/mise activate --shims
+    # Activate mise shims
+    eval "$(~/.local/bin/mise activate --shims)"
   fi
+  # And return
   return
 }
 # Install and activate mise normally
