@@ -66,11 +66,11 @@ alias setkb='setxkbmap de;echo "Keyboard set back to de."'
 # Custom
 # -----------------------------------------------------
 # I get Vim muscle memory in the terminal...
-alias qa='exit'
-alias q='exit'
+alias qa='echo "Yes, you can use :q or :qa to exit."'
+alias q='echo "Yes, you can use :q or :qa to exit."'
 alias :qa='exit'
 alias :q='exit'
 # I'm lazy and don't want to type the full command
 alias ide='zellij --layout ide'
-# Cleans up the cargo caches interactively
+# Cleans up the cargo caches interactively. -- This name? Haha.
 alias cargock='cargo clean-all --keep-days 21 ~ -i'

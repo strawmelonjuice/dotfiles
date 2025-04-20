@@ -1,0 +1,48 @@
+# If not running interactively, don't do anything but source mise shims and return
+[[ $- != *i* ]] && {
+  if [ -f $HOME/.local/bin/mise ]; then
+    ~/.local/bin/mise activate --shims
+  fi
+  return
+}
+# Install and activate mise normally
+if [ -f $HOME/.local/bin/mise ]; then
+  # Activate mise
+  eval "$(~/.local/bin/mise activate bash)"
+else
+  # Install mise
+  curl https://mise.run | sh
+  # Activate mise
+  eval "$(~/.local/bin/mise activate zsh)"
+  # JS runtimes
+  ~/.local/bin/mise use -g node@23
+  ~/.local/bin/mise use -g bun@latest
+  # BEAM tools/languages
+  ~/.local/bin/mise use -g erlang@latest
+  ~/.local/bin/mise use -g gleam@latest
+  ~/.local/bin/mise use -g elixir@latest
+  ~/.local/bin/mise plugin install rebar https://github.com/Stratus3D/asdf-rebar.git
+  ~/.local/bin/mise use -g rebar@latest
+fi
+
+# Set alliasses
+# I get Vim muscle memory in the terminal...
+alias qa='echo "Yes, you can use :q or :qa to exit."'
+alias q='echo "Yes, you can use :q or :qa to exit."'
+alias :qa='exit'
+alias :q='exit'
+# I'm lazy and don't want to type the full command
+alias ide='zellij --layout ide'
+# Cleans up the cargo caches interactively. -- This name? Haha.
+alias cargock='cargo clean-all --keep-days 21 ~ -i'
+
+# Initialize zoxide
+eval "$(zoxide init zsh --cmd cd)"
+
+# Ready!
+if [[ $(tty) == *"pts"* ]]; then
+  hyfetch
+else
+  echo
+  echo "Start Hyprland with command Hyprland"
+fi
