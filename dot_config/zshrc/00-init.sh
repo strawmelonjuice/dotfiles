@@ -43,6 +43,8 @@ else
   curl https://mise.run | sh
   # Activate mise
   eval "$(~/.local/bin/mise activate zsh)"
+  # Install mise usage
+  ~/.local/bin/mise use -g usage
   # JS runtimes
   ~/.local/bin/mise use -g node@23
   ~/.local/bin/mise use -g bun@latest
