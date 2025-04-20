@@ -38,6 +38,7 @@ export ZSH="$HOME/.oh-my-zsh"
 if [ -f $HOME/.local/bin/mise ]; then
   # Activate mise
   eval "$(~/.local/bin/mise activate zsh)"
+  eval "$(mise completion zsh)"
 else
   # Install mise
   curl https://mise.run | sh
@@ -54,6 +55,8 @@ else
   ~/.local/bin/mise use -g elixir@latest
   ~/.local/bin/mise plugin install rebar https://github.com/Stratus3D/asdf-rebar.git
   ~/.local/bin/mise use -g rebar@latest
+  # Activate mise completion
+  eval "$(mise completion zsh)"
 fi
 
 # Initialize zoxide
