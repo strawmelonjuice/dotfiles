@@ -8,6 +8,16 @@
 #  
 # ----------------------------------------------------- 
 # Full documentation https://wiki.hyprland.org
+{{- if eq .chezmoi.arch "arm64" }}
+$primary_term = "kitty"
+$secondary_term = "alacritty"
+{{- else }}
+$primary_term = "foot"
+$secondary_term = "kitty"
+{{- end }}
+
+
+
 
 source = ~/.config/hypr/conf/monitor.conf
 source = ~/.config/hypr/conf/autostart.conf

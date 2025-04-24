@@ -1,13 +1,4 @@
 # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-{{- if eq .chezmoi.arch "arm64" }}
-$primary_term = "kitty"
-$secondary_term = "alacritty"
-{{- else }}
-$primary_term = "foot"
-$secondary_term = "kitty"
-{{- end }}
-
-
 # Actions
 bind = SUPER, RETURN, exec, $primary_term # Open primary terminal
 bind = SUPER SHIFT, RETURN, exec, $secondary_term # Open secondary terminal
