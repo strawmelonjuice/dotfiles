@@ -1,0 +1,21 @@
+# See https://wiki.hyprland.org/Configuring/Variables/ for more
+
+# Defining the primary and secondary terminal
+{{- if eq .chezmoi.arch "arm64" }}
+$primary_term = "kitty"
+$secondary_term = "alacritty"
+{{- else }}
+$primary_term = "foot"
+$secondary_term = "kitty"
+{{- end }}
+
+
+
+
+general {
+    gaps_in = 2
+    gaps_out = 4
+    border_size = 3
+    layout = dwindle
+    resize_on_border = true
+}
