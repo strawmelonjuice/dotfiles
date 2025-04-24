@@ -6,9 +6,9 @@
 autoload -Uz compinit && compinit
 
 # Zellij if on Alacritty
-if [ "${TERM}" != "alacritty" ] && [ "${TERM}" != "xterm-ghostty" ] && [ "${TERM}" != "foot" ] && [ "${TERM}" != "contour" ]; then
+if [ "${TERM}" != "alacritty" ] && [ "${TERM}" != "xterm-ghostty" ] && [ "${TERM}" != "contour" ]; then
   # no need to state this for kitty, as it is the default terminal but does not need to autostart Zellij.
-  if [ "${TERM}" != "xterm-kitty" ]; then
+  if [ "${TERM}" != "xterm-kitty" ] && [ "${TERM}" != "foot" ]; then
     echo "Not autostarting Zellij as terminal is different from usual."
   fi
 else
