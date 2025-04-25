@@ -5,10 +5,11 @@
 # Initialise compdef
 autoload -Uz compinit && compinit
 
-# Zellij if on Alacritty
-if [ "${TERM}" != "alacritty" ] && [ "${TERM}" != "xterm-ghostty" ] && [ "${TERM}" != "contour" ]; then
+# Zellij if on any of my main terminals
+# Zellij needs to start first, because otherwise we'll be going through the entire zshrc twice.
+if [ "${TERM}" != "alacritty" ] && [ "${TERM}" != "xterm-ghostty" ] && [ "${TERM}" != "contour" ] && [ "${TERM}" != "foot" ]; then
   # no need to state this for kitty, as it is the default terminal but does not need to autostart Zellij.
-  if [ "${TERM}" != "xterm-kitty" ] && [ "${TERM}" != "foot" ]; then
+  if [ "${TERM}" != "xterm-kitty" ] && ; then
     echo "Not autostarting Zellij as terminal is different from usual."
   fi
 else
