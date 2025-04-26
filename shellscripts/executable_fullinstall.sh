@@ -59,8 +59,11 @@ elif [ "$distribution" == "arch" ]; then
   echo "[chaotic-aur]
 Include = /etc/pacman.d/chaotic-mirrorlist" >>/etc/pacman.conf
   sudo pacman -Syu
-  # Install yoghurt
+  # Install yoghurt if not there.
+if command -v yay &>/dev/null; then
+
   sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
+fi
 elif [ "$distribution" == "fedora" ]; then
   sudo dnf copr enable solopasha/hyprland
   sudo dnf copr enable varlad/zellij
