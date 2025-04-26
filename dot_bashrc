@@ -50,3 +50,4 @@ else
   echo
   echo "Start Hyprland with command Hyprland"
 fi
+. "$HOME/.cargo/env"
