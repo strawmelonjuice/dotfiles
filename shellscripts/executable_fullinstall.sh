@@ -196,7 +196,7 @@ install_package f2fs-tools
 install_package fastfetch
 install_package feh
 install_package ffmpegthumbnailer
-install_package firefox
+install_package xfce4-clipman-plugin
 install_package firewalld
 install_package foomatic-db
 install_package foomatic-db-engine
