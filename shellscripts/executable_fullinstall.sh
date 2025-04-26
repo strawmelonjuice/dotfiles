@@ -60,10 +60,10 @@ elif [ "$distribution" == "arch" ]; then
 Include = /etc/pacman.d/chaotic-mirrorlist" >>/etc/pacman.conf
   sudo pacman -Syu
   # Install yoghurt if not there.
-if command -v yay &>/dev/null; then
+  if command -v yay &>/dev/null; then
 
-  sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
-fi
+    sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
+  fi
 elif [ "$distribution" == "fedora" ]; then
   sudo dnf copr enable solopasha/hyprland
   sudo dnf copr enable varlad/zellij
@@ -351,7 +351,6 @@ install_package xorg-xrandr
 install_package xss-lock
 install_package zip
 
-
 ## Hyprland and its dependencies
 install_package "hyprland"
 if [ "$distribution" == "debian" ]; then
@@ -428,7 +427,7 @@ cargo install watchexec
 cargo install starship --locked
 
 ## Zellij
-if [ "$distribution" != "fedora" ]
+if [ "$distribution" != "fedora" ]; then
   cargo install --locked zellij
 fi
 
