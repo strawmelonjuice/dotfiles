@@ -7,12 +7,13 @@ autoload -Uz compinit && compinit
 
 # Zellij if on any of my main terminals
 # Zellij needs to start first, because otherwise we'll be going through the entire zshrc twice.
-if [ "${TERM}" != "alacritty" ] && [ "${TERM}" != "xterm-ghostty" ] && [ "${TERM}" != "contour" ] && [ "${TERM}" != "foot" ] && [ "$(ps -p "$PPID" -o command=)" != "cosmic-term" ]; then
+if [ "${TERM}" != "alacritty" ] && [ "${TERM}" != "xterm-ghostty" ] && [ "${TERM}" != "contour" ] && [ "${TERM}" != "foot" ] && [ "${$(ps -p "$PPID" -o comm=)}" != "cosmic-term" ]; then
   # no need to state this for kitty, as it is the default terminal but does not need to autostart Zellij.
   if [ "${TERM}" != "xterm-kitty" ]; then
     echo "Not autostarting Zellij as terminal is different from usual."
   fi
 else
+  echo "Starting zellij"
   # export ZELLIJ_AUTO_ATTACH=true
   export ZELLIJ_AUTO_EXIT=true
   eval "$(zellij setup --generate-auto-start zsh)"
