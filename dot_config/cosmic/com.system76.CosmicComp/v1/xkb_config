@@ -2,7 +2,7 @@
     rules: "",
     model: "pc105+inet",
     layout: "us",
-    variant: "",
+    variant: "alt-intl",
     options: Some("terminate:ctrl_alt_bksp"),
     repeat_delay: 600,
     repeat_rate: 25,
