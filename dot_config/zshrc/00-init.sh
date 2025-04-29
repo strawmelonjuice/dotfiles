@@ -11,8 +11,9 @@ if [ "${TERM}" = "alacritty" ] || [ "${TERM}"  = "xterm-ghostty" ] || [ "${TERM}
   # export ZELLIJ_AUTO_ATTACH=true
   export ZELLIJ_AUTO_EXIT=true
   eval "$(zellij setup --generate-auto-start zsh)"
-elseif [ "${TERM}"  = "xterm-kitty" ]
+else if [ "${TERM}"  = "xterm-kitty" ]; then
   echo "Not starting zellij as terminal is not recognised"
+fi
 fi
 
 # -----------------------------------------------------
@@ -55,3 +56,4 @@ fi
 
 # Initialize zoxide
 eval "$(zoxide init zsh --cmd cd)"
+
