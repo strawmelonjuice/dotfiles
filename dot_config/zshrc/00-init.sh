@@ -5,6 +5,15 @@
 # Initialise compdef
 autoload -Uz compinit && compinit
 
+# ---------------------
+# Exporting EDITOR
+# ---------------------
+# On debian, add nvim to path
+if [ -f /etc/debian_version ]; then
+  export PATH="$PATH:/opt/nvim-linux64/bin"
+fi
+
+export EDITOR=nvim
 # Zellij if on any of my main terminals
 # Zellij needs to start first, because otherwise we'll be going through the entire zshrc twice.
 if [ "${TERM}" = "alacritty" ] || [ "${TERM}"  = "xterm-ghostty" ] || [ "${TERM}"  = "contour" ] || [ "${TERM}"  = "foot" ] || [ "${$(ps -p "$PPID" -o comm=)}" =  "cosmic-term" ]; then
@@ -19,12 +28,7 @@ fi
 # -----------------------------------------------------
 # Exports
 # -----------------------------------------------------
-# On debian, add nvim to path
-if [ -f /etc/debian_version ]; then
-  export PATH="$PATH:/opt/nvim-linux64/bin"
-fi
 
-export EDITOR=nvim
 # // Snaps in path for on Debian-based systems with older packages outside of snap
 export PATH="/usr/lib/ccache/bin/:/snap/bin/:$HOME/bin/:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
