@@ -61,3 +61,7 @@ fi
 # Initialize zoxide
 eval "$(zoxide init zsh --cmd cd)"
 
+# Set-up FZF key bindings (CTRL R for fuzzy history finder)
+source <(fzf --zsh)
+
+
