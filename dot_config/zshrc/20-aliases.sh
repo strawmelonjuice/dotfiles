@@ -28,10 +28,10 @@ fi
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 
 # I get Vim muscle memory in the terminal...
-alias qa='echo "Yes, you can use :q or :qa to exit."'
-alias q='echo "Yes, you can use :q or :qa to exit."'
-alias :qa='exit'
-alias :q='exit'
+alias qa='echo "Yes, you can use :qa to exit the entire session."'
+alias q='echo "Yes, you can use :q to exit the current tab."'
+alias :qa='zellij kill-session $ZELLIJ_SESSION_NAME'
+alias :q='zellij action close-tab'
 # I'm lazy and don't want to type the full command
 alias ide='zellij --layout ide'
 # Cleans up the cargo caches interactively. -- This name? Haha.
