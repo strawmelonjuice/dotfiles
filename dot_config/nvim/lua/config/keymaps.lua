@@ -14,7 +14,6 @@ vim.keymap.set({ 'i', 'n', 'v' }, '<C-K>', '<cmd>Lspsaga hover_doc<CR>')
 -- I am actively making things hard for-- well, me probably
 vim.api.nvim_set_keymap("i", "<Up>", "<ESC>gk", {})
 -- vim.api.nvim_set_keymap("i", "<Left>", "<ESC>h", {})
-vim.api.nvim_set_keymap("i", "<Down>", "<ESC>gj", {})
 -- vim.api.nvim_set_keymap("i", "<Right>", "<ESC>l", {})
 
 -- I can't get rid of my ,-leaderkey. But I do wanna use space in the Helix-like space menu way... so yes!
@@ -29,3 +28,7 @@ vim.keymap.set('n', '<Space>?', function() Snacks.picker.commands() end, { desc 
 vim.keymap.set('n', '<Space>r', function() Snacks.picker.resume() end, { desc = "Resume last search" })
 vim.keymap.set('n', '<Space><Space>', function() Snacks.picker.resume() end, { desc = "Resume last search" })
 vim.keymap.set('n', '<Space>c', "<cmd>normal gcc<CR>", { desc = "Comment line" })
+
+
+vim.keymap.set('n', '<Space>\\', "<cmd>vsplit<CR>", { desc = "Vertical split" })
+vim.keymap.set('n', '<Space>-', "<cmd>split<CR>", { desc = "Horizontal split" })
