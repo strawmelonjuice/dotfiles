@@ -12,11 +12,15 @@ autoload -Uz compinit && compinit
 if [ -f /etc/debian_version ]; then
   export PATH="$PATH:/opt/nvim-linux64/bin"
 fi
+export USERTERM="$TERM"
+if [ "$WSL_INTEROP" != "" ]; then
+  export USERTERM="$TERM-wsl"
+fi
 
 export EDITOR=nvim
 # Zellij if on any of my main terminals
 # Zellij needs to start first, because otherwise we'll be going through the entire zshrc twice.
-if [ "${TERM}" = "alacritty" ] || [ "${TERM}"  = "xterm-ghostty" ] || [ "${TERM}"  = "contour" ] || [ "${TERM}"  = "foot" ] || [ "${$(ps -p "$PPID" -o comm=)}" =  "cosmic-term" ]; then
+if [ "${USERTERM}" = "alacritty" ] || [ "${USERTERM}"  = "xterm-ghostty" ] || [ "${USERTERM}"  = "contour" ] || [ "${USERTERM}"  = "foot" ] || [ "${USERTERM}"  = "xterm-256color-wsl" ] || [ "${$(ps -p "$PPID" -o comm=)}" =  "cosmic-term" ]; then
   # export ZELLIJ_AUTO_ATTACH=true
   export ZELLIJ_AUTO_EXIT=true
   eval "$(zellij setup --generate-auto-start zsh)"

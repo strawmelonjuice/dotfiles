@@ -1,5 +1,5 @@
 vim.opt.termguicolors = true
-local default_light = "zellner"
+local default_light = "dayfox"
 -- local default_light = "carbonized-light"
 local default_dark = "tokyonight-night"
 -- local default_dark = "kanagawa-wave"
