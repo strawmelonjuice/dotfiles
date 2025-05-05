@@ -13,7 +13,7 @@
 	"ui_font_family": "Atkinson Hyperlegible Next",
 	"ui_font_size": 15,
 	"buffer_font_size": 11,
-	"buffer_font_family": "Recursive Mono Casual Static",
+	"buffer_font_family": "Lilex Nerd Font Mono",
 	"theme": {
 		"mode": "system",
 		"light": "Dayfox",
@@ -48,8 +48,8 @@
 	"buffer_font_fallbacks": null,
 	// The OpenType features to enable for text in the editor.
 	"buffer_font_features": {
-		// Disable ligatures:
-		// "calt": false
+		// Disable ligatures: -> |>
+		"calt": true
 	},
 	// The weight of the editor font in standard CSS units from 100 to 900.
 	"buffer_font_weight": 400,
@@ -636,7 +636,7 @@
 			"model": "claude-3-7-sonnet-latest"
 		},
 		// When enabled, the agent can run potentially destructive actions without asking for your confirmation.
-		"always_allow_tool_actions": false,
+		"always_allow_tool_actions": true,
 		"default_profile": "write",
 		"profiles": {
 			"ask": {
