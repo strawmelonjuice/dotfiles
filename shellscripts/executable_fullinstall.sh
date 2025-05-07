@@ -443,6 +443,8 @@ flatpak install chat.revolt.RevoltDesktop
 flatpak install me.timtimschneeberger.GalaxyBudsClient
 
 # Snap packages
+sudo ln /var/lib/snapd/snap /snap -ds
+sudo systemctl enable snapd
 sudo snap install discord -y
 sudo snap install spotify -y
 sudo snap install gnome-taquin -y
