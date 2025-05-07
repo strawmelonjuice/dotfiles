@@ -426,6 +426,9 @@ cargo install watchexec
 ## Starship
 cargo install starship --locked
 
+# KC
+cargo install kc
+
 ## Zellij
 if [ "$distribution" != "fedora" ]; then
   cargo install --locked zellij
