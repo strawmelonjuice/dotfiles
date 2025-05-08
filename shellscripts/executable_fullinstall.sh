@@ -350,7 +350,7 @@ install_package xorg-xkill
 install_package xorg-xrandr
 install_package xss-lock
 install_package zip
-
+install_package rofi-greenclip
 ## Hyprland and its dependencies
 install_package "hyprland"
 if [ "$distribution" == "debian" ]; then

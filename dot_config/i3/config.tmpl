@@ -73,6 +73,10 @@ bindsym $mod+Control+Right workspace next
 bindsym $mod+Shift+Tab workspace prev
 bindsym $mod+Control+Left workspace prev
 
+# Scroll through workspaces
+bindsym --whole-window $mod+button4 workspace next_on_output
+bindsym --whole-window $mod+button5 workspace prev_on_output
+
 # switch to workspace
 bindcode $mod+10    workspace  $ws1
 bindcode $mod+11    workspace  $ws2
@@ -581,6 +585,8 @@ strip_workspace_numbers yes
 
 bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun \
 		-config ~/.config/rofi/rofidmenu.rasi
+bindsym $mod+Control+Return exec --no-startup-id rofi -modi drun -show drun \
+		-config ~/.config/rofi/rofidmenu.rasi
 
 #bindsym F9 exec --no-startup-id rofi -modi drun -show drun \
 #		-config ~/.config/rofi/rofidmenu.rasi
@@ -593,8 +599,8 @@ bindsym $mod+t exec --no-startup-id rofi -show window \
 #bindsym F10 exec --no-startup-id rofi -show window \
 #		-config ~/.config/rofi/rofidmenu.rasi
 
-## rofi bindings to manage clipboard (install rofi-greenclip from the AUR)
+# rofi bindings to manage clipboard (install rofi-greenclip from the AUR)
 
-#exec --no-startup-id greenclip daemon>/dev/null
-#bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard \
-#		-config ~/.config/rofi/rofidmenu.rasi
+exec --no-startup-id greenclip daemon>/dev/null
+bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard \
+		-config ~/.config/rofi/rofidmenu.rasi
