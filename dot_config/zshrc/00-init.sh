@@ -34,7 +34,8 @@ fi
 # -----------------------------------------------------
 
 # // Snaps in path for on Debian-based systems with older packages outside of snap
-export PATH="/usr/lib/ccache/bin/:/snap/bin/:$HOME/bin/:$PATH"
+# And bun bin too.
+export PATH="/usr/lib/ccache/bin/:/snap/bin/:$HOME/bin/:$HOME/.bun/bin/:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
 
 # Install and activate mise
