@@ -1,4 +1,5 @@
 return {
+  {"braxtons12/blame_line.nvim"},{
   "snacks.nvim",
   opts = {
     dashboard = {
@@ -34,4 +35,5 @@ return {
       },
     },
   },
+}
 }
