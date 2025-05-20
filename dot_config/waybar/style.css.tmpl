@@ -1,7 +1,8 @@
 @define-color backgroundlight {{ .stylings.hoverOvers.background4 }};
 @define-color backgrounddark {{ .stylings.hoverOvers.background2 }};
 @define-color workspacesbackground1 {{ .stylings.hoverOvers.background2 }};
-@define-color workspacesbackground2 {{ .stylings.hoverOvers.background3 }};
+@define-color workspacesbackground2 {{ .stylings.hoverOvers.background1 }};
+@define-color workspacesbackground3 {{ .stylings.hoverOvers.background7 }};
 @define-color bordercolor {{ .stylings.hoverOvers.background2 }};
 @define-color textcolor1 {{ .stylings.hoverOvers.text2 }};
 @define-color textcolor2  {{ .stylings.hoverOvers.text2 }};
@@ -20,8 +21,8 @@
 }
 
 window#waybar {
-  background-color: {{ .stylings.hoverOvers.background1 }};
-  border-bottom: 3px groove {{ .stylings.hoverOvers.border1 }};
+  background-color: transparent;
+  /* border-bottom: 3px groove {{ .stylings.hoverOvers.border1 }}; */
   /* color: #FFFFFF; */
   transition-property: background-color;
   transition-duration: 0.5s;
@@ -32,13 +33,14 @@ window#waybar {
  * ----------------------------------------------------- */
 
 #workspaces {
-  margin: 5px 1px 6px 1px;
+  margin: 5px 6px 6px 3px;
   padding: 0px 1px;
   border-radius: {{ .stylings.hoverOvers.bradius1 }};
+  background-color: @workspacesbackground3;
   border: 0px;
   font-weight: bold;
   font-style: normal;
-  font-size: 16px;
+  font-size: 12px;
   color: @textcolor1;
 }
 
@@ -47,8 +49,9 @@ window#waybar {
   margin: 4px 3px;
   border-radius: {{ .stylings.hoverOvers.bradius1 }};
   border: 0px;
-  color: @textcolor3;
+  color: @textcolor1;
   transition: all 0.3s ease-in-out;
+  background: @workspacesbackground1;
 }
 
 #workspaces button.active, #workspaces button.focused {
@@ -374,6 +377,7 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 
 #tray {
+  background-color: {{ .stylings.hoverOvers.background7 }};
   border-radius: {{ .stylings.hoverOvers.bradius1 }};
   border: 2px {{ .stylings.hoverOvers.border2 }} dotted;
   padding: 4px;

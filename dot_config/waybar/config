@@ -1,41 +1,36 @@
 {
     "layer": "top", // Waybar at top layer
-    
     "position": "top", // Waybar position (top|bottom|left|right)
-    
     "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    
     "spacing": 4, // Gaps between modules in pixels
     // Choose the order of the modules
-
     // Load Modules
     "include": [
         "~/.config/waybar/quicklinks.jsonc",
         "~/.config/waybar/modules.jsonc"
-    ],    
+    ],
     "modules-left": [
         // "custom/appmenu",
         // "group/quicklinks",
-        "hyprland/workspaces", 
+        "hyprland/workspaces",
         "sway/workspaces",
         "sway/mode",
         "hyprland/window",
         "sway/window"
     ],
-    "modules-center": [
-    ],
+    "modules-center": [],
     "modules-right": [
-        "custom/osktoggle",
-        "mpd", 
-        "pulseaudio", 
-        "network", 
-        "cpu", 
-        "memory", 
-        "keyboard-state", 
-        "battery", 
-        "clock", 
         "tray",
+        "custom/osktoggle",
+        "mpd",
+        "pulseaudio",
+        "network",
+        "cpu",
+        "memory",
+        "keyboard-state",
+        "battery",
+        "clock",
         "custom/exit"
     ]
 }
