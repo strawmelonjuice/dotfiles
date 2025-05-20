@@ -19,18 +19,19 @@
         "hyprland/window",
         "sway/window"
     ],
-    "modules-center": [],
+    "modules-center": [
+        "custom/osktoggle",
+        "battery",
+        "clock",
+        "custom/exit"
+    ],
     "modules-right": [
         "tray",
-        "custom/osktoggle",
         "mpd",
         "pulseaudio",
         "network",
         "cpu",
         "memory",
-        "keyboard-state",
-        "battery",
-        "clock",
-        "custom/exit"
+        "keyboard-state"
     ]
 }
