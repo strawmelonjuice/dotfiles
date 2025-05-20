@@ -59,10 +59,9 @@ elif [ "$distribution" == "arch" ]; then
   echo "[chaotic-aur]
 Include = /etc/pacman.d/chaotic-mirrorlist" >>/etc/pacman.conf
   sudo pacman -Syu
-  # Install yoghurt if not there.
-  if command -v yay &>/dev/null; then
-
-    sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && rm -rf yay
+  # Install bird if not there.
+  if command -v paru &>/dev/null; then
+    sudo pacman -S --needed base-devel bat devtools && git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -si && cd .. && rm -rf paru
   fi
 elif [ "$distribution" == "fedora" ]; then
   sudo dnf copr enable solopasha/hyprland
@@ -77,7 +76,9 @@ install_package() {
   if [ "$distribution" == "debian" ]; then
     sudo apt-get install -y "$PACKAGE_NAME" --install-recommends
   elif [ "$distribution" == "arch" ]; then
-    if command -v yay &>/dev/null; then
+    if command -v paru &>/dev/null; then
+      paru -S --noconfirm "$PACKAGE_NAME"
+    elif command -v yay &>/dev/null; then
       yay -S --noconfirm "$PACKAGE_NAME"
     else
       sudo pacman -S --noconfirm "$PACKAGE_NAME"

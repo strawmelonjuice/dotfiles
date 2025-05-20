@@ -7,9 +7,10 @@
 # -----------------------------------------------------
 alias c='clear'
 alias cls='clear'
-alias nf='fastfetch'
-alias pf='fastfetch'
+alias nf='hyfetch'
+alias pf='hyfetch'
 alias ff='fastfetch'
+alias hf='hyfetch'
 alias ls='eza --icons'
 alias la='eza -a --icons'
 alias ll='eza -al --icons'
@@ -17,9 +18,8 @@ alias lt='eza -a --tree --level=1 --icons'
 alias shutdown='systemctl poweroff'
 alias v='$EDITOR'
 alias cat='bat'
-alias ts='~/.config/hypr/scripts/snapshot.sh'
 alias wifi='nmtui'
-alias cleanup='~/.config/hypr/scripts/cleanup.sh'
+alias yay='paru'
 # // if helix is not found as hx, create hx alias
 if ! command -v hx &>/dev/null; then
   alias hx='helix'
