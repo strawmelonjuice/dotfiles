@@ -15,15 +15,15 @@
         "~/.config/waybar/modules.jsonc"
     ],    
     "modules-left": [
-        "custom/appmenu",
-        "group/quicklinks",
+        // "custom/appmenu",
+        // "group/quicklinks",
+        "hyprland/workspaces", 
+        "sway/workspaces",
         "sway/mode",
         "hyprland/window",
         "sway/window"
     ],
     "modules-center": [
-        "hyprland/workspaces", 
-        "sway/workspaces"
     ],
     "modules-right": [
         "custom/osktoggle",
