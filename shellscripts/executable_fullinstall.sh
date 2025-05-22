@@ -151,7 +151,8 @@ install_package arandr
 install_package arc-gtk-theme-eos
 install_package archlinux-xdg-menu
 install_package aspell
-install_package awesome-terminal-fonts
+install_package ttf-font-awesome
+install_package ttf-lilex-nerd
 install_package b43-fwcutter
 install_package bash-completion
 install_package bind
