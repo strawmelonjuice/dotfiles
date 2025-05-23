@@ -34,5 +34,6 @@ alias :qa='zellij kill-session $ZELLIJ_SESSION_NAME'
 alias :q='zellij action close-tab'
 # I'm lazy and don't want to type the full command
 alias ide='zellij --layout ide'
+alias strider='zellij plugin --in-place -- zellij:strider'
 # Cleans up the cargo caches interactively. -- This name? Haha.
 alias cargock='cargo clean-all --keep-days 21 ~ -i'
