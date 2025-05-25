@@ -7,6 +7,17 @@ if [ -z "$distribution" ]; then
 
 fi
 
+# Handle Alpine specifically
+if [ "$distribution" == "alpine" ]; then
+    echo "Alpine Linux detected"
+    # Enable community repository
+    sudo sed -i 's/#http/http/' /etc/apk/repositories
+    sudo sed -i 's/#community/community/' /etc/apk/repositories
+    sudo apk update
+    # Install basic build tools
+    sudo apk add alpine-sdk build-base
+fi
+
 echo "Detected distribution: $distribution"
 
 echo This is supposed to be a full install script for my dotfiles. It will install chezmoi, neovim, and other necessary packages.
@@ -85,6 +96,16 @@ install_package() {
     fi
   elif [ "$distribution" == "fedora" ]; then
     sudo dnf install -y "$PACKAGE_NAME"
+  elif [ "$distribution" == "alpine" ]; then
+    # Convert some package names that are different in Alpine
+    case "$PACKAGE_NAME" in
+      "build-essential") PACKAGE_NAME="build-base" ;;
+      "libssl-dev") PACKAGE_NAME="openssl-dev" ;;
+      "pkg-config") PACKAGE_NAME="pkgconfig" ;;
+      "snapd") echo "Skipping snapd - not available on Alpine" && return 0 ;;
+      "firefox") PACKAGE_NAME="firefox-esr" ;;
+    esac
+    sudo apk add "$PACKAGE_NAME"
   else
     echo "Unsupported distribution"
     exit 1
