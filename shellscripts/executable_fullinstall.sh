@@ -28,6 +28,13 @@ echo Installation takes about 20 minutes to complete.
 cd
 sudo echo Root access granted. || exit 1
 
+# Add GUI installation prompt
+read -p "Install GUI packages? (Y/n) " install_gui
+install_gui=${install_gui:-Y}
+if [[ $install_gui =~ ^[Nn]$ ]]; then
+    echo "Skipping GUI package installation"
+fi
+
 if [ "$distribution" == "debian" ]; then
   echo "\n\n\n"
   echo "*****************************************WARNING*****************************************"
@@ -112,13 +119,21 @@ install_package() {
   fi
 }
 
+install_a_gui_package() {
+    if [[ $install_gui =~ ^[Nn]$ ]]; then
+        return 0
+    fi
+    PACKAGE_NAME=$1
+    install_package "$PACKAGE_NAME"
+}
+
 # install the package
-install_package librewolf
+install_a_gui_package librewolf
 install_package "curl"
 install_package "git"
-install_package "alacritty"
-install_package "kitty"
-install_package "foot"
+install_a_gui_package "alacritty"
+install_a_gui_package "kitty"
+install_a_gui_package "foot"
 install_package "bat"
 install_package "clang"
 install_package "clangd"
@@ -129,36 +144,35 @@ install_package "cmake"
 install_package "build-essential"
 install_package "mesa-utils"
 install_package "pkg-config"
-install_package "tidal-hifi"
+install_a_gui_package "tidal-hifi"
 install_package "libssl-dev"
 install_package "wayland-scanner++"
 install_package "libgles2-mesa-dev"
 install_package "fzf"
 install_package "htop"
-install_package "pavucontrol"
+install_a_gui_package "pavucontrol"
 install_package "pulseaudio"
 install_package "flatpak"
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 install_package "ripgrep"
-install_package "dunst"
-install_package "ark"
-install_package "brightnessctl"
+install_a_gui_package "dunst"
+install_a_gui_package "ark"
+install_a_gui_package "brightnessctl"
 install_package "unzip"
 install_package "wget"
 install_package "snapd"
 install_package "go"
-install_package "nautilus"
+install_a_gui_package "nautilus"
 install_package "fastfetch"
-install_package "firefox"
-install_package "epiphany"
-install_package "zen-browser"
-install_package "google-chrome"
+install_a_gui_package "firefox"
+install_a_gui_package "epiphany"
+install_a_gui_package "zen-browser"
+install_a_gui_package "google-chrome"
 install_package "github-cli"
-install_package "hyfetch"
-install_package "inkscape"
-install_package "slurp"
-install_package "wev"
-install_package "wofi"
+install_a_gui_package "inkscape"
+install_a_gui_package "slurp"
+install_a_gui_package "wev"
+install_a_gui_package "wofi"
 install_package "zsh"
 install_package "zoxide"
 install_package "zsh-syntax-highlighting"
@@ -249,10 +263,10 @@ install_package hplip
 install_package hwdetect
 install_package hwinfo
 install_package hyfetch
-install_package i3-wm
-install_package i3blocks
-install_package i3lock
-install_package i3status
+install_a_gui_package "i3-wm"
+install_a_gui_package "i3blocks"
+install_a_gui_package "i3lock"
+install_a_gui_package "i3status"
 install_package inetutils
 install_package intel-ucode
 install_package inxi
@@ -350,7 +364,6 @@ install_package unrar
 install_package upower
 install_package usb_modeswitch
 install_package usbutils
-install_package welcome
 install_package wget
 install_package which
 install_package wireplumber
@@ -385,12 +398,12 @@ if [ "$distribution" == "debian" ]; then
 elif [ "$distribution" == "arch" ]; then
   install_package "xcb-util-xkb"
 fi
-install_package "hyprpaper"
-install_package "hyprlock"
-install_package "hyprpolkitagent"
-install_package "hyprshot"
-install_package "waybar"
-install_package "wlogout"
+install_a_gui_package "hyprpaper"
+install_a_gui_package "hyprlock"
+install_a_gui_package "hyprpolkitagent"
+install_a_gui_package "hyprshot"
+install_a_gui_package "waybar"
+install_a_gui_package "wlogout"
 
 ## Anyrun
 git clone https://github.com/anyrun-org/anyrun && cd anyrun && cargo build --release && cargo install --path anyrun/ && mkdir -p ~/.config/anyrun/plugins && cp target/release/*.so ~/.config/anyrun/plugins && cp examples/config.ron ~/.config/anyrun/config.ron && cd .. && rm -rf ./anyrun
