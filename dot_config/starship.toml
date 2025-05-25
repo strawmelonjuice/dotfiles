@@ -1,187 +1,119 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """\
+[╭╴](fg:surface2)\
+$directory\
+(\
+    $git_branch\
+    $git_status\
+)\
+$cmd_duration $fill (\
+    $gleam\
+    $python\
+    $c\
+    $golang\
+    $rust\
+    $nodejs\
+) 
+[╰─](fg:surface2)$character\
+"""
+
+# Disables the blank line at the start of the prompt
+add_newline = true
+
+palette = "catppuccin_mocha"
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
+
+[fill]
+symbol = ' '
+
 [character]
-success_symbol = "[>](bold green)"
-error_symbol = "[x](bold red)"
-vimcmd_symbol = "[<](bold green)"
-
-[git_commit]
-tag_symbol = " tag "
-
-[git_status]
-ahead = ">"
-behind = "<"
-diverged = "<>"
-renamed = "r"
-deleted = "x"
-
-[aws]
-symbol = "aws "
-
-[bun]
-symbol = "bun "
-
-[c]
-symbol = "C "
-
-[cobol]
-symbol = "cobol "
-
-[conda]
-symbol = "conda "
-
-[crystal]
-symbol = "cr "
-
-[cmake]
-symbol = "cmake "
-
-[daml]
-symbol = "daml "
-
-[dart]
-symbol = "dart "
-
-[deno]
-symbol = "deno "
-
-[dotnet]
-symbol = ".NET "
+success_symbol = "[](fg:overlay1)"
+error_symbol = "[](fg:maroon)"
 
 [directory]
-read_only = " ro"
+format = " [](fg:peach)[  $path ]($style)[$read_only]($read_only_style)[](fg:peach)"
+truncation_length = 2
+style = "fg:crust bg:peach"
+read_only_style = "fg:crust bg:peach"
+before_repo_root_style = "fg:curst bg:peach"
+truncation_symbol = "…/"
+truncate_to_repo = true
+read_only = "  "
 
-[docker_context]
-symbol = "docker "
-
-[elixir]
-symbol = "exs "
-
-[elm]
-symbol = "elm "
+[cmd_duration]
+format = " [](fg:lavender)[$duration]($style)[](fg:lavender)"
+style = "fg:crust bg:lavender"
+min_time = 500
 
 [git_branch]
-symbol = "git "
+format = " [](fg:surface1)[$symbol$branch](fg:subtext1 bg:surface1)"
+symbol = " "
 
-[golang]
-symbol = "go "
+[git_status]
+format = "[ $all_status$ahead_behind](bg:surface1 fg:maroon)[](fg:surface1)"
 
-[guix_shell]
-symbol = "guix "
-
-[hg_branch]
-symbol = "hg "
-
-[java]
-symbol = "java "
-
-[julia]
-symbol = "jl "
-
-[kotlin]
-symbol = "kt "
-
-[lua]
-symbol = "lua "
-
-[nodejs]
-symbol = "nodejs "
-
-[memory_usage]
-symbol = "memory "
-
-[meson]
-symbol = "meson "
-
-[nim]
-symbol = "nim "
-
-[nix_shell]
-symbol = "nix "
-
-[ocaml]
-symbol = "ml "
-
-[opa]
-symbol = "opa "
-
-[os.symbols]
-Alpine = "alp "
-Amazon = "amz "
-Android = "andr "
-Arch = "rch "
-CentOS = "cent "
-Debian = "deb "
-DragonFly = "dfbsd "
-Emscripten = "emsc "
-EndeavourOS = "ndev "
-Fedora = "fed "
-FreeBSD = "fbsd "
-Garuda = "garu "
-Gentoo = "gent "
-HardenedBSD = "hbsd "
-Illumos = "lum "
-Linux = "lnx "
-Macos = "mac "
-Manjaro = "mjo "
-Mariner = "mrn "
-MidnightBSD = "mid "
-Mint = "mint "
-NetBSD = "nbsd "
-NixOS = "nix "
-OpenBSD = "obsd "
-openSUSE = "osuse "
-OracleLinux = "orac "
-Pop = "pop "
-Raspbian = "rasp "
-Redhat = "rhl "
-RedHatEnterprise = "rhel "
-Redox = "redox "
-Solus = "sol "
-SUSE = "suse "
-Ubuntu = "ubnt "
-Unknown = "unk "
-Windows = "win "
+[docker_context]
+disabled = true
+symbol = " "
 
 [package]
-symbol = "pkg "
+disabled = true
 
-[perl]
-symbol = "pl "
+[nodejs]
+format = "[ ](fg:green)[$symbol$version]($style)[](fg:green)"
+style = "bg:green fg:crust"
+symbol = " "
+version_format = "${raw}"
+disabled = false
 
-[php]
-symbol = "php "
-
-[pulumi]
-symbol = "pulumi "
-
-[purescript]
-symbol = "purs "
-
-[python]
-symbol = "py "
-
-[raku]
-symbol = "raku "
-
-[ruby]
-symbol = "rb "
+[golang]
+format = "[ ](fg:sky)[$symbol$version](bg:sky fg:crust)[](fg:sky)"
+symbol = " "
+version_format = "${raw}"
+disabled = false
 
 [rust]
-symbol = "rs "
+format = "[ ](fg:maroon)[$symbol$version](bg:maroon fg:crust)[](fg:maroon)"
+symbol = " "
+version_format = "${raw}"
+disabled = false
 
-[scala]
-symbol = "scala "
+[gleam]
+format = "[ ](fg:pink)[$symbol$version]($style)[](fg:pink)"
+style = "bg:pink fg:crust"
+symbol = " "
+disabled = false
 
-[spack]
-symbol = "spack "
-
-[sudo]
-symbol = "sudo "
-
-[swift]
-symbol = "swift "
-
-[terraform]
-symbol = "terraform "
-
-[zig]
-symbol = "zig "
+[c]
+format = "[ ](fg:clang)[$symbol($version(-$name) )](bg:clang fg:text_color)[](fg:clang)"
+symbol = " "
+version_format = "${raw}"
+disabled = true
