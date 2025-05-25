@@ -9,17 +9,17 @@ fi
 
 # Handle Alpine specifically
 if [ "$distribution" == "alpine" ]; then
-    echo "Alpine Linux detected"
-    # First ensure doas is installed using sudo (if it exists)
-    command -v sudo >/dev/null 2>&1 && sudo apk add doas || apk add doas
-    # Configure doas
-    echo "permit :wheel" | doas tee /etc/doas.d/doas.conf
-    # Enable community repository
-    doas sed -i 's/#http/http/' /etc/apk/repositories
-    doas sed -i 's/#community/community/' /etc/apk/repositories
-    doas apk update
-    # Install basic build tools
-    doas apk add alpine-sdk build-base
+  echo "Alpine Linux detected"
+  # First ensure doas is installed using sudo (if it exists)
+  command -v sudo >/dev/null 2>&1 && sudo apk add doas || apk add doas
+  # Configure doas
+  echo "permit :wheel" | doas tee /etc/doas.d/doas.conf
+  # Enable community repository
+  doas sed -i 's/#http/http/' /etc/apk/repositories
+  doas sed -i 's/#community/community/' /etc/apk/repositories
+  doas apk update
+  # Install basic build tools
+  doas apk add alpine-sdk build-base
 fi
 
 echo "Detected distribution: $distribution"
@@ -31,16 +31,16 @@ echo Installation takes about 20 minutes to complete.
 
 cd
 if [ "$distribution" == "alpine" ]; then
-    doas echo "Root access granted." || exit 1
+  doas echo "Root access granted." || exit 1
 else
-    sudo echo "Root access granted." || exit 1
+  sudo echo "Root access granted." || exit 1
 fi
 
 # Add GUI installation prompt
 read -p "Install GUI packages? (Y/n) " install_gui
 install_gui=${install_gui:-Y}
 if [[ $install_gui =~ ^[Nn]$ ]]; then
-    echo "Skipping GUI package installation"
+  echo "Skipping GUI package installation"
 fi
 
 if [ "$distribution" == "debian" ]; then
@@ -114,11 +114,10 @@ install_package() {
   elif [ "$distribution" == "alpine" ]; then
     # Convert some package names that are different in Alpine
     case "$PACKAGE_NAME" in
-      "build-essential") PACKAGE_NAME="build-base" ;;
-      "libssl-dev") PACKAGE_NAME="openssl-dev" ;;
-      "pkg-config") PACKAGE_NAME="pkgconfig" ;;
-      "snapd") echo "Skipping snapd - not available on Alpine" && return 0 ;;
-      "firefox") PACKAGE_NAME="firefox-esr" ;;
+    "build-essential") PACKAGE_NAME="build-base" ;;
+    "libssl-dev") PACKAGE_NAME="openssl-dev" ;;
+    "pkg-config") PACKAGE_NAME="pkgconfig" ;;
+    "snapd") echo "Skipping snapd - not available on Alpine" && return 0 ;;
     esac
     doas apk add "$PACKAGE_NAME"
   else
@@ -128,20 +127,20 @@ install_package() {
 }
 
 install_a_gui_package() {
-    if [[ $install_gui =~ ^[Nn]$ ]]; then
-        return 0
-    fi
-    PACKAGE_NAME=$1
-    install_package "$PACKAGE_NAME"
+  if [[ $install_gui =~ ^[Nn]$ ]]; then
+    return 0
+  fi
+  PACKAGE_NAME=$1
+  install_package "$PACKAGE_NAME"
 }
 
 # Helper function for privilege escalation
 priv_exec() {
-    if [ "$distribution" == "alpine" ]; then
-        doas "$@"
-    else
-        sudo "$@"
-    fi
+  if [ "$distribution" == "alpine" ]; then
+    doas "$@"
+  else
+    sudo "$@"
+  fi
 }
 
 # install the package
@@ -362,7 +361,6 @@ install_package sg3_utils
 install_package smartmontools
 install_package sof-firmware
 install_package splix
-install_package sudo
 install_package sysfsutils
 install_package sysstat
 install_package system-config-printer
@@ -458,7 +456,7 @@ curl -fsSL https://bun.sh/install | bash
 echo 'alias bun="~/.bun/bin/bun"' >>~/.bashrc
 ## OMZ
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-sudo chsh $(whoami) -s /bin/zsh
+priv_exec chsh $(whoami) -s /bin/zsh
 
 # Cargo installs
 ## Bananen
@@ -467,8 +465,8 @@ cargo install bananen
 ## Cargo binstall
 cargo install cargo-binstall
 
-## Cargo watch
-cargo install cargo-watch
+## Watchexec
+cargo binstall watchexec-cli
 
 ## Cargo clean all
 cargo install cargo-clean-all
@@ -506,7 +504,6 @@ else
   sudo snap install discord -y
   sudo snap install gnome-taquin -y
 fi
-
 
 # Install chezmoi dotfiles
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply strawmelonjuice
