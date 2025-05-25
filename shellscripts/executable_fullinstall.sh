@@ -10,12 +10,16 @@ fi
 # Handle Alpine specifically
 if [ "$distribution" == "alpine" ]; then
     echo "Alpine Linux detected"
+    # First ensure doas is installed using sudo (if it exists)
+    command -v sudo >/dev/null 2>&1 && sudo apk add doas || apk add doas
+    # Configure doas
+    echo "permit :wheel" | doas tee /etc/doas.d/doas.conf
     # Enable community repository
-    sudo sed -i 's/#http/http/' /etc/apk/repositories
-    sudo sed -i 's/#community/community/' /etc/apk/repositories
-    sudo apk update
+    doas sed -i 's/#http/http/' /etc/apk/repositories
+    doas sed -i 's/#community/community/' /etc/apk/repositories
+    doas apk update
     # Install basic build tools
-    sudo apk add alpine-sdk build-base
+    doas apk add alpine-sdk build-base
 fi
 
 echo "Detected distribution: $distribution"
@@ -26,7 +30,11 @@ echo also note that this script is not yet complete and may not work as intended
 echo Installation takes about 20 minutes to complete.
 
 cd
-sudo echo Root access granted. || exit 1
+if [ "$distribution" == "alpine" ]; then
+    doas echo "Root access granted." || exit 1
+else
+    sudo echo "Root access granted." || exit 1
+fi
 
 # Add GUI installation prompt
 read -p "Install GUI packages? (Y/n) " install_gui
@@ -112,7 +120,7 @@ install_package() {
       "snapd") echo "Skipping snapd - not available on Alpine" && return 0 ;;
       "firefox") PACKAGE_NAME="firefox-esr" ;;
     esac
-    sudo apk add "$PACKAGE_NAME"
+    doas apk add "$PACKAGE_NAME"
   else
     echo "Unsupported distribution"
     exit 1
@@ -125,6 +133,15 @@ install_a_gui_package() {
     fi
     PACKAGE_NAME=$1
     install_package "$PACKAGE_NAME"
+}
+
+# Helper function for privilege escalation
+priv_exec() {
+    if [ "$distribution" == "alpine" ]; then
+        doas "$@"
+    else
+        sudo "$@"
+    fi
 }
 
 # install the package
@@ -153,7 +170,7 @@ install_package "htop"
 install_a_gui_package "pavucontrol"
 install_package "pulseaudio"
 install_package "flatpak"
-sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+priv_exec flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 install_package "ripgrep"
 install_a_gui_package "dunst"
 install_a_gui_package "ark"
@@ -479,11 +496,17 @@ flatpak install chat.revolt.RevoltDesktop
 flatpak install me.timtimschneeberger.GalaxyBudsClient
 
 # Snap packages
-sudo ln /var/lib/snapd/snap /snap -ds
-sudo systemctl enable snapd
-sudo snap install discord -y
-sudo snap install spotify -y
-sudo snap install gnome-taquin -y
+if [ "$distribution" == "alpine" ]; then
+  echo "Snap is not available on Alpine Linux. Skipping Snap package installation."
+else
+  sudo systemctl enable snapd.socket
+  sudo systemctl start snapd.socket
+  sudo ln /var/lib/snapd/snap /snap -ds
+  sudo systemctl enable snapd
+  sudo snap install discord -y
+  sudo snap install gnome-taquin -y
+fi
+
 
 # Install chezmoi dotfiles
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply strawmelonjuice
