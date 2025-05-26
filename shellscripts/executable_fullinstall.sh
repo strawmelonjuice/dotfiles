@@ -402,6 +402,7 @@ install_package xorg-xrandr
 install_package xss-lock
 install_package zip
 install_package rofi-greenclip
+install_package helix
 ## Hyprland and its dependencies
 install_package "hyprland"
 if [ "$distribution" == "debian" ]; then
@@ -509,6 +510,10 @@ fi
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply strawmelonjuice
 cp ~/.config/zed/set-settings.json ~/.config/zed/settings.json
 nvim --headless '+Lazy! sync' +qa
+
+# Set git up with author
+git config --global user.email "mar@strawmelonjuice.com"
+git config --global user.name "MLC Bloeiman"
 
 # ready
 echo "Installation complete. Please consider restarting your system to apply some changes."
