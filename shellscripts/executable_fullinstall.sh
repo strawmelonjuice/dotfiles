@@ -401,6 +401,7 @@ install_package xorg-xkill
 install_package xorg-xrandr
 install_package xss-lock
 install_package zip
+install_package blueman
 install_package rofi-greenclip
 install_package helix
 install_package zed
