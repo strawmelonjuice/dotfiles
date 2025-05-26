@@ -492,8 +492,9 @@ fi
 go install github.com/codesenberg/bombardier@latest
 
 # Flatpak packages
-flatpak install chat.revolt.RevoltDesktop
-flatpak install me.timtimschneeberger.GalaxyBudsClient
+flatpak install chat.revolt.RevoltDesktop -y
+flatpak install flathub xyz.armcord.ArmCord -y
+flatpak install me.timtimschneeberger.GalaxyBudsClient -y
 
 # Snap packages
 if [ "$distribution" == "alpine" ]; then
@@ -503,8 +504,8 @@ else
   sudo systemctl start snapd.socket
   sudo ln /var/lib/snapd/snap /snap -ds
   sudo systemctl enable snapd
-  sudo snap install discord -y
-  sudo snap install gnome-taquin -y
+  sudo snap install discord
+  sudo snap install gnome-taquin
 fi
 
 # Install chezmoi dotfiles
