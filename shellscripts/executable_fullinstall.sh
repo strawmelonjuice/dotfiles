@@ -403,6 +403,7 @@ install_package xss-lock
 install_package zip
 install_package rofi-greenclip
 install_package helix
+install_package zed
 ## Hyprland and its dependencies
 install_package "hyprland"
 if [ "$distribution" == "debian" ]; then
