@@ -1,2 +1,8 @@
 #!/bin/env bash
-$EDITOR && zellij action close-tab
+if ! command -v hx &>/dev/null; then
+  alias hx='helix'
+  if [[ "$EDITOR"=="hx" ]]; then
+    EDITOR='helix'
+  fi
+fi
+$EDITOR . && zellij action close-tab
