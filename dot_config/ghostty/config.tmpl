@@ -22,7 +22,10 @@
 
 
 font-family = {{ .stylings.fonts.Mono.family }}
-font-family = "Noto Sans"
+{{- if eq .chezmoi.hostname "Fennekin" }}
+# Temporary fix for Fennekin not loading the font correctly
+font-family = ""
+{{- end }}
 
 
 font-size = {{ .stylings.fonts.Mono.size }}
