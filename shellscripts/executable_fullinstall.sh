@@ -44,8 +44,22 @@ if [[ $install_gui =~ ^[Nn]$ ]]; then
 fi
 
 if [ "$distribution" == "debian" ]; then
-  echo "\n\n\n"
-  echo "*****************************************WARNING*****************************************"
+
+  # Check if it's Linux Mint
+  if ! grep -q "MINT" /etc/os-release; then
+    echo "\n\n\n"
+    echo "*****************************************ERROR*****************************************"
+    echo "*                                                                                     *"
+    echo "*                                                                                     *"
+    echo "*                This script now only supports Linux Mint for Debian-based           *"
+    echo "*                distributions. Please use Linux Mint 21.3+ or switch to             *"
+    echo "*                Arch Linux/Fedora for the best experience.                          *"
+    echo "*                                                                                     *"
+    echo "*                                                                                     *"
+    echo "*****************************************ERROR*****************************************"
+    exit 1
+  else
+    echo "*****************************************WARNING*****************************************"
   echo "*                                                                                       *"
   echo "*                                                                                       *"
   echo "*                                                                                       *"
@@ -64,19 +78,22 @@ if [ "$distribution" == "debian" ]; then
   echo "*                                                                                       *"
   echo "*                                                                                       *"
   echo "*****************************************WARNING*****************************************"
-  if grep -q "Ubuntu" /etc/os-release; then
-    VERSION_ID=$(grep "VERSION_ID" /etc/os-release | cut -d '"' -f 2)
-    if [ "$(echo "$VERSION_ID" | awk -F. '{print $1$2}')" -gt "2409" ]; then
-      echo "Ubuntu version is newer than 24.10. Continuing..."
-      sudo add-apt-repository universe
-      sudo snap install chezmoi --classic
-      sudo apt-get install --install-recommends linux-generic-hwe-16.04
-    else
-      echo Your Ubuntu version is too old. Please upgrade to 24.10 or newer.
-      exit 1
-    fi
   fi
-  sudo apt-get update || exit 1
+
+  # Add required repos for Mint
+  echo "Adding required repositories for Linux Mint..."
+  sudo add-apt-repository ppa:nrbrtx/xorg-hotkeys -y
+  sudo add-apt-repository ppa:pipewire-debian/pipewire-upstream -y
+  
+  # Add Hyprland repository
+  echo "Adding Hyprland repository..."
+  sudo mkdir -p /etc/apt/keyrings
+  wget -O- https://pkg.hyprland.dev/key.pgp | sudo tee /etc/apt/keyrings/hyprland.pgp > /dev/null
+  echo "deb [signed-by=/etc/apt/keyrings/hyprland.pgp] https://pkg.hyprland.dev/debian $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hyprland.list > /dev/null
+  
+  # Update system
+  sudo apt update || exit 1
+  sudo apt upgrade -y || exit 1
 elif [ "$distribution" == "arch" ]; then
   sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
   sudo pacman-key --lsign-key 3056513887B78AEB
