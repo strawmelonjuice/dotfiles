@@ -1,5 +1,3 @@
-# theme = "rose_pine_moon"
-
 [editor]
 line-number = "relative"
 mouse = true
@@ -15,6 +13,14 @@ hidden = false
 [keys.normal]
 C-s = ":write"
 # Enter = "move_visual_line_down"
+
+[keys.normal.space.M]
+l=":theme kaolin-light"
+L=":theme bogster_light"
+g=":theme github_dark_high_contrast"
+G=":theme rose_pine_moon"
+d=":theme iroaseta"
+D=":theme tokyonight_moon"
 
 [keys.insert]
 C-s = [":write","normal_mode"]
