@@ -75,8 +75,16 @@ else
   eval "$(mise completion zsh)"
 fi
 
-# Initialize zoxide
-eval "$(zoxide init zsh --cmd cd)"
+# Initialize zoxide and after every CD, also run kc
+eval "$(zoxide init zsh --cmd bang)"
+banger() {
+  bang $* &&  kc
+}
+bangeri() {
+  bangi $* &&  kc
+}
+alias cd=banger
+alias cdi=bangeri 
 
 # Set-up FZF key bindings (CTRL R for fuzzy history finder)
 source <(fzf --zsh)
