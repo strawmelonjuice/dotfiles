@@ -168,6 +168,7 @@ install_package "fzf"
 install_package "htop"
 install_a_gui_package "pavucontrol"
 install_package "pulseaudio"
+install_a_gui_package "element-desktop"
 install_package "flatpak"
 priv_exec flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 install_package "ripgrep"
@@ -403,6 +404,7 @@ install_package xss-lock
 install_package zip
 install_package blueman
 install_package rofi-greenclip
+install_package clipman
 install_package helix
 install_package zed
 ## Hyprland and its dependencies
