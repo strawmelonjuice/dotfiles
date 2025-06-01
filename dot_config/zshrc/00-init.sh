@@ -17,7 +17,22 @@ if [ "$WSL_INTEROP" != "" ]; then
   export USERTERM="$TERM-wsl"
 fi
 
+# // if helix is not found as hx, create a symlink to it
+if [ ! -f "$HOME/.local/bin/hx" ]; then
+  if [ -f "$HOME/.local/bin/helix" ]; then
+    ln -s "$HOME/.local/bin/helix" "$HOME/.local/bin/hx"
+  elif [ -f "/usr/local/bin/helix" ]; then
+    ln -s "/usr/local/bin/helix" "$HOME/.local/bin/hx"
+  elif [ -f "/usr/bin/helix" ]; then
+    ln -s "/usr/bin/helix" "$HOME/.local/bin/hx"
+  fi
+fi
+
+# Use Helix as the default editor
+# This is an experiment for me, so I can use Helix as my main editor.
 export EDITOR=hx
+export VISUAL=hx
+
 # Zellij if on any of my main terminals
 # Zellij needs to start first, because otherwise we'll be going through the entire zshrc twice.
 if [ "${USERTERM}" = "alacritty" ] || [ "${USERTERM}"  = "xterm-ghostty" ] || [ "${USERTERM}"  = "contour" ] || [ "${USERTERM}"  = "foot" ] || [ "${USERTERM}"  = "xterm-256color-wsl" ] || [ "${$(ps -p "$PPID" -o comm=)}" =  "cosmic-term" ] || [ "${TERM}"  = "xterm-kitty" ]; then

@@ -20,10 +20,7 @@ alias v='$EDITOR'
 alias cat='bat'
 alias wifi='nmtui'
 alias yay='paru'
-# // if helix is not found as hx, create hx alias
-if ! command -v hx &>/dev/null; then
-  alias hx='helix'
-fi
+
 
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 
