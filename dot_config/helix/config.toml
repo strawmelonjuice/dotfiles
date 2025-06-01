@@ -1,6 +1,6 @@
 [editor]
 line-number = "relative"
-mouse = true
+mouse = false
 
 [editor.cursor-shape]
 insert = "bar"
@@ -24,3 +24,5 @@ D=":theme tokyonight_moon"
 
 [keys.insert]
 C-s = [":write","normal_mode"]
+down = ["move_visual_line_down","normal_mode"]
+up = ["move_visual_line_up","normal_mode"]
