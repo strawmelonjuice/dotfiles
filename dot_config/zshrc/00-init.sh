@@ -78,10 +78,16 @@ fi
 # Initialize zoxide and after every CD, also run kc
 eval "$(zoxide init zsh --cmd bang)"
 banger() {
-  bang $* &&  kc
+  bang $* && if [  -d .git ]; then
+    git fetch
+    kc
+  fi
 }
 bangeri() {
-  bangi $* &&  kc
+  bangi $* && if [  -d .git  ]; then
+    git fetch
+    kc
+  fi
 }
 alias cd=banger
 alias cdi=bangeri 
