@@ -1,0 +1,15 @@
+[tools]
+watchexec = "latest"
+bun = "latest"
+elixir = "latest"
+erlang = "latest"
+gleam = "latest"
+node = "23"
+"npm:@cynthiaweb/cynthiaweb-mini" = "latest"
+usage = "latest"
+helix = "latest"
+
+[settings]
+
+[settings.npm]
+bun = true
