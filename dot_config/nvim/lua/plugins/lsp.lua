@@ -89,7 +89,6 @@ return {
       ensure_installed = {
         "biome",
         "clangd",
-        "prettier",
         -- I also have rustaceanvim
         -- "rust-analyzer",
         -- "rustfmt", No longer installed through mason
@@ -105,8 +104,8 @@ return {
         "gopls",
         "taplo",
         "dhall-lsp",
-        "phpcs",
         "woke",
+        "intelephense",
         "crystalline"
       },
     },
