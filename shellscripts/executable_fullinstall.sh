@@ -422,7 +422,6 @@ install_package zip
 install_package blueman
 install_package rofi-greenclip
 install_package clipman
-install_package helix
 install_package zed
 ## Hyprland and its dependencies
 install_package "hyprland"
@@ -445,71 +444,20 @@ install_a_gui_package "wlogout"
 ## Anyrun
 git clone https://github.com/anyrun-org/anyrun && cd anyrun && cargo build --release && cargo install --path anyrun/ && mkdir -p ~/.config/anyrun/plugins && cp target/release/*.so ~/.config/anyrun/plugins && cp examples/config.ron ~/.config/anyrun/config.ron && cd .. && rm -rf ./anyrun
 
-## Neovim and Lazygit need to be downloaded manually for Debian.
-
-if [ "$distribution" == "debian" ]; then
-  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-  sudo rm -rf /opt/nvim
-  sudo tar -C /opt -xzf nvim-linux64.tar.gz
-  rm nvim-linux64.tar.gz
-  echo 'export PATH="$PATH:/opt/nvim-linux64/bin"' >>~/.bashrc
-
-  # and lazygit
-  LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-  curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-  tar xf lazygit.tar.gz lazygit
-  sudo install lazygit /usr/local/bin
-  rm lazygit.tar.gz
-  rm -r ./lazygit
-else
-  install_package "neovim"
-  install_package "lazygit"
-fi
 source ~/.bashrc
 
 # Self-installers
 #
-# Note: Mise en place gets installed on first launch of either zsh or bash.
-## Rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-. "$HOME/.cargo/env"
-## Bun
-curl -fsSL https://bun.sh/install | bash
-echo 'alias bun="~/.bun/bin/bun"' >>~/.bashrc
+# Note: Mise en place gets installed on first launch of either zsh or bash. Mise is slowly taking over most of these installs.
 ## OMZ
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 priv_exec chsh $(whoami) -s /bin/zsh
 
 # Cargo installs
-## Bananen
-cargo install bananen
 
 ## Cargo binstall
 cargo install cargo-binstall
 
-## Watchexec
-cargo binstall watchexec-cli
-
-## Cargo clean all
-cargo install cargo-clean-all
-
-## Watchexec
-cargo install watchexec
-
-## Starship
-cargo install starship --locked
-
-# KC
-cargo install kc
-
-## Zellij
-if [ "$distribution" != "fedora" ]; then
-  cargo install --locked zellij
-fi
-
-# Go installs
-## Bombardier
-go install github.com/codesenberg/bombardier@latest
 
 # Flatpak packages
 flatpak install chat.revolt.RevoltDesktop -y
