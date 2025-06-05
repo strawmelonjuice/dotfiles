@@ -220,8 +220,6 @@ install_package arandr
 install_package arc-gtk-theme-eos
 install_package archlinux-xdg-menu
 install_package aspell
-install_package ttf-font-awesome
-install_package ttf-lilex-nerd
 install_package b43-fwcutter
 install_package bash-completion
 install_package bind
@@ -423,6 +421,12 @@ install_package blueman
 install_package rofi-greenclip
 install_package clipman
 install_package zed
+
+# Some fonts
+install_package ttf-font-awesome
+install_package ttf-lilex-nerd
+install_package ttf-iosevka-nerd
+
 ## Hyprland and its dependencies
 install_package "hyprland"
 if [ "$distribution" == "debian" ]; then

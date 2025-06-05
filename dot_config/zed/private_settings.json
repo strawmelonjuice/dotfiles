@@ -8,8 +8,9 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
 	// Whether to enable vim modes and key bindings.
-	"vim_mode": true,
-
+		// Since Zed feels very graphically I usually start with it disabled.
+	"vim_mode": false,
+	
 	"ui_font_family": "Atkinson Hyperlegible Next",
 	"ui_font_size": 15,
 	"buffer_font_size": 11,
