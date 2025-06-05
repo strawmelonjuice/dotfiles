@@ -8,6 +8,8 @@ node = "23"
 "npm:@cynthiaweb/cynthiaweb-mini" = "latest"
 usage = "latest"
 helix = "latest"
+rust-analyzer = "latest"
+biome = "latest"
 
 [settings]
 
