@@ -79,14 +79,20 @@ fi
 eval "$(zoxide init zsh --cmd bang)"
 banger() {
   bang $* && if [  -d .git ]; then
+    clear
     git fetch
     kc
+    eza --icons -L 2 -R
+    git status
   fi
 }
 bangeri() {
   bangi $* && if [  -d .git  ]; then
+    clear
     git fetch
     kc
+    eza --icons -L 2 -R
+    git status
   fi
 }
 alias cd=banger
