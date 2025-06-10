@@ -85,6 +85,7 @@ New-Alias nf hyfetch -Option AllScope -Force
 New-Alias pf hyfetch -Option AllScope -Force
 New-Alias ff fastfetch -Option AllScope -Force
 New-Alias hf hyfetch -Option AllScope -Force
+New-Alias cat bat -Option AllScope -Force
 function els { eza --icons ${args} }
 New-Alias ls els -Option AllScope -Force
 function ela { eza -l --icons ${args} }
