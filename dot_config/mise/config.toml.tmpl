@@ -13,13 +13,21 @@ bombardier = "latest"
 "cargo:bananen" = "latest"
 "cargo:kc" = "latest"
 "cargo:starship" = "latest"
-"cargo:cargo-clean-all" = "latest"
-{{ if ne .chezmoi.os "windows" }}
-zellij="latest"
-{{- end }}
+"cargo:zoxide" = "latest"
+"cargo:cargo-clean-all" = "latest" {{ if ne .chezmoi.os "windows" }}
+zellij="latest" {{- end }}
 lazygit = "latest"
-neovim = "latest"
+neovim = "0.11.2"
+zig = "latest"
+fastfetch = "latest"
+fzf = "latest"
+github-cli = "latest"
+ripgrep = "latest"
+python = "latest"
 
+[alias] {{ if eq .chezmoi.os "windows" }}
+hyfetch = "{{ "{{" }}exec(command='mise where python'){{ "}}" }}/Scripts/hyfetch.exe"
+{{- end }}
 [settings]
 
 [settings.npm]
