@@ -10,12 +10,13 @@ helix = "latest"
 rust-analyzer = "latest"
 biome = "latest"
 bombardier = "latest"
-dhall = "latest"
 "cargo:bananen" = "latest"
 "cargo:kc" = "latest"
 "cargo:starship" = "latest"
 "cargo:cargo-clean-all" = "latest"
+{{ if ne .chezmoi.os "windows" }}
 zellij="latest"
+{{- end }}
 lazygit = "latest"
 neovim = "latest"
 
