@@ -33,4 +33,4 @@ alias :q='zellij action close-tab'
 alias ide='zellij --layout ide'
 alias strider='zellij plugin --in-place -- zellij:strider'
 # Cleans up the cargo caches interactively. -- This name? Haha.
-alias cargock='cargo clean-all --keep-days 21 ~ -i'
+alias cargock='cargo-clean-all --keep-days 21 ~ -i'

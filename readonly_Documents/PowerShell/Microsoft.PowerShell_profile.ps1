@@ -16,6 +16,17 @@ function quit
 { exit
 }
 
+function set-alias($name, $target) {
+  Write-Host "Writing:"
+  Write-Host $name
+  Write-Host $target
+  
+  if (test-path ("alias:"+ $name))
+{
+  Remove-Item ("alias:"+ $name)}
+  New-Alias ($name) ($target)
+}
+
 function set-link ($target, $link)
 {
   New-Item -Path $link -ItemType SymbolicLink -Value $target
@@ -63,6 +74,7 @@ function dwingetinstalledneeded {
     @(($ENV:UserProfile + "\.config\nvim"), ($ENV:LocalAppdata + "\nvim")),
     @(($ENV:UserProfile + "\.config\alacritty"), ($ENV:Appdata + "\Alacritty")),
     @(($ENV:UserProfile + "\.config\zed"), ($ENV:Appdata + "\Zed"))
+    @(($ENV:UserProfile + "\.config\helix"), ($ENV:Appdata + "\helix"))
   )
   foreach ($link in $symlinks)
   {
@@ -75,26 +87,22 @@ function dwingetinstalledneeded {
   }
 }
 [Console]::WriteLine( "Defining aliases...")
-if (test-path alias:cls)
-{
-  Remove-Item alias:cls
-}
-new-alias cls clear
-if (test-path alias:q)
-{
-  Remove-Item alias:q
-}
-new-alias q quit
-if (test-path alias:qa)
-{
-  Remove-Item alias:qa
-}
-new-alias qa quit
-if (test-path alias:stub)
-{
-  Remove-Item alias:stub
-}
-new-alias stub advancedstub
+set-alias "cls" clear
+set-alias "c" clear
+set-alias "q" quit
+set-alias "qa" quit
+set-alias "hyfetch" "C:\Users\mlcbl\AppData\Local\mise\installs\python\3.13.2\Scripts\hyfetch.exe"
+set-alias "nf" "hyfetch"
+set-alias "pf" "hyfetch"
+set-alias "ff" "fastfetch"
+set-alias "hf" "hyfetch" 
+set-alias "ls" "eza --icons"
+set-alias "la" "eza -l --icons"
+set-alias "ll" "eza -al --icons"
+set-alias "ls" "eza i-a --tree --level=1 --icons"
+set-alias "shutdown"  "shutdown /s /t 0"
+set-alias "reboot"  "shutdown /r /t 0"
+set-alias "cargock" "cargo-clean-all --keep-days 21 ~ -i"
 
 
 # Zoxide
@@ -128,12 +136,9 @@ if($args.Count -eq 0) {
     git status
   }
 }
-if (test-path alias:cd) {
-   Remove-Item alias:cd
-}
-new-alias cd banger
-new-alias cdi bangeri
-new-alias hyfetch C:\Users\mlcbl\AppData\Local\mise\installs\python\3.13.2\Scripts\hyfetch.exe
+set-alias "cd" "banger"
+set-alias "cdi" "bangeri"
+
 if (-not(Get-Command hyfetch -ErrorAction SilentlyContinue)) {
  python -m pip install wheel
  python -m pip install -U pipx
