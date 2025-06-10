@@ -1,5 +1,9 @@
-{
-
+{	
+{{- if eq .chezmoi.os "window" }}
+"edit": {
+"command": "hx"
+},
+{{- end }}
 	"git": {
 		"autoCommit": true,
 		"autoPush": true
