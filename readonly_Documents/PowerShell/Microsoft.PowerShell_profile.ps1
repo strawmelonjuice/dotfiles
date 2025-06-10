@@ -16,16 +16,6 @@ function quit
 { exit
 }
 
-function set-alias($name, $target) {
-  Write-Host "Writing:"
-  Write-Host $name
-  Write-Host $target
-  
-  if (test-path ("alias:"+ $name))
-{
-  Remove-Item ("alias:"+ $name)}
-  New-Alias ($name) ($target)
-}
 
 function set-link ($target, $link)
 {
@@ -71,38 +61,44 @@ function dwingetinstalledneeded {
   # Create symbolic links
   [Console]::WriteLine("Creating symbolic links...")
   $symlinks = @(
+@(($ENV:UserProfile + "\.config\helix"), ($ENV:Appdata + "\helix")),
     @(($ENV:UserProfile + "\.config\nvim"), ($ENV:LocalAppdata + "\nvim")),
     @(($ENV:UserProfile + "\.config\alacritty"), ($ENV:Appdata + "\Alacritty")),
     @(($ENV:UserProfile + "\.config\zed"), ($ENV:Appdata + "\Zed"))
-    @(($ENV:UserProfile + "\.config\helix"), ($ENV:Appdata + "\helix"))
-  )
+      )
   foreach ($link in $symlinks)
   {
     if (Test-Path -Path $link[1])
     {
     } else
     {
-      set-link $link[0] $link[1]
-    }
+      set-link $link[0] $link[1]     }
   }
 }
 [Console]::WriteLine( "Defining aliases...")
-set-alias "cls" clear
-set-alias "c" clear
-set-alias "q" quit
-set-alias "qa" quit
-set-alias "hyfetch" "C:\Users\mlcbl\AppData\Local\mise\installs\python\3.13.2\Scripts\hyfetch.exe"
-set-alias "nf" "hyfetch"
-set-alias "pf" "hyfetch"
-set-alias "ff" "fastfetch"
-set-alias "hf" "hyfetch" 
-set-alias "ls" "eza --icons"
-set-alias "la" "eza -l --icons"
-set-alias "ll" "eza -al --icons"
-set-alias "ls" "eza i-a --tree --level=1 --icons"
-set-alias "shutdown"  "shutdown /s /t 0"
-set-alias "reboot"  "shutdown /r /t 0"
-set-alias "cargock" "cargo-clean-all --keep-days 21 ~ -i"
+New-Alias cls clear -Option AllScope -Force
+New-Alias c clear -Option AllScope -Force
+New-Alias q quit -Option AllScope -Force
+New-Alias qa quit -Option AllScope -Force
+New-Alias hyfetch "C:\Users\mlcbl\AppData\Local\mise\installs\python\3.13.2\Scripts\hyfetch.exe" -Option AllScope -Force
+New-Alias nf hyfetch -Option AllScope -Force
+New-Alias pf hyfetch -Option AllScope -Force
+New-Alias ff fastfetch -Option AllScope -Force
+New-Alias hf hyfetch -Option AllScope -Force
+function els { eza --icons ${args} }
+New-Alias ls els -Option AllScope -Force
+function ela { eza -l --icons ${args} }
+New-Alias la ela -Option AllScope -Force
+function ell { eza -al --icon ${args} }
+New-Alias ll ell -Option AllScope -Force
+function elt { eza -a --tree --level=1 --icons ${args} }
+New-Alias lt elt -Option AllScope -Force
+function shutdownnow { shutdown /s /t 0 }
+New-Alias shutdown shutdownnow -Option AllScope -Force
+function rebootnow { shutdown /r /t 0 }
+New-Alias reboot rebootnow -Option AllScope -Force
+function cargocleanall { cargo-clean-all --keep-days 21 ~ -i ${args} }
+New-Alias cargock cargocleanall -Option AllScope -Force
 
 
 # Zoxide
@@ -116,9 +112,10 @@ if($args.Count -eq 0) {
   }
   if (Test-Path -path  "./.git") {
     clear
+    [Console]::WriteLine("Opened git repository: " + $pwd)
     git fetch
     kc
-    eza --icons -L 2 -R
+    eza --icons -L 2 -R --tree
     git status
   }
 }
@@ -130,14 +127,15 @@ if($args.Count -eq 0) {
   }
   if (Test-Path -path  "./.git") {
     clear
+    [Console]::WriteLine("Opened git repository: " + $pwd)
     git fetch
     kc
-    eza --icons -L 2 -R
+    eza --icons -L 2 -R --tree
     git status
   }
 }
-set-alias "cd" "banger"
-set-alias "cdi" "bangeri"
+New-Alias cd banger -Option AllScope -Force
+New-Alias cdi bangeri -Option AllScope -Force
 
 if (-not(Get-Command hyfetch -ErrorAction SilentlyContinue)) {
  python -m pip install wheel

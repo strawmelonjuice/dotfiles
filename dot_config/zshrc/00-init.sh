@@ -63,18 +63,20 @@ eval "$(zoxide init zsh --cmd bang)"
 banger() {
   bang $* && if [  -d .git ]; then
     clear
+    echo "Opened git repository: $(pwd)"
     git fetch
     kc
-    eza --icons -L 2 -R
+    eza --icons -L 2 -R --tree
     git status
   fi
 }
 bangeri() {
   bangi $* && if [  -d .git  ]; then
     clear
+    echo "Opened git repository: $(pwd)"
     git fetch
     kc
-    eza --icons -L 2 -R
+    eza --icons -L 2 -R --tree
     git status
   fi
 }
