@@ -116,7 +116,7 @@ if($args.Count -eq 0) {
     [Console]::WriteLine("Opened git repository: " + $pwd)
     git fetch
     kc
-    eza --icons -L 2 -R --tree
+    eza --icons -L 2 -R --tree --git-ignore
     git status
   }
 }
@@ -131,7 +131,7 @@ if($args.Count -eq 0) {
     [Console]::WriteLine("Opened git repository: " + $pwd)
     git fetch
     kc
-    eza --icons -L 2 -R --tree
+    eza --icons -L 2 -R --tree --git-ignore
     git status
   }
 }

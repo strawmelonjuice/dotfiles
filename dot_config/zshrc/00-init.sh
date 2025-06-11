@@ -66,7 +66,7 @@ banger() {
     echo "Opened git repository: $(pwd)"
     git fetch
     kc
-    eza --icons -L 2 -R --tree
+    eza --icons -L 2 -R --tree --git-ignore
     git status
   fi
 }
@@ -76,7 +76,7 @@ bangeri() {
     echo "Opened git repository: $(pwd)"
     git fetch
     kc
-    eza --icons -L 2 -R --tree
+    eza --icons -L 2 -R --tree --git-ignore
     git status
   fi
 }
