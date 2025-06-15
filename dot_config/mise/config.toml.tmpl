@@ -20,12 +20,15 @@ bombardier = "latest"
 zellij="latest" {{- end }}
 lazygit = "latest"
 neovim = "0.11.2"
-zig = "latest"
 fastfetch = "latest"
 fzf = "latest"
 github-cli = "latest"
 ripgrep = "latest"
 python = "latest"
+difftastic = "latest"
+
+[env]
+GIT_EXTERNAL_DIFF = 'difft'
 
 [alias] {{ if eq .chezmoi.os "windows" }}
 hyfetch = "{{ "{{" }}exec(command='mise where python'){{ "}}" }}/Scripts/hyfetch.exe"
