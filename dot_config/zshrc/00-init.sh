@@ -58,7 +58,10 @@ fi
 export PATH="/usr/lib/ccache/bin/:/snap/bin/:$HOME/bin/:$HOME/.local/bin/mini/:$HOME/.bun/bin/:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
 
-# Initialize zoxide and after every CD, also run kc
+eval "$(ssh-agent -s)"
+
+
+# Initialize zoxide and after every CD, also run kc if its a git repo.
 eval "$(zoxide init zsh --cmd bang)"
 banger() {
   bang $* && if [  -d .git ]; then
