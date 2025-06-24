@@ -1,0 +1,3 @@
+[submodule "dot_dotfiles/deps/niri-taskbar"]
+	path = dot_dotfiles/deps/niri-taskbar
+	url = https://github.com/LawnGnome/niri-taskbar.git
