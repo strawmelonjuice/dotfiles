@@ -43,11 +43,11 @@ export VISUAL=hx
 
 # Zellij if on any of my main terminals
 # Zellij needs to start first, because otherwise we'll be going through the entire zshrc twice.
-if [ "${USERTERM}" = "alacritty" ] || [ "${USERTERM}"  = "xterm-ghostty" ] || [ "${USERTERM}"  = "contour" ] || [ "${USERTERM}"  = "foot" ] || [ "${USERTERM}"  = "xterm-ghostty-wsl" ] || [ "${USERTERM}"  = "xterm-256color-wsl" ] || [ "${$(ps -p "$PPID" -o comm=)}" =  "cosmic-term" ] || [ "${TERM}"  = "xterm-kitty" ]; then
-  # export ZELLIJ_AUTO_ATTACH=true
-  export ZELLIJ_AUTO_EXIT=true
-  eval "$(zellij setup --generate-auto-start zsh)"
-fi
+# if [ "${USERTERM}" = "alacritty" ] || [ "${USERTERM}"  = "xterm-ghostty" ] || [ "${USERTERM}"  = "contour" ] || [ "${USERTERM}"  = "foot" ] || [ "${USERTERM}"  = "xterm-ghostty-wsl" ] || [ "${USERTERM}"  = "xterm-256color-wsl" ] || [ "${$(ps -p "$PPID" -o comm=)}" =  "cosmic-term" ] || [ "${TERM}"  = "xterm-kitty" ]; then
+#   # export ZELLIJ_AUTO_ATTACH=true
+#   export ZELLIJ_AUTO_EXIT=true
+#   eval "$(zellij setup --generate-auto-start zsh)"
+# fi
 
 # -----------------------------------------------------
 # Exports
