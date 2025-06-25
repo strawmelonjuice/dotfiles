@@ -106,8 +106,7 @@ window#waybar.empty #window {
 /* -----------------------------------------------------
  * Taskbar
  * ----------------------------------------------------- */
-
-#taskbar {
+#taskbar, .niri-taskbar {
   background: @backgroundlight;
   margin: 6px 15px 6px 0px;
   padding: 0px;
@@ -116,8 +115,7 @@ window#waybar.empty #window {
   font-style: normal;
   border: 3px dotted @backgroundlight;
 }
-
-#taskbar button {
+#taskbar button, .niri-taskbar button {
   margin: 0;
   border-radius: {{ .stylings.hoverOvers.bradius1 }};
   padding: 0px 5px 0px 5px;
