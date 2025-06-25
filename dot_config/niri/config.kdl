@@ -62,7 +62,11 @@ input {
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
     // focus-follows-mouse max-scroll-amount="0%"
 }
+
+spawn-at-startup "xwayland-satellite"
+
 environment {
+    DISPLAY ":0"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
 // You can configure outputs by their name, which you can find
