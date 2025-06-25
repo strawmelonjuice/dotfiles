@@ -66,7 +66,7 @@ input {
 spawn-at-startup "xwayland-satellite"
 
 environment {
-    DISPLAY ":0"
+    DISPLAY ":1"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
 // You can configure outputs by their name, which you can find
