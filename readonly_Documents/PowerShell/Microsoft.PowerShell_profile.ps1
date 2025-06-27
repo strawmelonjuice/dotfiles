@@ -45,6 +45,14 @@ if (Get-Command oh-my-posh -ErrorAction SilentlyContinue) {
 [Console]::WriteLine("Initialising mise-en-place...")
 (&mise activate pwsh) | Out-String | Invoke-Expression
 
+# Add Bun to PATH if it exists
+$BunPath = "$env:USERPROFILE\.bun\bin"
+if (Test-Path $BunPath) {
+    if ($env:PATH -notlike "*$BunPath*") {
+        $env:PATH = "$BunPath;$env:PATH"
+    }
+}
+
 # Define functions
 function quit
 { exit
@@ -176,5 +184,21 @@ if (-not(Get-Command hyfetch -ErrorAction SilentlyContinue)) {
  python -m pip install wheel
  python -m pip install -U pipx
 }
+
+# Initialize Bitwarden session
+[Console]::WriteLine("Initializing Bitwarden...")
+if (Test-Path "$PSScriptRoot\Bitwarden-Helper.ps1") {
+    . "$PSScriptRoot\Bitwarden-Helper.ps1" init
+    
+    # Create convenient aliases for Bitwarden
+    function bw-get { 
+        param([string]$Item, [string]$Field = "password")
+        . "$PSScriptRoot\Bitwarden-Helper.ps1" get $Item $Field
+    }
+    function bw-unlock { . "$PSScriptRoot\Bitwarden-Helper.ps1" unlock }
+    function bw-status { . "$PSScriptRoot\Bitwarden-Helper.ps1" status }
+    function bw-setup { . "$PSScriptRoot\Bitwarden-Helper.ps1" setup-password }
+}
+
 hyfetch
 
