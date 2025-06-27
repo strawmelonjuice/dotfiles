@@ -82,9 +82,35 @@ bw_login() {
 # Unlock Bitwarden and save session
 bw_unlock() {
     local session
+    local password_file="$HOME/.bitwarden_password"
     
+    # Try to use password file first (silent for automated operations)
+    if [[ -f "$password_file" ]]; then
+        if session=$(bw unlock --passwordfile "$password_file" --raw 2>/dev/null); then
+            # Save session to file for reuse
+            mkdir -p "$(dirname "$BW_SESSION_FILE")"
+            echo "$session" > "$BW_SESSION_FILE"
+            chmod 600 "$BW_SESSION_FILE"
+            export BW_SESSION="$session"
+            return 0
+        else
+            warn "Password file seems invalid, removing it"
+            rm -f "$password_file"
+        fi
+    fi
+    
+    # Fall back to interactive unlock
     log "Unlocking Bitwarden vault..."
-    if session=$(bw unlock --raw); then
+    echo -n "Enter your Bitwarden master password: "
+    read -s password
+    echo
+    
+    if session=$(bw unlock $password --raw); then
+        # Password works, save it for future use
+        echo "$password" > "$password_file"
+        chmod 600 "$password_file"
+        log "Password saved for future automatic unlocking"
+        
         # Save session to file for reuse
         mkdir -p "$(dirname "$BW_SESSION_FILE")"
         echo "$session" > "$BW_SESSION_FILE"
@@ -93,7 +119,44 @@ bw_unlock() {
         log "Bitwarden vault unlocked successfully"
         return 0
     else
-        error "Failed to unlock Bitwarden vault"
+        error "Failed to unlock Bitwarden vault - incorrect password"
+        return 1
+    fi
+}
+
+# Setup password file for automatic unlocking
+bw_setup_password_file() {
+    local password_file="$HOME/.bitwarden_password"
+    
+    if [[ -f "$password_file" ]]; then
+        echo -n "Password file already exists. Replace it? (y/N): "
+        read -r response
+        if [[ ! "$response" =~ ^[Yy]$ ]]; then
+            log "Password file setup cancelled"
+            return 0
+        fi
+    fi
+    
+    echo -n "Enter your Bitwarden master password: "
+    read -s password
+    echo
+    
+    # Test the password
+    if session=$(echo "$password" | bw unlock --raw 2>/dev/null); then
+        echo "$password" > "$password_file"
+        chmod 600 "$password_file"
+        
+        # Save session for current shell and future use
+        mkdir -p "$(dirname "$BW_SESSION_FILE")"
+        echo "$session" > "$BW_SESSION_FILE"
+        chmod 600 "$BW_SESSION_FILE"
+        export BW_SESSION="$session"
+        
+        log "Password file created successfully at $password_file"
+        log "Future operations will use this password automatically"
+        log "Session is now active in current shell"
+    else
+        error "Invalid password. Password file not created."
         return 1
     fi
 }
@@ -101,13 +164,15 @@ bw_unlock() {
 # Load existing session
 bw_load_session() {
     if [[ -f "$BW_SESSION_FILE" ]]; then
-        export BW_SESSION="$(cat "$BW_SESSION_FILE")"
-        # Test if session is still valid
-        if bw list items --length 1 >/dev/null 2>&1; then
-            log "Using existing Bitwarden session"
+        local session_token
+        session_token="$(cat "$BW_SESSION_FILE")"
+        
+        # Test if session is still valid using the session token
+        if BW_SESSION="$session_token" bw list items --length 1 >/dev/null 2>&1; then
+            export BW_SESSION="$session_token"
             return 0
         else
-            warn "Existing session expired"
+            # Session expired, remove the file silently
             rm -f "$BW_SESSION_FILE"
         fi
     fi
@@ -197,6 +262,10 @@ main() {
             check_bw_cli
             bw_unlock
             ;;
+        setup-password)
+            check_bw_cli
+            bw_setup_password_file
+            ;;
         get)
             shift
             check_bw_cli
@@ -227,6 +296,7 @@ Commands:
     install     Install Bitwarden CLI
     login       Login to Bitwarden
     unlock      Unlock Bitwarden vault
+    setup-password  Set up automatic password file for unlocking
     get <item> [field]  Get a secret from Bitwarden
     template <item> [field]  Get secret for use in templates (safe)
     session     Ensure valid session exists
@@ -238,9 +308,14 @@ Environment Variables:
     BW_SERVER   Custom Bitwarden server URL
     BW_SESSION  Current session token (set automatically)
 
+Password File:
+    The script can use ~/.bitwarden_password for automatic unlocking.
+    Use 'setup-password' command to create this file securely.
+
 Examples:
     $0 install
     $0 login
+    $0 setup-password
     $0 get "GitHub Token"
     $0 get "SSH Key" "private_key"
     $0 template "API Key" "password"

@@ -34,22 +34,78 @@ fi
 # -----------------------------------------------------
 # Only set up Bitwarden if the CLI is available and we're in an interactive shell
 if command -v bw >/dev/null 2>&1 && [[ $- == *i* ]]; then
-    # Use the helper script if available, otherwise fall back to direct bw command
-    if [[ -f "$HOME//shellscripts/bitwarden_helper.sh" ]]; then
-        # Load session using the helper script (handles session caching)
-        if "$HOME/shellscripts/bitwarden_helper.sh" session >/dev/null 2>&1; then
-            # Get the cached session if available
-            if [[ -f "$HOME/.cache/bw-session" ]]; then
-                export BW_SESSION=$(cat "$HOME/.cache/bw-session")
+    BW_PASSWORD_FILE="$HOME/.bitwarden_password"
+    BW_SESSION_FILE="$HOME/.cache/bw-session"
+    
+    # Function to unlock Bitwarden with password file
+    bw_unlock_with_password_file() {
+        if [[ -f "$BW_PASSWORD_FILE" ]]; then
+            # Use existing password file
+            export BW_SESSION=$(bw unlock --passwordfile "$BW_PASSWORD_FILE" --raw 2>/dev/null)
+            if [[ -n "$BW_SESSION" ]]; then
+                # Save session for reuse
+                mkdir -p "$(dirname "$BW_SESSION_FILE")"
+                echo "$BW_SESSION" > "$BW_SESSION_FILE"
+                chmod 600 "$BW_SESSION_FILE"
+                return 0
+            else
+                # Password file might be invalid, remove it
+                rm -f "$BW_PASSWORD_FILE"
+                return 1
+            fi
+        else
+            # Ask user if they want to set up password file
+            echo -n "Bitwarden password file not found. Set up automatic unlock? (y/N): "
+            read -r response
+            if [[ "$response" =~ ^[Yy]$ ]]; then
+                echo -n "Enter your Bitwarden master password: "
+                read -s password
+                echo
+                
+                # Test the password before saving
+                if BW_SESSION=$(echo "$password" | bw unlock --raw 2>/dev/null); then
+                    # Password works, save it securely
+                    echo "$password" > "$BW_PASSWORD_FILE"
+                    chmod 600 "$BW_PASSWORD_FILE"
+                    
+                    # Save session
+                    mkdir -p "$(dirname "$BW_SESSION_FILE")"
+                    echo "$BW_SESSION" > "$BW_SESSION_FILE"
+                    chmod 600 "$BW_SESSION_FILE"
+                    
+                    export BW_SESSION
+                    echo "Password saved securely. Future shell sessions will unlock automatically."
+                    return 0
+                else
+                    echo "Invalid password. Bitwarden will remain locked."
+                    return 1
+                fi
+            else
+                echo "Skipping Bitwarden setup. You can set it up later with:"
+                echo "  ~/shellscripts/bitwarden_helper.sh setup-password"
+                return 1
             fi
         fi
-    else
-        # Fallback: direct unlock (less robust)
-        if bw status | grep -q '"status":"locked"' 2>/dev/null; then
-            echo "Bitwarden vault is locked. Run 'bw unlock' to access secrets."
-        elif bw status | grep -q '"status":"unlocked"' 2>/dev/null; then
-            # Try to get existing session
-            export BW_SESSION=$(bw unlock --raw 2>/dev/null || echo "")
+    }
+    
+    # Check Bitwarden status and handle accordingly
+    if [[ -f "$BW_SESSION_FILE" ]]; then
+        # Try to use existing session
+        export BW_SESSION=$(cat "$BW_SESSION_FILE")
+        if ! bw status --session "$BW_SESSION" | grep -q '"status":"unlocked"' 2>/dev/null; then
+            # Session expired, remove it and try to unlock
+            rm -f "$BW_SESSION_FILE"
+            unset BW_SESSION
+        fi
+    fi
+    
+    # If no valid session, try to unlock
+    if [[ -z "${BW_SESSION:-}" ]]; then
+        bw_status=$(bw status 2>/dev/null || echo '{"status":"unauthenticated"}')
+        if echo "$bw_status" | grep -q '"status":"locked"' 2>/dev/null; then
+            bw_unlock_with_password_file
+        elif echo "$bw_status" | grep -q '"status":"unauthenticated"' 2>/dev/null; then
+            echo "Bitwarden not logged in. Run 'bw login' first."
         fi
     fi
 fi
