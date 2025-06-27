@@ -84,5 +84,6 @@ bangeri() {
 alias cd=banger
 alias cdi=bangeri 
 
+
 # Set-up FZF key bindings (CTRL R for fuzzy history finder)
 source <(fzf --zsh)

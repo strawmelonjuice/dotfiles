@@ -109,6 +109,89 @@ export GITHUB_TOKEN="{{ $token }}"
 ./shellscripts/executable_bitwarden_helper.sh status
 ```
 
+## Bitwarden CLI Integration
+
+The installation system includes automatic **Bitwarden CLI** setup for secret management in your dotfiles:
+
+### Automatic Installation
+
+When Bitwarden is enabled (`USE_BITWARDEN=true`), the system:
+1. **Checks for existing installation** - skips if already present
+2. **Uses Bun to install** - `bun install -g @bitwarden/cli` (installed via mise)
+3. **Verifies installation** - confirms `bw` command is available
+4. **Shows version info** - displays installed version
+
+### Installation Methods (Priority Order)
+
+1. **Bun** (preferred) - Fast, reliable, consistent across platforms
+2. **Snap** (Linux) - `sudo snap install bw`
+3. **npm** (fallback) - `npm install -g @bitwarden/cli`
+4. **Homebrew** (macOS) - `brew install bitwarden-cli`
+
+### Environment Behavior
+
+| Environment | Bitwarden CLI |
+|-------------|---------------|
+| **Local Desktop** | ✅ Installed automatically |
+| **Codespace** | ❌ Skipped (not needed) |
+| **Container** | ❌ Skipped (security) |
+| **CI/Testing** | ❌ Skipped (not applicable) |
+
+### Manual Management
+
+Use the dedicated Bitwarden helper:
+
+```bash
+# Install Bitwarden CLI
+./shellscripts/executable_bitwarden_helper.sh install
+
+# Login to your vault
+./shellscripts/executable_bitwarden_helper.sh login
+
+# Unlock vault
+./shellscripts/executable_bitwarden_helper.sh unlock
+
+# Get a secret
+./shellscripts/executable_bitwarden_helper.sh get "GitHub Token"
+
+# Check status
+./shellscripts/executable_bitwarden_helper.sh status
+```
+
+### Template Integration
+
+Once installed, use in your chezmoi templates:
+
+```go-template
+{{- $token := output "shellscripts/executable_bitwarden_helper.sh" "template" "GitHub Token" | trim }}
+{{- if and (ne $token "BW_NOT_AVAILABLE") (ne $token "BW_SECRET_NOT_FOUND") }}
+export GITHUB_TOKEN="{{ $token }}"
+{{- end }}
+```
+
+### Prerequisites
+
+- **Bun** (installed via mise) - Primary installation method
+- **Internet access** - For downloading CLI
+- **Valid Bitwarden account** - For accessing secrets
+
+### Configuration
+
+Set environment variables for automatic setup:
+
+```bash
+# Your Bitwarden email
+export BW_EMAIL="your@email.com"
+
+# Custom server (optional)
+export BW_SERVER="https://your-server.com"
+
+# Force Bitwarden setup even in restricted environments
+export USE_BITWARDEN=true
+```
+
+This ensures your secrets are available across environments while maintaining security best practices! 🔐
+
 ## Package Management
 
 ### Supported Distributions

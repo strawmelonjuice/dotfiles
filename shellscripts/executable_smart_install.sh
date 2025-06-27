@@ -238,7 +238,10 @@ setup_mise() {
         if curl https://mise.run | sh; then
             # Add mise to PATH for current session
             export PATH="$HOME/.local/bin:$PATH"
-            
+
+            # Activate mise for the current shell
+            eval "$(mise activate bash)"
+
             # Check if mise is now available
             if command -v mise >/dev/null 2>&1; then
                 log INFO "Mise installed successfully"
@@ -277,6 +280,48 @@ setup_mise() {
         
         # Return to original directory
         cd "$original_dir" || true
+    fi
+}
+
+# Setup Bitwarden CLI using Bun (installed via mise)
+setup_bitwarden() {
+    log INFO "Setting up Bitwarden CLI..."
+    
+    # Check if Bitwarden CLI is already installed
+    if command -v bw >/dev/null 2>&1; then
+        log INFO "Bitwarden CLI already installed"
+        return 0
+    fi
+    
+    # Check if Bun is available (should be installed via mise)
+    if ! command -v bun >/dev/null 2>&1; then
+        log WARN "Bun not found - required for Bitwarden CLI installation"
+        log WARN "Make sure Bun is included in your mise configuration"
+        return 1
+    fi
+    
+    log INFO "Installing Bitwarden CLI via Bun..."
+    
+    # Install Bitwarden CLI globally using Bun
+    if bun install -g @bitwarden/cli; then
+        # Check if bw command is now available
+        if command -v bw >/dev/null 2>&1; then
+            log INFO "Bitwarden CLI installed successfully"
+            
+            # Show version info
+            local bw_version=$(bw --version 2>/dev/null || echo "unknown")
+            log INFO "Bitwarden CLI version: $bw_version"
+            
+            return 0
+        else
+            log WARN "Bitwarden CLI installation completed but command not found in PATH"
+            log WARN "You may need to restart your shell or update your PATH"
+            return 1
+        fi
+    else
+        log WARN "Failed to install Bitwarden CLI via Bun"
+        log WARN "You can install it manually later with: bun install -g @bitwarden/cli"
+        return 1
     fi
 }
 
@@ -336,7 +381,7 @@ main() {
     # Setup Bitwarden CLI if requested
     if [[ "$USE_BITWARDEN" == "true" ]]; then
         log INFO "Setting up Bitwarden CLI..."
-        # Add bitwarden setup logic here
+        setup_bitwarden
     fi
     
     # Call your existing installation scripts based on environment

@@ -28,3 +28,28 @@ else
     echo "Start Hyprland with command Hyprland"
   fi
 fi
+
+# -----------------------------------------------------
+# Bitwarden session
+# -----------------------------------------------------
+# Only set up Bitwarden if the CLI is available and we're in an interactive shell
+if command -v bw >/dev/null 2>&1 && [[ $- == *i* ]]; then
+    # Use the helper script if available, otherwise fall back to direct bw command
+    if [[ -f "$HOME/.local/share/chezmoi/shellscripts/executable_bitwarden_helper.sh" ]]; then
+        # Load session using the helper script (handles session caching)
+        if "$HOME/.local/share/chezmoi/shellscripts/executable_bitwarden_helper.sh" session >/dev/null 2>&1; then
+            # Get the cached session if available
+            if [[ -f "$HOME/.cache/bw-session" ]]; then
+                export BW_SESSION=$(cat "$HOME/.cache/bw-session")
+            fi
+        fi
+    else
+        # Fallback: direct unlock (less robust)
+        if bw status | grep -q '"status":"locked"' 2>/dev/null; then
+            echo "Bitwarden vault is locked. Run 'bw unlock' to access secrets."
+        elif bw status | grep -q '"status":"unlocked"' 2>/dev/null; then
+            # Try to get existing session
+            export BW_SESSION=$(bw unlock --raw 2>/dev/null || echo "")
+        fi
+    fi
+fi

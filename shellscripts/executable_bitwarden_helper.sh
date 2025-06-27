@@ -37,22 +37,19 @@ check_bw_cli() {
 # Install Bitwarden CLI
 install_bw_cli() {
     case "$(uname -s)" in
-        Linux*)
-            # Try package manager first, then npm fallback
-            if command -v snap >/dev/null 2>&1; then
+        Linux*|Darwin*)
+            # Try Bun first (if available), then package manager, then npm fallback
+            if command -v bun >/dev/null 2>&1; then
+                log "Installing Bitwarden CLI via Bun..."
+                bun install -g @bitwarden/cli
+            elif command -v snap >/dev/null 2>&1; then
                 sudo snap install bw
             elif command -v npm >/dev/null 2>&1; then
                 npm install -g @bitwarden/cli
-            else
-                error "Cannot install Bitwarden CLI. Please install manually."
-                return 1
-            fi
-            ;;
-        Darwin*)
-            if command -v brew >/dev/null 2>&1; then
+            elif [[ "$(uname -s)" == "Darwin" ]] && command -v brew >/dev/null 2>&1; then
                 brew install bitwarden-cli
             else
-                error "Cannot install Bitwarden CLI. Please install Homebrew first."
+                error "Cannot install Bitwarden CLI. Please install manually."
                 return 1
             fi
             ;;
