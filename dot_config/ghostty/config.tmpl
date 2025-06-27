@@ -52,4 +52,12 @@ font-size = {{ .stylings.fonts.Mono.size }}
 # resize-overlay-duration = 4s 200ms
 keybind= control+shift+n=unbind
 confirm-close-surface=false
+{{ if eq .chezmoi.os "linux" }}
+{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+# WSL-specific code
+window-decoration = true
+{{   else }}
+# Real linux machines
 window-decoration = false
+{{ end }}
+{{ end }}
