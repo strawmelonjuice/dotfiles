@@ -1,3 +1,5 @@
+encryption = "age"
+
 {{- if eq .chezmoi.os "windows" }}
 [edit]
 command = "hx"
@@ -6,6 +8,13 @@ command = "hx"
 [git]
 autoCommit = true
 autoPush = true
+
+[age]
+    passphrase = true
+    command = "rage"
+
+[diff]
+    command = "difft"
 
 [data.stylings.fonts.UI]
 family = "Atkinson Hyperlegible Next"
