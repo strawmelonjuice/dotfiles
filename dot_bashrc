@@ -16,17 +16,10 @@ else
   curl https://mise.run | sh
   # Activate mise
   eval "$(~/.local/bin/mise activate zsh)"
-  # Install mise usage
-  ~/.local/bin/mise use -g usage
-  # JS runtimes
-  ~/.local/bin/mise use -g node@23
-  ~/.local/bin/mise use -g bun@latest
-  # BEAM tools/languages
-  ~/.local/bin/mise use -g erlang@latest
-  ~/.local/bin/mise use -g gleam@latest
-  ~/.local/bin/mise use -g elixir@latest
+  # Install asdf rebar plugin for mise
   ~/.local/bin/mise plugin install rebar https://github.com/Stratus3D/asdf-rebar.git
-  ~/.local/bin/mise use -g rebar@latest
+  # Run mise install
+  ~/.local/bin/mise install
 fi
 
 # Set alliasses

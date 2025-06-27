@@ -30,10 +30,8 @@ else
   eval "$(~/.local/bin/mise activate zsh)"
   # Install asdf rebar plugin for mise
   ~/.local/bin/mise plugin install rebar https://github.com/Stratus3D/asdf-rebar.git
-  # Install mise deps
+  # Run mise install
   ~/.local/bin/mise install
-    # Activate mise completion
-  eval "$(mise completion zsh)"
 fi
 
 # Use Helix as the default editor
