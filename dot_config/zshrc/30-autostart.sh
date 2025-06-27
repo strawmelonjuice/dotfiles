@@ -35,9 +35,9 @@ fi
 # Only set up Bitwarden if the CLI is available and we're in an interactive shell
 if command -v bw >/dev/null 2>&1 && [[ $- == *i* ]]; then
     # Use the helper script if available, otherwise fall back to direct bw command
-    if [[ -f "$HOME/.local/share/chezmoi/shellscripts/executable_bitwarden_helper.sh" ]]; then
+    if [[ -f "$HOME//shellscripts/bitwarden_helper.sh" ]]; then
         # Load session using the helper script (handles session caching)
-        if "$HOME/.local/share/chezmoi/shellscripts/executable_bitwarden_helper.sh" session >/dev/null 2>&1; then
+        if "$HOME/shellscripts/bitwarden_helper.sh" session >/dev/null 2>&1; then
             # Get the cached session if available
             if [[ -f "$HOME/.cache/bw-session" ]]; then
                 export BW_SESSION=$(cat "$HOME/.cache/bw-session")

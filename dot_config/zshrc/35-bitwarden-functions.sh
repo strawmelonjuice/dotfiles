@@ -5,7 +5,7 @@
 # Convenient wrapper functions for Bitwarden CLI
 if command -v bw >/dev/null 2>&1; then
     # Path to the bitwarden helper script
-    BW_HELPER="$HOME/.local/share/chezmoi/shellscripts/executable_bitwarden_helper.sh"
+    BW_HELPER="$HOME/shellscripts/bitwarden_helper.sh"
     
     # Quick Bitwarden functions
     bw-get() {
