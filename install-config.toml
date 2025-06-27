@@ -1,0 +1,310 @@
+# Dotfiles Installation Configuration
+# This file allows you to customize the installation behavior
+
+# Package groups - define what gets installed in different scenarios
+[packages]
+
+# Essential packages for any environment
+essential = [
+    "curl", "git", "wget", "unzip", "zip", "tar", "gzip"
+]
+
+# Development tools
+development = [
+    "bat", "fzf", "htop", "ripgrep", "zsh", "tmux", "neovim", 
+    "github-cli", "jq", "tree", "fastfetch", "hyfetch", 
+    "clang", "clangd", "cmake", "meson", "ninja", "pkg-config",
+    "python", "rustup", "go", "nodejs", "npm"
+]
+
+# Build essentials and libraries
+build_tools = [
+    "build-essential", "cpio", "mesa-utils", "libssl-dev",
+    "wayland-scanner++", "libgles2-mesa-dev"
+]
+
+# Shell and terminal enhancements
+shell_tools = [
+    "zoxide", "starship", "zsh-syntax-highlighting", 
+    "zsh-fast-syntax-highlighting", "tldr", "micro"
+]
+
+# Terminal applications
+terminals = [
+    "alacritty", "kitty", "foot", "wezterm"
+]
+
+# GUI applications (only for desktop environments)
+gui_apps = [
+    "firefox", "librewolf", "epiphany",  # browsers
+    "mpv", "pavucontrol",                # media
+    "thunar", "nautilus",                # file managers
+    "ark", "file-roller",                # archive managers
+    "inkscape", "gimp",                  # graphics
+    "element-desktop", "discord",        # communication
+    "galculator", "gnome-calculator"     # utilities
+]
+
+# Wayland desktop environment (excluding debian-based)
+wayland_desktop = [
+    "hyprland", "waybar", "niri", "dunst", "rofi", "wofi", "wlogout",
+    "hyprpaper", "hyprlock", "hyprshot", "slurp", "grim",
+    "brightnessctl", "playerctl", "wev"
+]
+
+# X11 desktop environment
+x11_desktop = [
+    "i3-wm", "i3blocks", "i3lock", "i3status", "dmenu",
+    "xorg-server", "xorg-xinit", "xorg-xrandr", "xorg-xbacklight",
+    "lightdm", "lightdm-slick-greeter", "scrot", "feh"
+]
+
+# Audio and multimedia
+audio_multimedia = [
+    "pulseaudio", "pipewire", "pipewire-alsa", "pipewire-pulse", 
+    "pipewire-jack", "wireplumber", "alsa-utils", "alsa-firmware"
+]
+
+# System utilities
+system_tools = [
+    "networkmanager", "network-manager-applet", "bluez", "bluez-utils",
+    "cups", "cups-filters", "accountsservice", "polkit-gnome",
+    "upower", "acpi", "smartmontools", "lm-sensors"
+]
+
+# Fonts
+fonts = [
+    "ttf-bitstream-vera", "ttf-dejavu", "ttf-liberation", "ttf-opensans",
+    "noto-fonts", "noto-fonts-cjk", "noto-fonts-emoji", "noto-fonts-extra",
+    "ttf-font-awesome", "ttf-iosevka-nerd", "ttf-lilex-nerd"
+]
+
+# Package management and flatpak
+package_tools = [
+    "flatpak", "snapd", "appimage-launcher"
+]
+
+# Cloud/container specific packages
+cloud = [
+    "zoxide", "starship", "micro", "nano"
+]
+
+# Environment-specific configurations
+[environments]
+
+# GitHub Codespaces
+[environments.codespace]
+install_gui = false
+install_desktop = false
+use_bitwarden = false
+package_groups = ["essential", "development", "shell_tools", "cloud"]
+
+# Local desktop installation
+[environments.local]
+install_gui = true
+install_desktop = true  
+use_bitwarden = true
+package_groups = ["essential", "development", "build_tools", "shell_tools", "terminals", "gui_apps", "wayland_desktop", "audio_multimedia", "system_tools", "fonts", "package_tools"]
+
+# CI/Testing environments
+[environments.ci]
+install_gui = false
+install_desktop = false
+use_bitwarden = false
+skip_interactive = true
+package_groups = ["essential"]
+
+# Container environments
+[environments.container]
+install_gui = false
+install_desktop = false
+use_bitwarden = false
+package_groups = ["essential", "development", "shell_tools"]
+
+# Distribution-specific package mappings
+[distributions]
+
+[distributions.debian]
+package_manager = "apt"
+update_cmd = "apt-get update"
+install_cmd = "apt-get install -y"
+# Exclude packages that are too old or not available in Debian/Ubuntu repos
+exclude_packages = [
+    "hyprland", "waybar", "niri", "hyprpaper", "hyprlock", "hyprshot",
+    "wlogout", "dunst", "rofi", "wofi", "slurp", "grim", 
+    "brightnessctl", "wev", "ttf-iosevka-nerd", "ttf-lilex-nerd"
+]
+
+[distributions.debian.package_map]
+neovim = "neovim"
+github-cli = "gh" 
+ripgrep = "ripgrep"
+build-essential = "build-essential"
+libssl-dev = "libssl-dev"
+"wayland-scanner++" = "libwayland-dev"
+libgles2-mesa-dev = "libgles2-mesa-dev"
+pkg-config = "pkg-config"
+zsh-syntax-highlighting = "zsh-syntax-highlighting"
+ttf-font-awesome = "fonts-font-awesome"
+ttf-dejavu = "fonts-dejavu"
+ttf-liberation = "fonts-liberation"
+noto-fonts = "fonts-noto"
+noto-fonts-cjk = "fonts-noto-cjk"
+noto-fonts-emoji = "fonts-noto-color-emoji"
+file-roller = "file-roller"
+gnome-calculator = "gnome-calculator"
+
+[distributions.fedora] 
+package_manager = "dnf"
+update_cmd = "dnf check-update || true"
+install_cmd = "dnf install -y"
+
+[distributions.fedora.package_map]
+neovim = "neovim"
+github-cli = "gh"
+ripgrep = "ripgrep"
+build-essential = "gcc gcc-c++ make"
+libssl-dev = "openssl-devel"
+"wayland-scanner++" = "wayland-devel"
+libgles2-mesa-dev = "mesa-libGLES-devel"
+pkg-config = "pkgconfig"
+zsh-syntax-highlighting = "zsh-syntax-highlighting"
+file-roller = "file-roller"
+gnome-calculator = "gnome-calculator"
+
+[distributions.arch]
+package_manager = "pacman"
+update_cmd = "pacman -Sy"
+install_cmd = "pacman -S --noconfirm"
+
+[distributions.arch.package_map]
+neovim = "neovim"
+github-cli = "github-cli"
+ripgrep = "ripgrep"
+build-essential = "base-devel"
+libssl-dev = "openssl"
+"wayland-scanner++" = "wayland"
+libgles2-mesa-dev = "mesa"
+pkg-config = "pkgconf"
+zsh-syntax-highlighting = "zsh-syntax-highlighting"
+file-roller = "file-roller"
+gnome-calculator = "gnome-calculator"
+
+[distributions.alpine]
+package_manager = "apk"
+update_cmd = "apk update"
+install_cmd = "apk add"
+use_doas = true
+# Alpine has very limited package availability
+exclude_packages = [
+    "hyprland", "waybar", "niri", "hyprpaper", "hyprlock", "hyprshot",
+    "wlogout", "rofi", "wofi", "element-desktop", "discord",
+    "librewolf", "inkscape", "gimp", "snapd", "flatpak"
+]
+
+[distributions.alpine.package_map]
+neovim = "neovim"
+github-cli = "github-cli"
+ripgrep = "ripgrep"
+build-essential = "alpine-sdk"
+libssl-dev = "openssl-dev"
+"wayland-scanner++" = "wayland-dev"
+libgles2-mesa-dev = "mesa-dev"
+pkg-config = "pkgconfig"
+zsh-syntax-highlighting = "zsh-syntax-highlighting"
+file-roller = "file-roller"
+gnome-calculator = "gnome-calculator"
+
+[external_tools.chezmoi]
+check_cmd = "command -v chezmoi"
+install_cmd = 'sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"'
+
+[external_tools.bitwarden]
+check_cmd = "command -v bw"
+install_method = "manual"  # Will be handled specially
+
+[external_tools.starship]
+check_cmd = "command -v starship"
+install_cmd = 'sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes'
+
+[external_tools.zoxide]
+check_cmd = "command -v zoxide"
+install_cmd = 'sh -c "$(curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh)"'
+
+[external_tools.mise]
+check_cmd = "command -v mise"
+install_cmd = 'curl https://mise.run | sh'
+
+[external_tools.rust]
+check_cmd = "command -v rustc"
+install_cmd = 'curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y'
+
+[external_tools.node]
+check_cmd = "command -v node"
+install_method = "mise"  # Will use mise to install
+
+[external_tools.python]
+check_cmd = "command -v python3"
+install_method = "system"  # Usually available via package manager
+
+[external_tools.go]
+check_cmd = "command -v go"
+install_method = "system"  # Available via package manager
+
+# Flatpak applications
+[external_tools.flatpak_apps]
+check_cmd = "flatpak list | grep -q ."
+dependencies = ["flatpak"]
+apps = [
+    "com.discordapp.Discord",
+    "org.signal.Signal", 
+    "com.spotify.Client",
+    "org.telegram.desktop"
+]
+
+# Niri taskbar - special handling for submodule build
+[external_tools.niri_taskbar]
+check_cmd = "test -f ~/.local/share/chezmoi/dot_dotfiles/deps/niri-taskbar/target/release/libniri_taskbar.so"
+dependencies = ["niri", "rust"]
+build_script = """
+#!/bin/bash
+set -euo pipefail
+
+CHEZMOI_DIR="$HOME/.local/share/chezmoi"
+NIRI_TASKBAR_DIR="$CHEZMOI_DIR/dot_dotfiles/deps/niri-taskbar"
+
+echo "Setting up niri-taskbar..."
+
+# Ensure we're in the chezmoi directory
+cd "$CHEZMOI_DIR"
+
+# Initialize/update git submodules
+if ! git submodule status | grep -q niri-taskbar; then
+    echo "Initializing niri-taskbar submodule..."
+    git submodule update --init --recursive dot_dotfiles/deps/niri-taskbar
+else
+    echo "Updating niri-taskbar submodule..."
+    git submodule update --recursive dot_dotfiles/deps/niri-taskbar
+fi
+
+# Build the taskbar
+if [ -d "$NIRI_TASKBAR_DIR" ]; then
+    echo "Building niri-taskbar..."
+    cd "$NIRI_TASKBAR_DIR"
+    
+    # Ensure we have cargo
+    if ! command -v cargo >/dev/null 2>&1; then
+        echo "Error: cargo not found. Please install Rust first."
+        exit 1
+    fi
+    
+    # Build in release mode
+    cargo build --release
+    
+    echo "niri-taskbar built successfully!"
+    echo "Library location: $NIRI_TASKBAR_DIR/target/release/libniri_taskbar.so"
+else
+    echo "Error: niri-taskbar directory not found at $NIRI_TASKBAR_DIR"
+    exit 1
+fi
+"""
