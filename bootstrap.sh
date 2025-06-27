@@ -120,8 +120,9 @@ EOF
     echo
     echo -e "${BLUE}Next steps:${NC}"
     echo "  1. Restart your shell: exec \$SHELL"
-    echo "  2. Check your configuration: chezmoi doctor"
-    echo "  3. Update dotfiles anytime: chezmoi update"
+    echo "  3. Run the smart install script: bash $HOME/.local/share/chezmoi/shellscripts/executable_smart_install.sh"
+    echo "  3. Check your configuration: chezmoi doctor"
+    echo "  4. Update dotfiles anytime: chezmoi update"
     echo
 }
 
