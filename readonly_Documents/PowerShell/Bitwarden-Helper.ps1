@@ -195,6 +195,7 @@ function Get-BWSession {
             $env:BW_SESSION = $sessionToken
             $result = bw list items --length 1 2>$null
             if ($LASTEXITCODE -eq 0) {
+                bw sync --session $sessionToken >$null
                 return $true
             } else {
                 # Session expired, remove the file silently

@@ -73,6 +73,10 @@ if command -v bw >/dev/null 2>&1 && [[ $- == *i* ]]; then
                     echo "$BW_SESSION" > "$BW_SESSION_FILE"
                     chmod 600 "$BW_SESSION_FILE"
                     
+                    # Sync Bitwarden to ensure items are available
+                    bw sync --session "$BW_SESSION" >/dev/null 2>&1
+
+                    # Export session variable
                     export BW_SESSION
                     echo "Password saved securely. Future shell sessions will unlock automatically."
                     return 0
