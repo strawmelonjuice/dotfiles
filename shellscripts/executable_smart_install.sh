@@ -102,7 +102,7 @@ configure_for_environment() {
             INSTALL_GUI=false
             INSTALL_DESKTOP=false
             INSTALL_MINIMAL=true
-            USE_BITWARDEN=false  # Might not be available
+            USE_BITWARDEN=true  # Might not be available
             ;;
         gitpod|replit)
             log INFO "Configuring for cloud development environment..."
@@ -131,7 +131,7 @@ configure_for_environment() {
             INSTALL_GUI=${INSTALL_GUI:-true}
             INSTALL_DESKTOP=${INSTALL_DESKTOP:-true}
             INSTALL_MINIMAL=false
-            USE_BITWARDEN=${USE_BITWARDEN:-true}
+            USE_BITWARDEN=true
             ;;
         *)
             log WARN "Unknown environment, using conservative defaults..."
@@ -346,9 +346,10 @@ main() {
         if [[ "$environment" == "local" ]]; then
             read -p "Install GUI packages? (Y/n): " -r gui_input
             INSTALL_GUI=$(echo "${gui_input:-Y}" | grep -iq '^n' && echo false || echo true)
-            
-            read -p "Use Bitwarden for secrets? (Y/n): " -r bw_input
-            USE_BITWARDEN=$(echo "${bw_input:-Y}" | grep -iq '^n' && echo false || echo true)
+            # Can be omitted, always true if asked
+            # read -p "Use Bitwarden for secrets? (Y/n): " -r bw_input
+            # USE_BITWARDEN=$(echo "${bw_input:-Y}" | grep -iq '^n' && echo false || echo true)
+            USE_BITWARDEN=true
         fi
     fi
     
