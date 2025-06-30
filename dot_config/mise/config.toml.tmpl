@@ -18,8 +18,7 @@ bombardier = "latest"
 "cargo:starship" = "latest"
 "cargo:zoxide" = "latest"
 "cargo:rage" = "latest"
-"cargo:cargo-clean-all" = "latest" {{ if ne .chezmoi.os "windows" }}
-zellij="latest" {{- end }}
+"cargo:cargo-clean-all" = "latest" 
 lazygit = "latest"
 neovim = "0.11.2"
 fastfetch = "latest"
@@ -29,11 +28,21 @@ ripgrep = "latest"
 python = "latest"
 difftastic = "latest"
 zig = "latest"
+{{ if eq .chezmoi.os "linux" }}
+# Linux specific
+pipx = "latest"
+"pipx:hyfetch" = "latest"
+zellij="latest"
+# End Linux specific
+{{- end }}
 
 [env]
 GIT_EXTERNAL_DIFF = 'difft'
 
 [alias] {{ if eq .chezmoi.os "windows" }}
+# On Windows, manually set the path to hyfetch
+# This is necessary because hyfetch is not installed via mise on Windows.
+# It is installed via pip.
 hyfetch = "{{ "{{" }}exec(command='mise where python'){{ "}}" }}/Scripts/hyfetch.exe"
 {{- end }}
 [settings]
