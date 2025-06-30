@@ -41,6 +41,66 @@ if (Get-Command oh-my-posh -ErrorAction SilentlyContinue) {
     }
 }
 
+# -----------------------------------------------------
+# POWERSHELL AUTOCOMPLETION SETUP
+# -----------------------------------------------------
+
+[Console]::WriteLine("Setting up PowerShell autocompletion...")
+
+# Enhanced completion options
+Set-PSReadLineOption -PredictionSource History
+Set-PSReadLineOption -PredictionViewStyle ListView
+Set-PSReadLineOption -EditMode Vi
+Set-PSReadLineOption -BellStyle None
+
+# Key bindings for better completion experience
+Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
+Set-PSReadLineKeyHandler -Key Shift+Tab -Function MenuComplete
+Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+Set-PSReadLineKeyHandler -Key Ctrl+f -Function ForwardWord
+
+# Enable menu navigation with Tab/Shift+Tab
+Set-PSReadLineOption -ShowToolTips
+
+# Install and import CompletionPredictor module for enhanced completions
+if (-not(Get-Module -ListAvailable -Name CompletionPredictor)) {
+    Write-Host "Installing CompletionPredictor module..."
+    Install-Module -Name CompletionPredictor -Scope CurrentUser -Force -AllowClobber
+}
+Import-Module CompletionPredictor
+
+# Install and configure Terminal-Icons for better file listings
+if (-not(Get-Module -ListAvailable -Name Terminal-Icons)) {
+    Write-Host "Installing Terminal-Icons module..."
+    Install-Module -Name Terminal-Icons -Scope CurrentUser -Force -AllowClobber
+}
+Import-Module Terminal-Icons
+
+# Install PSFzf for fuzzy finding (similar to oh-my-zsh functionality)
+if (-not(Get-Module -ListAvailable -Name PSFzf)) {
+    Write-Host "Installing PSFzf module..."
+    Install-Module -Name PSFzf -Scope CurrentUser -Force -AllowClobber
+}
+Import-Module PSFzf
+
+# Set up PSFzf key bindings
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+r'
+
+# Enhanced completion styling
+$PSReadLineOptions = @{
+    Colors = @{
+        Command = 'Green'
+        Parameter = 'Gray'
+        Operator = 'Magenta'
+        Variable = 'Yellow'
+        String = 'Blue'
+        Number = 'DarkCyan'
+        Type = 'Cyan'
+        Comment = 'DarkGreen'
+    }
+}
+
 # Initialise mise
 [Console]::WriteLine("Initialising mise-en-place...")
 (&mise activate pwsh) | Out-String | Invoke-Expression

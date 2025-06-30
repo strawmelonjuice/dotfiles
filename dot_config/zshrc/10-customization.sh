@@ -16,6 +16,57 @@ else
     eval "$(starship init zsh)"
 fi
 
+# -----------------------------------------------------
+# ZSH AUTOCOMPLETION SETUP
+# -----------------------------------------------------
+
+# Enable zsh completion system
+autoload -Uz compinit
+compinit
+
+# Enhanced completion options
+setopt COMPLETE_IN_WORD    # Complete from both ends of a word
+setopt ALWAYS_TO_END       # Move cursor to the end of a completed word
+setopt PATH_DIRS           # Perform path search even on command names with slashes
+setopt AUTO_MENU           # Show completion menu on second tab
+setopt AUTO_LIST           # List choices on ambiguous completion
+setopt AUTO_PARAM_SLASH    # Add slash if completing a directory
+setopt FLOW_CONTROL        # Enable flow control (Ctrl+S/Ctrl+Q)
+
+# Case-insensitive completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# Install and load zsh-autosuggestions
+ZSH_AUTOSUGGESTIONS_DIR="$HOME/.local/share/zsh-autosuggestions"
+if [[ ! -d "$ZSH_AUTOSUGGESTIONS_DIR" ]]; then
+    echo "Installing zsh-autosuggestions..."
+    git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_AUTOSUGGESTIONS_DIR"
+fi
+source "$ZSH_AUTOSUGGESTIONS_DIR/zsh-autosuggestions.zsh"
+
+# Install and load zsh-syntax-highlighting
+ZSH_SYNTAX_HIGHLIGHTING_DIR="$HOME/.local/share/zsh-syntax-highlighting"
+if [[ ! -d "$ZSH_SYNTAX_HIGHLIGHTING_DIR" ]]; then
+    echo "Installing zsh-syntax-highlighting..."
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_SYNTAX_HIGHLIGHTING_DIR"
+fi
+source "$ZSH_SYNTAX_HIGHLIGHTING_DIR/zsh-syntax-highlighting.zsh"
+
+# Install and load zsh-completions for additional completions
+ZSH_COMPLETIONS_DIR="$HOME/.local/share/zsh-completions"
+if [[ ! -d "$ZSH_COMPLETIONS_DIR" ]]; then
+    echo "Installing zsh-completions..."
+    git clone https://github.com/zsh-users/zsh-completions "$ZSH_COMPLETIONS_DIR"
+fi
+fpath=("$ZSH_COMPLETIONS_DIR/src" $fpath)
+
+# Modern completion styling
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
+zstyle ':completion:*:warnings' format '%F{red}-- no matches found --%f'
+
 # Enhanced zsh options and features
 setopt AUTO_CD              # Auto cd when typing directory name
 setopt AUTO_PUSHD           # Push directories to stack automatically  
@@ -32,13 +83,6 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
-
-# Enhanced autocompletion
-autoload -Uz compinit && compinit
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # Case insensitive matching
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"   # Colored completion
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 
 # Load zsh plugins manually (replacing oh-my-zsh functionality)
 # Git aliases and functions
@@ -65,33 +109,30 @@ alias gsta='git stash apply'
 alias sudo='sudo '  # Allow aliases to work with sudo
 
 # Web search functionality  
-google() { open "https://www.google.com/search?q=$*" }
-ddg() { open "https://duckduckgo.com/?q=$*" }
+google() { 
+    if command -v xdg-open >/dev/null 2>&1; then
+        xdg-open "https://www.google.com/search?q=$*"
+    elif command -v open >/dev/null 2>&1; then
+        open "https://www.google.com/search?q=$*"
+    else
+        echo "No browser opener found"
+    fi
+}
+ddg() { 
+    if command -v xdg-open >/dev/null 2>&1; then
+        xdg-open "https://duckduckgo.com/?q=$*"
+    elif command -v open >/dev/null 2>&1; then
+        open "https://duckduckgo.com/?q=$*"
+    else
+        echo "No browser opener found"
+    fi
+}
 
 # Directory navigation enhancements
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
-
-# Load zsh plugins (replacing oh-my-zsh plugins)
-# zsh-autosuggestions
-if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-elif [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-elif [ -f "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
-    source "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-fi
-
-# zsh-syntax-highlighting (should be loaded last)
-if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-elif [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-elif [ -f "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-    source "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-fi
 
 # Copyfile and copybuffer functionality (replacing oh-my-zsh plugins)
 if command -v xclip >/dev/null 2>&1; then
