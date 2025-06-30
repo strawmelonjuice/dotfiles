@@ -11,7 +11,7 @@
         "~/.config/waybar/modules.jsonc"
     ],
     "cffi/niri-taskbar": {
-        "module_path": "/home/mar/.local/share/chezmoi/dot_dotfiles/deps/niri-taskbar/target/release/libniri_taskbar.so",
+        "module_path": "/home/mar/.local/share/chezmoi/.dotfiles/deps/niri-taskbar/target/release/libniri_taskbar.so",
     },
     "modules-left": [
         // "custom/appmenu",

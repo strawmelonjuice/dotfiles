@@ -264,14 +264,14 @@ apps = [
 
 # Niri taskbar - special handling for submodule build
 [external_tools.niri_taskbar]
-check_cmd = "test -f ~/.local/share/chezmoi/dot_dotfiles/deps/niri-taskbar/target/release/libniri_taskbar.so"
+check_cmd = "test -f ~/.local/share/chezmoi/.dotfiles/deps/niri-taskbar/target/release/libniri_taskbar.so"
 dependencies = ["niri", "rust"]
 build_script = """
 #!/bin/bash
 set -euo pipefail
 
 CHEZMOI_DIR="$HOME/.local/share/chezmoi"
-NIRI_TASKBAR_DIR="$CHEZMOI_DIR/dot_dotfiles/deps/niri-taskbar"
+NIRI_TASKBAR_DIR="$CHEZMOI_DIR/.dotfiles/deps/niri-taskbar"
 
 echo "Setting up niri-taskbar..."
 
@@ -281,10 +281,10 @@ cd "$CHEZMOI_DIR"
 # Initialize/update git submodules
 if ! git submodule status | grep -q niri-taskbar; then
     echo "Initializing niri-taskbar submodule..."
-    git submodule update --init --recursive dot_dotfiles/deps/niri-taskbar
+    git submodule update --init --recursive .dotfiles/deps/niri-taskbar
 else
     echo "Updating niri-taskbar submodule..."
-    git submodule update --recursive dot_dotfiles/deps/niri-taskbar
+    git submodule update --recursive .dotfiles/deps/niri-taskbar
 fi
 
 # Build the taskbar

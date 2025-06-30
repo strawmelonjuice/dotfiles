@@ -349,7 +349,7 @@ The built library is automatically available for waybar:
 ```json
 // In waybar config
 "cffi/niri-taskbar": {
-    "module_path": "/home/user/.local/share/chezmoi/dot_dotfiles/deps/niri-taskbar/target/release/libniri_taskbar.so"
+    "module_path": "/home/user/.local/share/chezmoi/.dotfiles/deps/niri-taskbar/target/release/libniri_taskbar.so"
 }
 ```
 
