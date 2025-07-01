@@ -256,7 +256,7 @@ load_plugins {
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-theme "kanagawa"
+theme "custom"
  
 // Choose the base input mode of zellij.
 // Default: normal
@@ -437,3 +437,125 @@ show_startup_tips false
 // Default: true
 // 
 show_release_notes false
+
+// My customised themey :3
+themes {
+    custom {
+        text_unselected {
+            base 255 214 224        // #FFD6E0 - light pink text
+            background 26 26 46     // #1a1a2e - dark navy background
+            emphasis_0 252 161 125  // #FCA17D - orange/peach
+            emphasis_1 134 187 216  // #86BBD8 - sky blue
+            emphasis_2 193 225 193  // #C1E1C1 - mint green
+            emphasis_3 154 52 142   // #9A348E - rich purple
+        }
+        text_selected {
+            base 26 26 46           // #1a1a2e - dark text on selection
+            background 252 161 125  // #FCA17D - bright orange selection
+            emphasis_0 255 107 107  // #FF6B6B - coral red
+            emphasis_1 134 187 216  // #86BBD8 - sky blue
+            emphasis_2 193 225 193  // #C1E1C1 - mint green
+            emphasis_3 154 52 142   // #9A348E - rich purple
+        }
+        ribbon_selected {
+            base 255 214 224        // #FFD6E0 - light pink text
+            background 154 52 142   // #9A348E - rich purple (active tab)
+            emphasis_0 255 107 107  // #FF6B6B - coral red
+            emphasis_1 252 161 125  // #FCA17D - orange
+            emphasis_2 134 187 216  // #86BBD8 - sky blue
+            emphasis_3 193 225 193  // #C1E1C1 - mint green
+        }
+        ribbon_unselected {
+            base 255 214 224        // #FFD6E0 - light pink text
+            background 218 98 125   // #DA627D - coral pink (inactive tab)
+            emphasis_0 255 107 107  // #FF6B6B - coral red
+            emphasis_1 252 161 125  // #FCA17D - orange
+            emphasis_2 134 187 216  // #86BBD8 - sky blue
+            emphasis_3 154 52 142   // #9A348E - purple
+        }
+        table_title {
+            base 154 52 142         // #9A348E - rich purple
+            background 0
+            emphasis_0 252 161 125  // #FCA17D - orange
+            emphasis_1 134 187 216  // #86BBD8 - sky blue
+            emphasis_2 193 225 193  // #C1E1C1 - mint green
+            emphasis_3 255 214 224  // #FFD6E0 - light pink
+        }
+        table_cell_selected {
+            base 26 26 46           // #1a1a2e - dark text
+            background 193 225 193  // #C1E1C1 - mint green selection
+            emphasis_0 252 161 125  // #FCA17D - orange
+            emphasis_1 134 187 216  // #86BBD8 - sky blue
+            emphasis_2 154 52 142   // #9A348E - purple
+            emphasis_3 255 107 107  // #FF6B6B - coral red
+        }
+        table_cell_unselected {
+            base 255 214 224        // #FFD6E0 - light pink text
+            background 26 26 46     // #1a1a2e - dark navy
+            emphasis_0 252 161 125  // #FCA17D - orange
+            emphasis_1 134 187 216  // #86BBD8 - sky blue
+            emphasis_2 193 225 193  // #C1E1C1 - mint green
+            emphasis_3 154 52 142   // #9A348E - purple
+        }
+        list_selected {
+            base 26 26 46           // #1a1a2e - dark text
+            background 252 161 125  // #FCA17D - bright orange selection
+            emphasis_0 255 107 107  // #FF6B6B - coral red
+            emphasis_1 134 187 216  // #86BBD8 - sky blue
+            emphasis_2 193 225 193  // #C1E1C1 - mint green
+            emphasis_3 154 52 142   // #9A348E - purple
+        }
+        list_unselected {
+            base 255 214 224        // #FFD6E0 - light pink text
+            background 26 26 46     // #1a1a2e - dark navy
+            emphasis_0 252 161 125  // #FCA17D - orange
+            emphasis_1 134 187 216  // #86BBD8 - sky blue
+            emphasis_2 193 225 193  // #C1E1C1 - mint green
+            emphasis_3 154 52 142   // #9A348E - purple
+        }
+        frame_selected {
+            base 193 225 193        // #C1E1C1 - bright mint green frame
+            background 0
+            emphasis_0 252 161 125  // #FCA17D - orange
+            emphasis_1 134 187 216  // #86BBD8 - sky blue
+            emphasis_2 154 52 142   // #9A348E - purple
+            emphasis_3 0
+        }
+        frame_highlight {
+            base 252 161 125        // #FCA17D - bright orange highlight
+            background 0
+            emphasis_0 154 52 142   // #9A348E - purple
+            emphasis_1 252 161 125  // #FCA17D - orange
+            emphasis_2 255 107 107  // #FF6B6B - coral red
+            emphasis_3 193 225 193  // #C1E1C1 - mint green
+        }
+        exit_code_success {
+            base 193 225 193        // #C1E1C1 - mint green for success
+            background 0
+            emphasis_0 134 187 216  // #86BBD8 - sky blue
+            emphasis_1 26 26 46     // #1a1a2e - dark
+            emphasis_2 154 52 142   // #9A348E - purple
+            emphasis_3 252 161 125  // #FCA17D - orange
+        }
+        exit_code_error {
+            base 255 107 107        // #FF6B6B - bright coral red for errors
+            background 0
+            emphasis_0 252 161 125  // #FCA17D - orange
+            emphasis_1 0
+            emphasis_2 0
+            emphasis_3 0
+        }
+        multiplayer_user_colors {
+            player_1 154 52 142     // #9A348E - purple
+            player_2 134 187 216    // #86BBD8 - sky blue
+            player_3 252 161 125    // #FCA17D - orange
+            player_4 193 225 193    // #C1E1C1 - mint green
+            player_5 6 150 154      // #06969A - teal
+            player_6 218 98 125     // #DA627D - coral pink
+            player_7 255 107 107    // #FF6B6B - coral red
+            player_8 231 209 255    // #e7d1ff - light purple
+            player_9 0
+            player_10 0
+        }
+    }
+}
