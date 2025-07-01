@@ -178,7 +178,7 @@ function dwingetinstalledneeded {
   }
 }
 [Console]::WriteLine( "Defining aliases...")
-New-Alias zellij wsl SHELL="pwsh.exe" zellij
+New-Alias zellij 'wsl SHELL="pwsh.exe" zellij'
 New-Alias cls clear -Option AllScope -Force
 New-Alias c clear -Option AllScope -Force
 New-Alias q quit -Option AllScope -Force
