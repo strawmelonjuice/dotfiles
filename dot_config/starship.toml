@@ -45,8 +45,8 @@ $time\
 # and use the os module below
 [username]
 show_always = true
-style_user = "bg:#9A348E"
-style_root = "bg:#9A348E"
+style_user = "bg:#9A348E fg:#FFD6E0"
+style_root = "bg:#9A348E fg:#FFD6E0"
 format = '[$user ]($style)'
 disabled = false
 
@@ -67,7 +67,7 @@ zsh_indicator = "Z\\$"
 # An alternative to the username module which displays a symbol that
 # represents the current operating system
 [os]
-style = "bg:#9A348E"
+style = "bg:#9A348E fg:#FFD6E0"
 disabled = true      # Disabled by default
 
 [directory]
@@ -91,12 +91,12 @@ truncation_symbol = "…/"
 
 [c]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
 [cpp]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
 [docker_context]
@@ -106,45 +106,45 @@ format = '[ $symbol $context ]($style)'
 
 [elixir]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
 [elm]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
 symbol = ""
-style = "bg:#FCA17D"
+style = "bg:#FCA17D fg:#2A4D69"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#FCA17D"
+style = "bg:#FCA17D fg:#2A4D69"
 format = '[$all_status$ahead_behind ]($style)'
 
 [golang]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
 [gradle]
-style = "bg:#86BBD8"
+style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
 [haskell]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
 [java]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:#86BBD8"
+style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
 [bun]
@@ -158,44 +158,44 @@ detect_files = [
     'package.json',
     "gleam.toml",
 ]
-style = "bg:#86BBD8"
+style = "bg:#86BBD8 fg:#FF6B6B"
 
 [lua]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
 [nim]
 symbol = "󰆥 "
-style = "bg:#86BBD8"
+style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#86BBD8"
+style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
 [scala]
 symbol = " "
-style = "bg:#86BBD8"
+style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
 [erlang]
 symbol = " "
 format = "[$symbol($version )]($style)"
-style = "bg:#86BBD8"
+style = "bg:#86BBD8 fg:#FF6B6B"
 detect_files = ['rebar.config', 'elang.mk', "gleam.toml"]
 
 [gleam]
 symbol = " "
 format = "[$symbol($version )]($style)"
-style = "bg:#86BBD8"
+style = "bg:#86BBD8 fg:#FF6B6B"
 disabled = false
 
 
 [zig]
 symbol = "↯ "
-style = "bg:#86BBD8"
+style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
 [status]
