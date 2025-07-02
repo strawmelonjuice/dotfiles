@@ -1,6 +1,11 @@
 # Neovim lazy lock to be ignored
 **/lazy-lock.json
 
+{{ if (eq (lookPath "bw") "") }}
+# No Bitwarden, no secrets that depend on it.
+/.ssh/
+{{ end }}
+
 {{ if ne .chezmoi.os "windows" }}
 # Windows-specific files
 /Documents
@@ -16,6 +21,9 @@
 /.config/waybar
 /.config/wlogout
 /.config/settings
+/.config/niri
+/.config/ghostty
+/.config/anyrun
 /.config/zshrc
 /shellscripts
 /.zshrc
