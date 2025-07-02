@@ -28,8 +28,9 @@ $nim\
 $gleam\
 $rust\
 $scala\
+$php\
 $zig\
-[](fg:#86BBD8 bg:#06969A)\
+[ ](fg:#86BBD8 bg:#06969A)\
 $docker_context\
 $cmd_duration\
 [](fg:#06969A bg:#33658A)\
@@ -115,7 +116,7 @@ style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
-symbol = ""
+symbol = " "
 style = "bg:#FCA17D fg:#2A4D69"
 format = '[ $symbol $branch ]($style)'
 
@@ -143,13 +144,13 @@ style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
 [nodejs]
-symbol = ""
+symbol = " "
 style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
 [bun]
 disabled = false
-symbol = "🧅"
+symbol = "🧅 "
 format = '[ $symbol ($version) ]($style)'
 detect_files = [
     'bun.lock',
@@ -165,13 +166,20 @@ symbol = " "
 style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
+
+[php]
+symbol = " "
+style = "bg:#86BBD8 fg:#FF6B6B"
+format = '[ $symbol ($version) ]($style)'
+
+
 [nim]
 symbol = "󰆥 "
 style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
 [rust]
-symbol = ""
+symbol = " "
 style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
@@ -182,13 +190,13 @@ format = '[ $symbol ($version) ]($style)'
 
 [erlang]
 symbol = " "
-format = "[$symbol($version )]($style)"
+format = "[$symbol ($version) ]($style)"
 style = "bg:#86BBD8 fg:#FF6B6B"
 detect_files = ['rebar.config', 'elang.mk', "gleam.toml"]
 
 [gleam]
 symbol = " "
-format = "[$symbol($version )]($style)"
+format = "[$symbol ($version) ]($style)"
 style = "bg:#86BBD8 fg:#FF6B6B"
 disabled = false
 
@@ -202,7 +210,7 @@ format = '[ $symbol ($version) ]($style)'
 disabled = false
 style = "bg:#33658A" # Like time.
 # Heart symbol for success, broken heart for failure.
-success_symbol = "♥"
+success_symbol = "♥ "
 symbol = "💔"
 format = "[$symbol]($style)"
 map_symbol =true
@@ -223,6 +231,6 @@ min_time = 500
 [mise]
 symbol = "🐭"
 style = "bg:#e7d1ff"
-format = '[ $symbol ]($style)'
+format = '[ $symbol $health ]($style)'
 detect_files = [ "mise.toml", "mise.local.toml", ".mise.toml", ".mise.local.toml"]
 disabled = false
