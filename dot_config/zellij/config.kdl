@@ -468,7 +468,7 @@ themes {
         ribbon_unselected {
             base 255 214 224        // #FFD6E0 - light pink text
             background 218 98 125   // #DA627D - coral pink (inactive tab)
-            emphasis_0 255 107 107  // #FF6B6B - coral red
+            emphasis_0 247 180 180  // #f7b4b4 - Slightly darker pink text
             emphasis_1 252 161 125  // #FCA17D - orange
             emphasis_2 134 187 216  // #86BBD8 - sky blue
             emphasis_3 154 52 142   // #9A348E - purple
