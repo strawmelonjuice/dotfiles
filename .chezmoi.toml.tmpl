@@ -17,7 +17,7 @@ autoPush = true
     command = "difft"
 
 [data]
-work = {{- if eq .chezmoi.windowsVersion.editionID "Enterprise" -}} true {{- else -}} false {{- end }}
+work = {{- if eq .chezmoi.os "windows" -}}{{- if eq .chezmoi.windowsVersion.editionID "Enterprise" -}} true {{- else -}} false {{- end -}}{{- else -}} false {{- end}}
 
 [data.stylings.fonts.UI]
 family = "Atkinson Hyperlegible Next"
