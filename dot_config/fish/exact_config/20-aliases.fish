@@ -22,16 +22,19 @@ alias yay 'paru'
 # Update grub alias
 alias update-grub 'sudo grub-mkconfig -o /boot/grub/grub.cfg'
 
-# Zellij and cargo aliases
+# Zellij aliases and completion
+zellij setup --generate-completion fish | source
 alias ide 'zellij --layout ide'
 alias strider 'zellij plugin --in-place -- zellij:strider'
+
+# Cargo-related aliases
 alias cargock 'cargo-clean-all --keep-days 21 ~ -i'
+
 
 # -----------------------------------------------------
 # Directory navigation and aliases
 # -----------------------------------------------------
 
-# Corrected zoxide initialization
 zoxide init fish --cmd bang | source
 
 function zap
