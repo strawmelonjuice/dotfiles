@@ -230,7 +230,7 @@ setup_dev_tools() {
 
     # Install Oh My Zsh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    priv_exec chsh "$(whoami)" -s /bin/zsh
+    priv_exec chsh "$(whoami)" -s /usr/bin/fish
 
     # Cargo installations
     cargo_tools=(

@@ -6,12 +6,12 @@
 
 # Essential packages for any environment
 essential = [
-    "curl", "git", "wget", "unzip", "zip", "tar", "gzip"
+    "curl", "git", "wget", "unzip", "zip", "tar", "gzip", "fish", "zsh"
 ]
 
 # Development tools
 development = [
-    "bat", "fzf", "htop", "ripgrep", "zsh", "tmux", "neovim", 
+    "bat", "fzf", "htop", "ripgrep", "neovim", 
     "github-cli", "jq", "tree", "fastfetch", "hyfetch", 
     "clang", "clangd", "cmake", "meson", "ninja", "pkg-config",
     "python", "rustup", "go", "nodejs", "npm"
@@ -86,7 +86,6 @@ package_tools = [
 
 # Cloud/container specific packages
 cloud = [
-    "zoxide", "starship", "micro", "nano"
 ]
 
 # Environment-specific configurations

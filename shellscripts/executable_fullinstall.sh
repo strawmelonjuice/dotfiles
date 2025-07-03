@@ -205,6 +205,7 @@ install_a_gui_package "inkscape"
 install_a_gui_package "slurp"
 install_a_gui_package "wev"
 install_a_gui_package "wofi"
+install_package "fish"
 install_package "zsh"
 install_package "zoxide"
 install_package "zsh-syntax-highlighting"
@@ -453,7 +454,7 @@ source ~/.bashrc
 # Note: Mise en place gets installed on first launch of either zsh or bash. Mise is slowly taking over most of these installs.
 ## OMZ
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-priv_exec chsh $(whoami) -s /bin/zsh
+priv_exec chsh $(whoami) -s /usr/bin/fish
 
 # Cargo installs
 
