@@ -62,7 +62,7 @@ style = "bg:#C1E1C1 fg:#9A348E"
 # Uncomment the line below to enable it
 format = "[$indicator]($style)"
 powershell_indicator = ""
-pwsh_indicator = "  Powershell 7"
+pwsh_indicator = "   Powershell 7"
 zsh_indicator = "🐚 Zsh"
 fish_indicator = "🐟 Fish"
 
