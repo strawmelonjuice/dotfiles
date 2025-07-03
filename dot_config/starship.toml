@@ -211,7 +211,7 @@ format = '[ $symbol ($version) ]($style)'
 disabled = false
 style = "bg:#33658A" # Like time.
 # Heart symbol for success, broken heart for failure.
-success_symbol = "♥ "
+success_symbol = "💖"
 symbol = "💔"
 format = "[ $symbol]($style)"
 map_symbol =true
