@@ -216,20 +216,41 @@ New-Alias cargock cargocleanall -Option AllScope -Force
 # Zoxide
 [Console]::WriteLine( "Loading Zoxide...")
 Invoke-Expression (& { (zoxide init powershell --cmd bang | Out-String) })
+function zap {
+  $isGit = Test-Path -Path "./.git"
+  $isJJ = Test-Path -Path "./.jj"
+
+  if ($isGit -and $isJJ) {
+    Clear-Host
+    Write-Host "Opened Git-colocated Jujutsu repository: $pwd"
+    git fetch
+    kc
+    jj status
+    eza --icons -L 2 -R --tree --git-ignore
+  }
+  elseif ($isJJ) {
+    Clear-Host
+    Write-Host "Opened Jujutsu repository: $pwd"
+    jj status
+    eza --icons -L 2 -R --tree
+  }
+  elseif ($isGit) {
+    Clear-Host
+    Write-Host "Opened Git repository: $pwd"
+    git fetch
+    kc
+    git status
+    eza --icons -L 2 -R --tree --git-ignore
+  }
+}
+
 function banger() {
 if($args.Count -eq 0) {
     bang
 } else {
   bang $args[0]
   }
-  if (Test-Path -path  "./.git") {
-    clear
-    [Console]::WriteLine("Opened git repository: " + $pwd)
-    git fetch
-    kc
-    eza --icons -L 2 -R --tree --git-ignore
-    git status
-  }
+  zap
 }
 function bangeri() {
 if($args.Count -eq 0) {
@@ -237,14 +258,7 @@ if($args.Count -eq 0) {
 } else {
   bangi $args[0]
   }
-  if (Test-Path -path  "./.git") {
-    clear
-    [Console]::WriteLine("Opened git repository: " + $pwd)
-    git fetch
-    kc
-    eza --icons -L 2 -R --tree --git-ignore
-    git status
-  }
+  zap
 }
 New-Alias cd banger -Option AllScope -Force
 New-Alias cdi bangeri -Option AllScope -Force
