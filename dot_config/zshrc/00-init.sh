@@ -17,7 +17,6 @@ if [ "$WSL_INTEROP" != "" ]; then
   export USERTERM="$TERM-wsl"
 fi
 
-
 # Install and activate mise
 if [ -f $HOME/.local/bin/mise ]; then
   # Activate mise
@@ -57,12 +56,24 @@ export PATH="/usr/lib/ccache/bin/:/snap/bin/:$HOME/bin/:$HOME/.local/bin/mini/:$
 
 eval "$(ssh-agent -s)"
 
-
 # Initialize zoxide and after every CD, also run kc if its a git repo.
 eval "$(zoxide init zsh --cmd bang)"
 
 zap() {
- if [  -d .git ]; then
+
+  if [ -d .git ] && [ -d .jj ]; then
+    clear
+    echo "Opened Git-colocated Jujutsu repository: $(pwd)"
+    git fetch
+    kc
+    jj status
+    eza --icons -L 2 -R --tree --git-ignore
+  elif [ -d .jj ]; then
+    clear
+    echo "Opened Jujutsu repository: $(pwd)"
+    jj status
+    eza --icons -L 2 -R --tree
+  elif [ -d .git ]; then
     clear
     echo "Opened git repository: $(pwd)"
     git fetch
@@ -82,8 +93,7 @@ bangeri() {
   bangi $* && zap
 }
 alias cd=banger
-alias cdi=bangeri 
-
+alias cdi=bangeri
 
 # Set-up FZF key bindings (CTRL R for fuzzy history finder)
 source <(fzf --zsh)
