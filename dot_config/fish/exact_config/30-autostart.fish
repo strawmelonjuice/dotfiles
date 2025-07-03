@@ -3,12 +3,12 @@
 # -----------------------------------------------------
 
 # Hyfetch
-if test (tty) = "pts"
-    set up (cat /proc/uptime | awk '{print $1}')
-    set up (string split -r '.' $up)[1]
-    if test $up -lt 300
+if string match -q "*/dev/pts/*" "$(tty)"
+    # set up (cat /proc/uptime | awk '{print $1}')
+    # set up (string split -r '.' $up)[1]
+    # if test $up -lt 300
         hyfetch
-    end
+    # end
 end
 
 # Bitwarden session setup
@@ -23,6 +23,7 @@ if type -q bw
                 mkdir -p (dirname "$BW_SESSION_FILE")
                 echo "$BW_SESSION" > "$BW_SESSION_FILE"
                 chmod 600 "$BW_SESSION_FILE"
+                set -Ux BW_SESSION "$BW_SESSION"
                 return 0
             else
                 rm -f "$BW_PASSWORD_FILE"
@@ -46,7 +47,7 @@ if type -q bw
 
                     bw sync --session "$BW_SESSION" >/dev/null 2>&1
 
-                    set -x BW_SESSION "$BW_SESSION"
+                    set -Ux BW_SESSION "$BW_SESSION"
                     echo "Password saved securely. Future shell sessions will unlock automatically."
                     return 0
                 else
@@ -65,6 +66,8 @@ if type -q bw
         if not bw status --session "$BW_SESSION" | grep -q '"status":"unlocked"'
             rm -f "$BW_SESSION_FILE"
             set -e BW_SESSION
+        else
+            set -Ux BW_SESSION "$BW_SESSION"
         end
     end
 
