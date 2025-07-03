@@ -18,7 +18,7 @@ if type -q bw
 
     function bw_unlock_with_password_file
         if test -f "$BW_PASSWORD_FILE"
-            set BW_SESSION (bw unlock --passwordfile "$BW_PASSWORD_FILE" --raw 2>/dev/null)
+            set BW_SESSION "$(bw unlock --passwordfile "$BW_PASSWORD_FILE" --raw 2>/dev/null)"
             if test -n "$BW_SESSION"
                 mkdir -p (dirname "$BW_SESSION_FILE")
                 echo "$BW_SESSION" > "$BW_SESSION_FILE"
@@ -33,10 +33,9 @@ if type -q bw
             read response
             if test "$response" = "y" -o "$response" = "Y"
                 echo -n "Enter your Bitwarden master password: "
-                read -s password
-                echo
+                read -l password
 
-                set BW_SESSION (echo "$password" | bw unlock --raw 2>/dev/null)
+                set BW_SESSION "$(echo "$password" | bw unlock --raw 2>/dev/null)"
                 if test -n "$BW_SESSION"
                     echo "$password" > "$BW_PASSWORD_FILE"
                     chmod 600 "$BW_PASSWORD_FILE"
@@ -62,7 +61,7 @@ if type -q bw
     end
 
     if test -f "$BW_SESSION_FILE"
-        set BW_SESSION (cat "$BW_SESSION_FILE")
+        set BW_SESSION "$(cat "$BW_SESSION_FILE")"
         if not bw status --session "$BW_SESSION" | grep -q '"status":"unlocked"'
             rm -f "$BW_SESSION_FILE"
             set -e BW_SESSION
