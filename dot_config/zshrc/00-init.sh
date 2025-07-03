@@ -60,25 +60,26 @@ eval "$(ssh-agent -s)"
 
 # Initialize zoxide and after every CD, also run kc if its a git repo.
 eval "$(zoxide init zsh --cmd bang)"
-banger() {
-  bang $* && if [  -d .git ]; then
+
+zap() {
+ if [  -d .git ]; then
     clear
     echo "Opened git repository: $(pwd)"
     git fetch
     kc
     eza --icons -L 2 -R --tree --git-ignore
     git status
+  fi
+  if [ -f mise.toml ]; then
+    eval "$(mise completion zsh)"
   fi
 }
+
+banger() {
+  bang $* && zap
+}
 bangeri() {
-  bangi $* && if [  -d .git  ]; then
-    clear
-    echo "Opened git repository: $(pwd)"
-    git fetch
-    kc
-    eza --icons -L 2 -R --tree --git-ignore
-    git status
-  fi
+  bangi $* && zap
 }
 alias cd=banger
 alias cdi=bangeri 
