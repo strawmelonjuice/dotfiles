@@ -45,8 +45,9 @@ function zap
     else if test -d .jj
         clear
         echo "Opened Jujutsu repository: $(pwd)"
+        kc
         jj status
-        set -Ux GIT_DIR ".jj/repo/store/git"
+        mise set GIT_DIR=".jj/repo/store/git"
         eza --icons -L 2 -R --tree
     else if test -d .git
         clear
