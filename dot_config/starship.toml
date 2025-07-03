@@ -62,8 +62,9 @@ style = "bg:#C1E1C1 fg:#9A348E"
 # Uncomment the line below to enable it
 format = "[$indicator]($style)"
 powershell_indicator = ""
-pwsh_indicator = "PW\\$"
-zsh_indicator = "Z\\$"
+pwsh_indicator = "  Powershell 7"
+zsh_indicator = "🐚 Zsh"
+fish_indicator = "🐟 Fish"
 
 # An alternative to the username module which displays a symbol that
 # represents the current operating system
@@ -212,7 +213,7 @@ style = "bg:#33658A" # Like time.
 # Heart symbol for success, broken heart for failure.
 success_symbol = "♥ "
 symbol = "💔"
-format = "[$symbol]($style)"
+format = "[ $symbol]($style)"
 map_symbol =true
 
 
