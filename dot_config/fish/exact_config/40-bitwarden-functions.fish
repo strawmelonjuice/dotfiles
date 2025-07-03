@@ -138,17 +138,6 @@ if type -q bw
         end
     end
 
-    # Export BW_SESSION for chezmoi with debugging
-    function chezmoi
-        if test -n "$BW_SESSION"
-            echo "BW_SESSION is set: $BW_SESSION"
-            env BW_SESSION=$BW_SESSION command chezmoi $argv
-        else
-            echo "BW_SESSION is not set. Running chezmoi without it."
-            command chezmoi $argv
-        end
-    end
-
     # Template helper: get secret for use in chezmoi templates
     function bw-template-helper
         set item_name $argv[1]
