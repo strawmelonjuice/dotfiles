@@ -21,9 +21,9 @@ right_format = """
 {{ $arrow_point = "" }}
 format = """
 [](#9A348E)\
-{{- end -}}
+{{- end }}
 $username\
-[{{- $arrow_point -}}]({{- $last_colour -}}:#C1E1C1 {{- $next_colour -}}:#9A348E)\
+[{{ $arrow_point -}}]({{- $last_colour -}}:#C1E1C1 {{- $next_colour -}}:#9A348E)\
 $shell\
 [{{- $arrow_point -}}]({{- $last_colour -}}:#DA627D {{- $next_colour -}}:#C1E1C1)\
 $directory\
@@ -57,9 +57,9 @@ $cmd_duration\
 [{{- $arrow_point -}}]({{- $next_colour -}}:#06969A {{- $last_colour -}}:#33658A)\
 $status\
 $time\
-{{- if eq .chezmoi.os "linux" }}
+{{ if eq .chezmoi.os "linux" }}
 [ ](fg:#33658A)\
-{{- else -}}
+{{ else -}}
 [ ](fg:#33658A)\
 {{ end }}
 """
