@@ -17,7 +17,7 @@ autoPush = true
     command = "difft"
 
 [data]
-work = {{- if eq .chezmoi.os "windows" -}}{{- if eq .chezmoi.windowsVersion.editionID "Enterprise" -}} true {{- else -}} false {{- end -}}{{- else -}} false {{- end}}
+work = {{- if eq .chezmoi.hostname "VD013336" }} true # Because hostname matches VDI. {{- else -}} {{- if eq .chezmoi.os "windows" -}}{{- if eq .chezmoi.windowsVersion.editionID "Enterprise" -}} true # Because Windows Enterprise {{- else -}} false {{- end -}}{{- else -}} false {{- end}}{{- end}}
 
 [data.stylings.fonts.UI]
 family = "Atkinson Hyperlegible Next"
