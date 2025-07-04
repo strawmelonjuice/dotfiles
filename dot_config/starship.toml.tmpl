@@ -1,17 +1,38 @@
+{{ $arrow_point:="" }}
+{{ $last_colour:=" bg" }}
+{{ $next_colour:=" fg" }}
+{{- if eq .chezmoi.os "linux" -}}
+
+{{/* Reverses the colours, so that the arrows point to their right colour. */}}
+{{ $last_colour = " fg" }} 
+{{ $next_colour = " bg" }}
+
+format = """
+[](fg:#9A348E)\
+$os\
+[](fg:#9A348E) \
+"""
+
+{{/* Since we use a right-line on linux, the line points completely in the other direction, including these arrows! */}}
+{{ $arrow_point = "" }}
+right_format = """
+[](#9A348E)\
+{{ else -}}
+{{ $arrow_point = "" }}
 format = """
 [](#9A348E)\
-$os\
+{{- end -}}
 $username\
-[](bg:#C1E1C1 fg:#9A348E)\
+[{{- $arrow_point -}}]({{- $last_colour -}}:#C1E1C1 {{- $next_colour -}}:#9A348E)\
 $shell\
-[](bg:#DA627D fg:#C1E1C1)\
+[{{- $arrow_point -}}]({{- $last_colour -}}:#DA627D {{- $next_colour -}}:#C1E1C1)\
 $directory\
-[](fg:#DA627D bg:#e7d1ff)\
+[{{- $arrow_point -}}]({{- $next_colour -}}:#DA627D {{- $last_colour -}}:#e7d1ff)\
 $mise\
-[](bg:#FCA17D fg:#e7d1ff)\
+[{{- $arrow_point -}}]({{- $last_colour -}}:#FCA17D {{- $next_colour -}}:#e7d1ff)\
 $git_branch\
 $git_status\
-[](fg:#FCA17D bg:#86BBD8)\
+[{{- $arrow_point -}}]({{- $next_colour -}}:#FCA17D {{- $last_colour -}}:#86BBD8)\
 $c\
 $cpp\
 $elixir\
@@ -30,17 +51,20 @@ $rust\
 $scala\
 $php\
 $zig\
-[ ](fg:#86BBD8 bg:#06969A)\
+[{{- $arrow_point -}} ]({{- $next_colour -}}:#86BBD8 {{- $last_colour -}}:#06969A)\
 $docker_context\
 $cmd_duration\
-[](fg:#06969A bg:#33658A)\
+[{{- $arrow_point -}}]({{- $next_colour -}}:#06969A {{- $last_colour -}}:#33658A)\
 $status\
 $time\
+{{- if eq .chezmoi.os "linux" }}
+[ ](fg:#33658A)\
+{{- else -}}
 [ ](fg:#33658A)\
+{{ end }}
 """
-
 # Disable the blank line at the start of the prompt
-add_newline = false
+# add_newline = false
 
 # You can also replace your username with a neat symbol like   or disable this
 # and use the os module below
@@ -70,7 +94,7 @@ fish_indicator = "🐟 Fish"
 # represents the current operating system
 [os]
 style = "bg:#9A348E fg:#FFD6E0"
-disabled = true      # Disabled by default
+disabled = false      # Disabled by default
 
 [directory]
 style = "bg:#DA627D"
