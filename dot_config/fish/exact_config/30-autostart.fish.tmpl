@@ -7,7 +7,11 @@ if string match -q "*/dev/pts/*" "$(tty)"
     # set up (cat /proc/uptime | awk '{print $1}')
     # set up (string split -r '.' $up)[1]
     # if test $up -lt 300
+        {{ if .work }}
+        fastfetch
+        {{ else }}
         hyfetch
+        {{ end }}
     # end
 end
 

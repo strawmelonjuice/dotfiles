@@ -5,10 +5,17 @@
 # General aliases
 alias c 'clear'
 alias cls 'clear'
+{{ if .work }}
+alias nf 'fastfetch'
+alias pf 'fastfetch'
+alias hf 'fastfetch'
+{{ else }}
 alias nf 'hyfetch'
 alias pf 'hyfetch'
-alias ff 'fastfetch'
 alias hf 'hyfetch'
+{{ end }}
+
+alias ff 'fastfetch'
 alias ls 'eza --icons'
 alias la 'eza -a --icons'
 alias ll 'eza -al --icons'

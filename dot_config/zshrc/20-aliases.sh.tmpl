@@ -7,8 +7,13 @@
 # -----------------------------------------------------
 alias c='clear'
 alias cls='clear'
+{{ if .work }}
+alias nf='fastfetch'
+alias pf='fastfetch'
+{{ else }}
 alias nf='hyfetch'
 alias pf='hyfetch'
+{{ end }}
 alias ff='fastfetch'
 alias hf='hyfetch'
 alias ls='eza --icons'
