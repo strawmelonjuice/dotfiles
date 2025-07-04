@@ -57,7 +57,10 @@ function zap
         echo "Opened Jujutsu repository: $(pwd)"
         kc
         jj status
-        mise set GIT_DIR=".jj/repo/store/git"
+        mise set GIT_DIR=".jj/repo/store/git" --file .mise.toml
+        grep -Fxq ".mise.toml" .gitignore; or begin
+            echo -e "\n# Ignore hidden Mise configuration file, use mise.toml for public config\n.mise.toml" >> .gitignore
+        end
         eza --icons -L 2 -R --tree
     else if test -d .git
         clear
