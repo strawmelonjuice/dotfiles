@@ -27,7 +27,7 @@ if type -q bw
         set email (or $BW_EMAIL "")
         if test -z "$email"
             echo -n "Enter your Bitwarden email: "
-            read email
+            read -l email
         end
 
         if test -n "$BW_SERVER"
@@ -56,7 +56,7 @@ if type -q bw
         end
 
         echo -n "Enter your Bitwarden master password: "
-        read -l password
+        read -s -l password
 
         set session "$(echo "$password" | bw unlock --raw)"
         if test -n "$session"
@@ -88,6 +88,11 @@ if type -q bw
 
     # Ensure we have a valid Bitwarden session
     function bw-ensure-session
+        # Only try to load session in interactive shells
+        if not status is-interactive
+            return 1
+        end
+        
         if bw-load-session
             return 0
         end

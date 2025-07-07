@@ -16,7 +16,8 @@ if string match -q "*/dev/pts/*" "$(tty)"
 end
 
 # Bitwarden session setup
-if type -q bw
+# Only run in interactive shells
+if type -q bw && status is-interactive
     set BW_PASSWORD_FILE "$HOME/.bitwarden_password"
     set BW_SESSION_FILE "$HOME/.cache/bw-session"
 
@@ -38,7 +39,7 @@ if type -q bw
             read response
             if test "$response" = "y" -o "$response" = "Y"
                 echo -n "Enter your Bitwarden master password: "
-                read -l password
+                read -s -l password
 
                 set BW_SESSION "$(echo "$password" | bw unlock --raw 2>/dev/null)"
                 if test -n "$BW_SESSION"
