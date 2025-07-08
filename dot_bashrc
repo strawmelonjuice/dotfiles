@@ -1,24 +1,7 @@
-# If not running interactively, don't do anything but source mise shims and return
-[[ $- != *i* ]] && {
-  if [ -f $HOME/.local/bin/mise ]; then
-    # Activate mise shims
-    eval "$(~/.local/bin/mise activate --shims)"
-  fi
-  # And return
-  return
-}
-# Install and activate mise normally
+# Bash is just using a minimal profile.
+# Only activating shims
 if [ -f $HOME/.local/bin/mise ]; then
-  # Activate mise
-  eval "$(~/.local/bin/mise activate bash)"
-else
-  # Install mise
-  curl https://mise.run | sh
-  # Activate mise
-  eval "$(~/.local/bin/mise activate bash)"
-  # Run mise install
-  ~/.local/bin/mise install
+	# Activate mise shims
+	eval "$(~/.local/bin/mise activate --shims)"
 fi
 
-# Initialize zoxide
-eval "$(zoxide init zsh --cmd cd)"
