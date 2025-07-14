@@ -39,6 +39,14 @@ alias strider 'zellij plugin --in-place -- zellij:strider'
 alias cargock 'cargo-clean-all --keep-days 21 ~ -i'
 
 
+# if flatpak-spawn is available, use it to run certain commands in the host environment
+if command -v flatpak-spawn &> /dev/null; then
+    echo "to-host aliasing: active"
+    alias podman='flatpak-spawn --host podman'
+    alias docker='flatpak-spawn --host docker'
+fi
+
+
 # -----------------------------------------------------
 # Directory navigation and aliases
 # -----------------------------------------------------
