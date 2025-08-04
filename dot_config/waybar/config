@@ -20,8 +20,8 @@
         "sway/workspaces",
         "sway/mode",
         "hyprland/window",
-        "sway/window",
-        "cffi/niri-taskbar"
+        "sway/window"
+//       , "cffi/niri-taskbar"
     ],
     "modules-center": [
         "custom/osktoggle",
