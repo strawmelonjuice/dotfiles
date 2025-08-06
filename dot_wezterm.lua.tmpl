@@ -11,5 +11,11 @@ config.color_scheme = 'kanagawabones'
 config.enable_tab_bar = false
 config.font = wezterm.font("{{ .stylings.fonts.Mono.family }}")
 config.font_size = {{ .stylings.fonts.Mono.size }}
+
+{{- if eq .chezmoi.os "windows" }}
+-- Set default shell to PowerShell on Windows
+config.default_prog = { 'pwsh.exe' }
+{{- end }}
+
 -- and finally, return the configuration to wezterm
 return config
