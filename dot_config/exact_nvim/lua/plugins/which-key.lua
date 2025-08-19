@@ -49,6 +49,20 @@ return {
         end,
         desc = "Open buffer picker"
       },
+      {
+        "<leader>\\",
+        function()
+            vim.cmd("vsplit")
+        end,
+        desc = "Open buffer picker"
+      }, 
+      {
+        "<leader>-",
+        function()
+            vim.cmd("split")
+        end,
+        desc = "Open buffer picker"
+      }
+
     },
   }
-  
