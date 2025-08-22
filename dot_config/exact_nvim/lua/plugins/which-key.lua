@@ -8,56 +8,56 @@ return {
     },
     keys = {
       {
-        "<leader>?",
+        ",?",
         function()
           require("which-key").show({ global = false })
         end,
         desc = "Buffer Local Keymaps (which-key)",
       },
       {
-        "<leader>f",
+        ",f",
         function()
             vim.cmd("Files")
         end,
         desc = "(cwd) Open file picker"
       },
       {
-        "<leader>r",
+        ",r",
         function()
             vim.cmd("GitFiles")
         end,
         desc = "(git) Open file picker"
       },
       {
-        "<leader>/",
+        ",/",
         function()
             vim.cmd("Rg")
         end,
         desc = "(ripgrep) Open file picker"
       },
       {
-        "<leader>s",
+        ",s",
         function()
             vim.cmd("BLines")
         end,
         desc = "Open buffer line picker"
       },
       {
-        "<leader>b",
+        ",b",
         function()
             vim.cmd("Buffers")
         end,
         desc = "Open buffer picker"
       },
       {
-        "<leader>\\",
+        ",\\",
         function()
             vim.cmd("vsplit")
         end,
         desc = "Open buffer picker"
       }, 
       {
-        "<leader>-",
+        ",-",
         function()
             vim.cmd("split")
         end,

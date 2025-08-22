@@ -65,13 +65,18 @@ local get_background = function(a)
   end
 end;
 return {
+  -- // Themes
   { "EdenEast/nightfox.nvim" },
-  { "folke/tokyonight.nvim",
-  -- Always let these values (event,keys,opts) stay in last plugin in the list.
-    event = "VeryLazy",
+  { "folke/tokyonight.nvim"  },
+  -- // Auto theme switcher
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = get_colorscheme("tod"),
+      background = get_background("tod")
+    },
     keys = {
       {
-        
         "<leader>Md",
         function()
           vim.cmd("colorscheme " .. default_dark)
@@ -98,13 +103,8 @@ return {
         mode = { "n", "t" },
         desc = "Set to " .. default_show .. " theme."
       },
+      -- { "<leader>Mf", function() vim.cmd("TransparentToggle") end,             mode = { "n", "t" }, desc = "Toggle transparency." },
+
     },
-    opts = function() 
-      -- If anything, assume it is day
-      vim.cmd("colorscheme " .. default_light)
-      vim.cmd("colorscheme " .. get_colorscheme("tod"))
-      vim.cmd("set background=" .. get_background("tod"))
-    end,
   },
-  
 }

@@ -1,6 +1,8 @@
 -- Graphical Version Control
 return {
-  {"braxtons12/blame_line.nvim"},
+  {"braxtons12/blame_line.nvim",
+enabled = false,
+},
   {
     'swaits/lazyjj.nvim',
     dependencies = 'nvim-lua/plenary.nvim',

@@ -1,19 +1,8 @@
 return {
-  "neovim/nvim-lspconfig",
-
-  dependencies = {
-    "mason-org/mason.nvim",
+  {
+    "windwp/windline.nvim",
+    config = function()
+      require("wlsample.evil_line")
+    end,
   },
-
-  config = function()
-    local lspconfig = require("lspconfig")
-    local mason = require("mason")
-
-    mason.setup()
-
-    lspconfig.rust_analyzer.setup({})
-    lspconfig.gleam.setup({})
-
-
-  end,
 }
