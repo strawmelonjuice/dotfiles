@@ -38,10 +38,8 @@ else
     "$HOME/.local/bin/mise" install
 end
 
-# Use Helix as the default editor
-# This is an experiment for me, so I can use Helix as my main editor.
-set -x EDITOR hx
-set -x VISUAL hx
+set -x EDITOR nvim
+set -x VISUAL nvim
 
 # Initialize Starship prompt
 starship init fish | source

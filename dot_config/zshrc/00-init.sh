@@ -33,10 +33,8 @@ else
   ~/.local/bin/mise install
 fi
 
-# Use Helix as the default editor
-# This is an experiment for me, so I can use Helix as my main editor.
-export EDITOR=hx
-export VISUAL=hx
+export EDITOR=nvim
+export VISUAL=nvim
 
 # Zellij if on any of my main terminals
 # Zellij needs to start first, because otherwise we'll be going through the entire zshrc twice.
