@@ -38,8 +38,8 @@ else
     "$HOME/.local/bin/mise" install
 end
 
-set -x EDITOR nvim
-set -x VISUAL nvim
+set -x EDITOR hx
+set -x VISUAL hx
 
 # Initialize Starship prompt
 starship init fish | source
