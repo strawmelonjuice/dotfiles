@@ -1,5 +1,6 @@
 # Neovim lazy lock to be ignored
 **/lazy-lock.json
+/.config/nvim/lazyvim.json
 
 {{ if (eq (lookPath "bw") "") }}
 # No Bitwarden, no secrets that depend on it.
@@ -13,7 +14,6 @@
 /AppData/
 {{ else }}
 # Unix-specific files
-/.config/nvim/lua/plugins/image.lua
 /.config/kitty
 /.config/hypr
 /.config/rofi
