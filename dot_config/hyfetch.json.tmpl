@@ -1,5 +1,5 @@
 {
-  "preset": "rainbow",
+  "preset": "lesbian",
   "mode": "rgb",
   "light_dark": "dark",
   "lightness": 0.62,
@@ -10,7 +10,11 @@
   },
   "backend": "fastfetch",
   "args": null,
+  {{ if eq .chezmoi.os "windows" -}}
+    "distro": "windows_11_small",
+  {{- else -}}
   "distro": null,
+  {{- end }}
   "pride_month_shown": [],
   "pride_month_disable": false
 }

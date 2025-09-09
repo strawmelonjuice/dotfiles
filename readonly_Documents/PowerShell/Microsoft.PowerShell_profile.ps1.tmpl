@@ -187,10 +187,11 @@ New-Alias cls clear -Option AllScope -Force
 New-Alias c clear -Option AllScope -Force
 New-Alias q quit -Option AllScope -Force
 New-Alias qa quit -Option AllScope -Force
+function hyfet { py -m hyfetch --config-file="$env:USERPROFILE\.config\hyfetch.json" ${args} }
 {{ if .work }}
 New-Alias hyfetch fastfetch -Option AllScope -Force
 {{ else }}
-New-Alias hyfetch "C:\Users\mlcbl\AppData\Local\mise\installs\python\3.13.2\Scripts\hyfetch.exe" -Option AllScope -Force
+New-Alias hyfetch hyfet -Option AllScope -Force
 {{ end }}
 New-Alias nf hyfetch -Option AllScope -Force
 New-Alias pf hyfetch -Option AllScope -Force
@@ -266,6 +267,7 @@ New-Alias cdi bangeri -Option AllScope -Force
 if (-not(Get-Command hyfetch -ErrorAction SilentlyContinue)) {
  python -m pip install wheel
  python -m pip install -U pipx
+ python -m pip install -U hyfetch
 }
 
 # Initialize Bitwarden session
@@ -283,5 +285,6 @@ if (Test-Path "$PSScriptRoot\Bitwarden-Helper.ps1") {
     function bw-setup { . "$PSScriptRoot\Bitwarden-Helper.ps1" setup-password }
 }
 
+clear
 hyfetch
 

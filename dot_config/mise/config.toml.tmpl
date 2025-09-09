@@ -38,12 +38,7 @@ zellij="latest"
 [env]
 GIT_EXTERNAL_DIFF = 'difft'
 
-[alias] {{ if eq .chezmoi.os "windows" }}
-# On Windows, manually set the path to hyfetch
-# This is necessary because hyfetch is not installed via mise on Windows.
-# It is installed via pip.
-hyfetch = "py -m hyfetch"
-{{- end }}
+[alias]
 [settings]
 
 [settings.npm]
