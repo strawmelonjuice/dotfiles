@@ -42,7 +42,7 @@ GIT_EXTERNAL_DIFF = 'difft'
 # On Windows, manually set the path to hyfetch
 # This is necessary because hyfetch is not installed via mise on Windows.
 # It is installed via pip.
-hyfetch = "{{ "{{" }}exec(command='mise where python'){{ "}}" }}/Scripts/hyfetch.exe"
+hyfetch = "py -m hyfetch"
 {{- end }}
 [settings]
 
