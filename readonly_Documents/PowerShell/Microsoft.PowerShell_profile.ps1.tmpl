@@ -12,11 +12,9 @@ if (!$PSVersionTable.PSVersion.toString().startsWith("7"))
 [Console]::WriteLine("Initialising mise-en-place...")
 (&mise activate pwsh) | Out-String | Invoke-Expression
 
-# Initialize Oh My Posh with Starship
-[Console]::WriteLine("Initializing Oh My Posh...")
-if (Get-Command oh-my-posh -ErrorAction SilentlyContinue) {
-   # Use starship since we have the same config across platforms
-    if (Get-Command starship -ErrorAction SilentlyContinue) {
+# Initialize Starship
+[Console]::WriteLine("Initializing starship...")
+if (Get-Command starship -ErrorAction SilentlyContinue) {
         Invoke-Expression (&starship init powershell)
     } else {
         Write-Host "Installing Starship..."
@@ -27,24 +25,6 @@ if (Get-Command oh-my-posh -ErrorAction SilentlyContinue) {
             Invoke-Expression (&starship init powershell)
         }
     }
-} else {
-    Write-Host "Installing Oh My Posh..."
-    winget install JanDeDobbeleer.OhMyPosh -s winget
-    # Refresh PATH
-    $env:PATH = [System.Environment]::GetEnvironmentVariable("PATH","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("PATH","User")
-    
-    # Install starship as well
-    if (-not(Get-Command starship -ErrorAction SilentlyContinue)) {
-        Write-Host "Installing Starship..."
-        winget install --id Starship.Starship
-        # Refresh PATH again
-        $env:PATH = [System.Environment]::GetEnvironmentVariable("PATH","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("PATH","User")
-    }
-    
-    if (Get-Command starship -ErrorAction SilentlyContinue) {
-        Invoke-Expression (&starship init powershell)
-    }
-}
 
 # -----------------------------------------------------
 # POWERSHELL AUTOCOMPLETION SETUP
