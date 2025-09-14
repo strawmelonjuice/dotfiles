@@ -2,5 +2,18 @@ return {{"neo-tree.nvim", enabled = false}, { "nvim-neo-tree/neo-tree.nvim", ena
   {
     "nvim-tree/nvim-tree.lua",
     enabled = false, 
+  },
+{
+  "akinsho/bufferline.nvim",
+  enabled = false
+  }
+  {
+    "lualine.nvim",
+    enabled = false,
+  },
+
+{
+    "folke/noice.nvim",
+    enabled = false,
   }
 }

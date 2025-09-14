@@ -5,13 +5,6 @@ return {
       require("wlsample.evil_line")
     end,
   },
-  {
-  "akinsho/bufferline.nvim",
-  enabled = false
-  }
-  {
-    "lualine.nvim",
-    enabled = false,
-  }
+  
 
 }
