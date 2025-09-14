@@ -18,16 +18,16 @@ vim.api.nvim_set_keymap("i", "<Up>", "<ESC>gk", {})
 
 -- I can't get rid of my ,-leaderkey. But I do wanna use space in the Helix-like space menu way... so yes!
 ---@diagnostic disable-next-line: assign-type-mismatch
--- vim.keymap.set('n', '<Space>f', function() Snacks.picker.files({ cwd = true }) end, { desc = "Open file picker (cwd)" })
--- vim.keymap.set('n', '<Space>g', function() Snacks.picker.grep() end, { desc = "Grep" })
--- vim.keymap.set('n', '<Space>b', function() Snacks.picker.buffers() end, { desc = "Open buffer picker" })
--- vim.keymap.set('n', '<Space>s', function() Snacks.picker.lsp_symbols() end, { desc = "Open symbol picker" })
--- vim.keymap.set('n', '<Space>S', function() Snacks.picker.lsp_symbols({ cwd = true }) end,
---   { desc = "Open symbol picker (cwd)" })
--- vim.keymap.set('n', '<Space>?', function() Snacks.picker.commands() end, { desc = "Open command picker" })
--- vim.keymap.set('n', '<Space>r', function() Snacks.picker.resume() end, { desc = "Resume last search" })
--- vim.keymap.set('n', '<Space><Space>', function() Snacks.picker.resume() end, { desc = "Resume last search" })
--- vim.keymap.set('n', '<Space>c', "<cmd>normal gcc<CR>", { desc = "Comment line" })
+vim.keymap.set('n', '<Space>f', function() Snacks.picker.files({ cwd = true }) end, { desc = "Open file picker (cwd)" })
+vim.keymap.set('n', '<Space>g', function() Snacks.picker.grep() end, { desc = "Grep" })
+vim.keymap.set('n', '<Space>b', function() Snacks.picker.buffers() end, { desc = "Open buffer picker" })
+vim.keymap.set('n', '<Space>s', function() Snacks.picker.lsp_symbols() end, { desc = "Open symbol picker" })
+vim.keymap.set('n', '<Space>S', function() Snacks.picker.lsp_symbols({ cwd = true }) end,
+  { desc = "Open symbol picker (cwd)" })
+vim.keymap.set('n', '<Space>?', function() Snacks.picker.commands() end, { desc = "Open command picker" })
+vim.keymap.set('n', '<Space>r', function() Snacks.picker.resume() end, { desc = "Resume last search" })
+vim.keymap.set('n', '<Space><Space>', function() Snacks.picker.resume() end, { desc = "Resume last search" })
+vim.keymap.set('n', '<Space>c', "<cmd>normal gcc<CR>", { desc = "Comment line" })
 
 
 vim.keymap.set('n', '<Space>\\', "<cmd>vsplit<CR>", { desc = "Vertical split" })

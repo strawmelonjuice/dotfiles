@@ -5,4 +5,8 @@ return {
       require("wlsample.evil_line")
     end,
   },
+  {
+    "lualine.nvim",
+    enabled = false,
+  }
 }

@@ -1,6 +1,6 @@
 return {
-  {
-  "folke/snacks.nvim",
+  {"braxtons12/blame_line.nvim"},{
+  "snacks.nvim",
   opts = {
     dashboard = {
       preset = {

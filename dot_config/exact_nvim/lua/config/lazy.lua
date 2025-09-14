@@ -16,7 +16,11 @@ require("lazy").setup(
       { "LazyVim/LazyVim", import = "lazyvim.plugins" },
       { import = "plugins" }
     },
-    install = { colorscheme = { "dayfox" } },
+    defaults = {
+      -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
+      lazy = false,
+      version = false             -- always use the latest git commit
+    },
     checker = { enabled = true }, -- automatically check for plugin updates
     performance = {
       rtp = {
