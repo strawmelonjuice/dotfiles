@@ -7,7 +7,6 @@ set -x PATH /usr/lib/ccache/bin /snap/bin $HOME/bin $HOME/.local/bin/mini $HOME/
 # Set history size
 set -x fish_history_size 10000
 
-
 # -----------------------------------------------------
 # INIT
 # -----------------------------------------------------
@@ -38,25 +37,25 @@ else
     "$HOME/.local/bin/mise" install
 end
 
-set -x EDITOR hx
-set -x VISUAL hx
+set -x EDITOR nvim
+set -x VISUAL nvim
 
 # Initialize Starship prompt
 starship init fish | source
 
 # Aliases
-alias c 'clear'
-alias cls 'clear'
-alias nf 'hyfetch'
-alias pf 'hyfetch'
-alias ff 'fastfetch'
-alias hf 'hyfetch'
+alias c clear
+alias cls clear
+alias nf hyfetch
+alias pf hyfetch
+alias ff fastfetch
+alias hf hyfetch
 alias ls 'eza --icons'
 alias la 'eza -a --icons'
 alias ll 'eza -al --icons'
 alias lt 'eza -a --tree --level=1 --icons'
 alias shutdown 'systemctl poweroff'
 alias v '$EDITOR'
-alias cat 'bat'
-alias wifi 'nmtui'
-alias yay 'paru'
+alias cat bat
+alias wifi nmtui
+alias yay paru

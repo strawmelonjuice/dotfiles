@@ -2,19 +2,8 @@
 # CUSTOMIZATION
 # -----------------------------------------------------
 
-# Install and initialize Oh My Posh
-if command -v oh-my-posh >/dev/null 2>&1; then
-    # Oh My Posh is installed, use starship instead of a posh theme
-    eval "$(starship init zsh)"
-else
-    # Install Oh My Posh if not present
-    echo "Installing Oh My Posh..."
-    curl -s https://ohmyposh.dev/install.sh | bash -s
-    # Add to PATH if not already there
-    export PATH=$PATH:$HOME/.local/bin
-    # Initialize starship
-    eval "$(starship init zsh)"
-fi
+# Initialize starship
+eval "$(starship init zsh)"
 
 # -----------------------------------------------------
 # ZSH AUTOCOMPLETION SETUP
