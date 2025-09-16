@@ -1,6 +1,14 @@
 {{ $arrow_point:="" }}
 {{ $last_colour:=" bg" }}
 {{ $next_colour:=" fg" }}
+
+{{- if eq .chezmoi.os "windows" -}}
+
+# Set command timeout to 3 seconds for the ridiculous delay that powershell embodies
+
+command_timeout = 3000
+{{ end }}
+
 {{- if eq .chezmoi.os "linux" -}}
 
 {{/* Reverses the colours, so that the arrows point to their right colour. */}}
@@ -19,6 +27,7 @@ right_format = """
 [](#9A348E)\
 {{ else -}}
 {{ $arrow_point = "" }}
+
 format = """
 [](#9A348E)\
 {{- end }}
@@ -258,7 +267,7 @@ disabled = false
 [custom.vcs_status]
 detect_folders = [".git", ".jj"]
 description = "Show git or jj status, styled the same"
-{{- if eq .chezmoi.os "linux"}}
+{{- if ne .chezmoi.os "windows"}}
 shell = ["bash", "--noprofile"]
 command = '''
 if [ "$GIT_DIR" == "" ]; then
@@ -285,10 +294,7 @@ separate(" ",
 fi
 '''
 {{- else}}
-shell = ["pwsh", "-NoProfile"]
-command = """
-echo 'ugh, windows'
-"""
+command = "starship module git_status"
 {{ end }}
 
 format = '[($output)]($style)'
@@ -296,7 +302,7 @@ style = "bg:#FCA17D fg:#2A4D69"
 
 [custom.vcs_branch]
 description = "Show git or jj branch, styled the same"
-{{- if eq .chezmoi.os "linux"}}
+{{- if ne .chezmoi.os "windows"}}
 shell = ["bash", "-noprofile"]
 command = '''
 if [ "$GIT_DIR" == "" ]; then
@@ -307,10 +313,7 @@ else
 fi
 '''
 {{- else}}
-shell = ["pwsh", "-NoProfile"]
-command = """
-echo 'ugh, windows'
-"""
+command = "starship module git_branch"
 {{ end }}
 detect_folders = [".git", ".jj"]
 format = '[$symbol($output )]($style)'
