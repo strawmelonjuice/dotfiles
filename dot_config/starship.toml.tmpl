@@ -30,8 +30,8 @@ $directory\
 [{{- $arrow_point -}}]({{- $next_colour -}}:#DA627D {{- $last_colour -}}:#e7d1ff)\
 $mise\
 [{{- $arrow_point -}}]({{- $last_colour -}}:#FCA17D {{- $next_colour -}}:#e7d1ff)\
-$git_branch\
-$git_status\
+${custom.vcs_branch}\
+${custom.vcs_status}\
 [{{- $arrow_point -}}]({{- $next_colour -}}:#FCA17D {{- $last_colour -}}:#86BBD8)\
 $c\
 $cpp\
@@ -139,13 +139,10 @@ style = "bg:#86BBD8 fg:#FF6B6B"
 format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
-symbol = " "
-style = "bg:#FCA17D fg:#2A4D69"
-format = '[ $symbol $branch ]($style)'
+format = '$symbol $branch'
 
 [git_status]
-style = "bg:#FCA17D fg:#2A4D69"
-format = '[$all_status$ahead_behind ]($style)'
+format = '$all_status$ahead_behind '
 
 [golang]
 symbol = " "
@@ -257,3 +254,65 @@ style = "bg:#e7d1ff fg:#00008b"
 format = '[ $symbol $health ]($style)'
 detect_files = [ "mise.toml", "mise.local.toml", ".mise.toml", ".mise.local.toml"]
 disabled = false
+
+[custom.vcs_status]
+detect_folders = [".git", ".jj"]
+description = "Show git or jj status, styled the same"
+{{- if eq .chezmoi.os "linux"}}
+shell = ["bash", "--noprofile"]
+command = '''
+if [ "$GIT_DIR" == "" ]; then
+    starship module git_status
+else
+jj log --revisions @ --no-graph --ignore-working-copy --color never --limit 1 --template '
+separate(" ",
+    change_id.shortest(1),
+    bookmarks,
+
+    concat(
+    if(conflict, "💥"),
+    if(divergent, "🚧"),
+    if(hidden, "👻"),
+    if(immutable, "🔒"),
+    ),
+    raw_escape_sequence("") ++ if(empty, "(empty)"),
+    raw_escape_sequence("") ++ coalesce(
+    truncate_end(29, description.first_line(), "…"),
+    "(no description set)",
+    ) ++ raw_escape_sequence(""),
+)
+'
+fi
+'''
+{{- else}}
+shell = ["pwsh", "-NoProfile"]
+command = """
+echo 'ugh, windows'
+"""
+{{ end }}
+
+format = '[($output)]($style)'
+style = "bg:#FCA17D fg:#2A4D69"
+
+[custom.vcs_branch]
+description = "Show git or jj branch, styled the same"
+{{- if eq .chezmoi.os "linux"}}
+shell = ["bash", "-noprofile"]
+command = '''
+if [ "$GIT_DIR" == "" ]; then
+    starship module git_branch
+else
+    # JJ bookmark should show up here but idk how to yet.
+    echo "jj"
+fi
+'''
+{{- else}}
+shell = ["pwsh", "-NoProfile"]
+command = """
+echo 'ugh, windows'
+"""
+{{ end }}
+detect_folders = [".git", ".jj"]
+format = '[$symbol($output )]($style)'
+symbol = " "
+style = "bg:#FCA17D fg:#2A4D69"
