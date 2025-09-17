@@ -41,18 +41,9 @@ function Test-BWCli {
 function Install-BWCli {
     try {
         # Try Bun first (if available), then package manager, then npm fallback
-        if (Get-Command winget -ErrorAction SilentlyContinue) {
-            Write-BWLog "Installing Bitwarden CLI via winget..."
-            winget install Bitwarden.CLI
-        } elseif (Get-Command bun -ErrorAction SilentlyContinue) {
+        if (Get-Command bun -ErrorAction SilentlyContinue) {
             Write-BWLog "Installing Bitwarden CLI via Bun..."
             bun install -g @bitwarden/cli
-        } elseif (Get-Command npm -ErrorAction SilentlyContinue) {
-            Write-BWLog "Installing Bitwarden CLI via npm..."
-            npm install -g @bitwarden/cli
-        } elseif (Get-Command choco -ErrorAction SilentlyContinue) {
-            Write-BWLog "Installing Bitwarden CLI via chocolatey..."
-            choco install bitwarden-cli
         } else {
             Write-BWError "Cannot install Bitwarden CLI automatically. Please install manually."
             Write-Host "Visit: https://bitwarden.com/download/" -ForegroundColor Cyan
@@ -77,12 +68,12 @@ function Invoke-BWLogin {
     }
     
     if ($env:BW_SERVER) {
-        bw config server $env:BW_SERVER
+        bunx --bun bw config server $env:BW_SERVER
     }
     
     Write-BWLog "Logging in to Bitwarden..."
     try {
-        bw login $email
+        bunx --bun bw login $email
         return $true
     } catch {
         Write-BWError "Failed to login to Bitwarden: $_"
@@ -95,7 +86,7 @@ function Invoke-BWUnlock {
     # Try to use password file first (silent for automated operations)
     if (Test-Path $Script:BW_PASSWORD_FILE) {
         try {
-            $session = bw unlock --passwordfile $Script:BW_PASSWORD_FILE --raw 2>$null
+            $session = bunx --bun bw unlock --passwordfile $Script:BW_PASSWORD_FILE --raw 2>$null
             if ($session -and $session.Trim() -ne "") {
                 # Save session to file for reuse
                 $session | Out-File -FilePath $Script:BW_SESSION_FILE -Encoding UTF8 -NoNewline
@@ -117,7 +108,7 @@ function Invoke-BWUnlock {
     $passwordText = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($password))
     
     try {
-        $session = echo $passwordText | bw unlock --raw 2>$null
+        $session = echo $passwordText | bunx --bun bw unlock --raw 2>$null
         if ($session -and $session.Trim() -ne "") {
             # Password works, save it for future use
             $passwordText | Out-File -FilePath $Script:BW_PASSWORD_FILE -Encoding UTF8 -NoNewline
@@ -158,7 +149,7 @@ function Set-BWPasswordFile {
     
     try {
         # Test the password
-        $session = echo $passwordText | bw unlock --raw 2>$null
+        $session = echo $passwordText | bunx --bun bw unlock --raw 2>$null
         if ($session -and $session.Trim() -ne "") {
             $passwordText | Out-File -FilePath $Script:BW_PASSWORD_FILE -Encoding UTF8 -NoNewline
             
@@ -193,9 +184,9 @@ function Get-BWSession {
             
             # Test if session is still valid using the session token
             $env:BW_SESSION = $sessionToken
-            $result = bw list items --length 1 2>$null
+            $result = bunx --bun bw list items --length 1 2>$null
             if ($LASTEXITCODE -eq 0) {
-                bw sync --session $sessionToken >$null
+                bunx --bun bw sync --session $sessionToken >$null
                 return $true
             } else {
                 # Session expired, remove the file silently
@@ -225,10 +216,10 @@ function Get-BWSecret {
     }
     
     try {
-        $items = bw list items --search $ItemName 2>$null | ConvertFrom-Json
+        $items = bunx --bun bw list items --search $ItemName 2>$null | ConvertFrom-Json
         if ($items -and $items.Count -gt 0) {
             $itemId = $items[0].id
-            $result = bw get $Field $itemId 2>$null
+            $result = bunx --bun bw get $Field $itemId 2>$null
             if ($LASTEXITCODE -eq 0) {
                 return $result
             } else {
@@ -253,7 +244,7 @@ function Assert-BWSession {
     }
     
     try {
-        $status = bw status 2>$null | ConvertFrom-Json
+        $status = bunx --bun bw status 2>$null | ConvertFrom-Json
         if ($status.status -eq "unlocked") {
             # Already unlocked, try to get session
             if (-not (Get-BWSession)) {
@@ -303,7 +294,7 @@ function Initialize-BWSession {
     # Try to unlock with existing password file
     if (Test-Path $Script:BW_PASSWORD_FILE) {
         try {
-            $status = bw status 2>$null | ConvertFrom-Json
+            $status = bunx --bun bw status 2>$null | ConvertFrom-Json
             if ($status.status -eq "locked") {
                 return Invoke-BWUnlock
             }
@@ -348,7 +339,7 @@ switch ($Command.ToLower()) {
     }
     "status" {
         if (Get-Command bw -ErrorAction SilentlyContinue) {
-            bw status
+            bunx --bun bw status
         } else {
             Write-Host "Bitwarden CLI not installed"
         }
