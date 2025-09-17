@@ -16,10 +16,6 @@ return {
     enabled = false
   },
   {
-    "lualine.nvim",
-    enabled = false,
-  },
-  {
     "folke/noice.nvim",
     enabled = false,
   }

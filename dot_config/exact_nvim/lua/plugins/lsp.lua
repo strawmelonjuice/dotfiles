@@ -7,7 +7,6 @@ return {
     { "j-hui/fidget.nvim",       opts = {} },
     "simrat39/rust-tools.nvim",
     { 'nvim-telescope/telescope.nvim', tag = '0.1.8', },
-    -- "hrsh7th/cmp-nvim-lsp", -- Verwijderd omdat je blink.cmp gebruikt
   },
   config = function()
     local lspconfig = require('lspconfig')

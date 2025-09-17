@@ -3,7 +3,6 @@
 -- Add any additional autocmds here
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
-vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 -- For now I see no reason to update the plugins everytime I open neovim -- UPDATE: I do now, constantly having notifs abt outdated stuff is annoying
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
