@@ -1,4 +1,13 @@
-return {
+return { {
+  "nvimdev/lspsaga.nvim",
+  config = function()
+    require('lspsaga').setup({})
+  end,
+  dependencies = {
+    'nvim-treesitter/nvim-treesitter',
+    'nvim-tree/nvim-web-devicons'
+  }
+}, {
   "neovim/nvim-lspconfig",
   dependencies = {
     { "williamboman/mason.nvim", lazy = true },
@@ -7,6 +16,8 @@ return {
     { "j-hui/fidget.nvim",       opts = {} },
     "simrat39/rust-tools.nvim",
     { 'nvim-telescope/telescope.nvim', tag = '0.1.8', },
+
+
   },
   config = function()
     local lspconfig = require('lspconfig')
@@ -139,4 +150,4 @@ return {
     })
   end,
 }
-
+}
