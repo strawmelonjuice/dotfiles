@@ -10,14 +10,13 @@ return { {
 }, {
   "neovim/nvim-lspconfig",
   dependencies = {
-    { "williamboman/mason.nvim", lazy = true },
-    "williamboman/mason-lspconfig.nvim",
+    { "mason-org/mason.nvim", lazy = true },
+    "mason-org/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    { "j-hui/fidget.nvim",       opts = {} },
+    { "j-hui/fidget.nvim",    opts = {} },
     "simrat39/rust-tools.nvim",
     { 'nvim-telescope/telescope.nvim', tag = '0.1.8', },
-
-
+    "Saghen/blink.cmp"
   },
   config = function()
     local lspconfig = require('lspconfig')
