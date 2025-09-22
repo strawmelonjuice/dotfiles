@@ -65,10 +65,10 @@ I do however use lots of _[Powertoys](https://github.com/microsoft/PowerToys)_ w
 
 ### Generally
 
-Generally I system-install _[chezmoi](https://www.chezmoi.io/)_ and fish, initialise it with these dotfiles, then do something along the lines of
+Generally I system-install _[chezmoi](https://www.chezmoi.io/)_ and fish, then do something along the lines of
 
 ```sh
-chezmoi apply # First round
+chezmoi init https://git.strawmelonjuice.com/strawmelonjuice/dotfiles --apply # First round
 curl https://mise.run | sh # install mise...
 ~/.local/bin/mise install # ...mise install!
 ~/.local/bin/mise x -- bun install -g @bitwarden/cli # Install Bitwarden CLI for secret management
