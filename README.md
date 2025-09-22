@@ -101,4 +101,4 @@ rpm-ostree install fish phosh squeekboard
 
 ## Old dotfiles
 
-The dotfiles from before my move off github and this cleanup can be found in `.dotfiles-old`. Unpack that and git clone it and you're able to see the full history of the old dotfiles. They're messy.
+The dotfiles from before my move off github and this cleanup can be found in `.dotfiles-old.tar.xz`. Unpack that and git clone it and you're able to see the full history of the old dotfiles. They're messy.
