@@ -1,4 +1,3 @@
 [tools]
 node = "23"
-rust = { version = "1.87.0", components = "rust-analyzer" }
 "cargo:kdl-lsp" = "latest"

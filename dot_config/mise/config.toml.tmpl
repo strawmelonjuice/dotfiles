@@ -2,15 +2,15 @@
 # ===================================================
 # For mise
 # ===================================================
-cargo-binstall = "latest" # Cargo binstall makes crate:-packages install faster.
+cargo-binstall = "latest" # Cargo binstall makes crate:-packages install faster. Temporary removal is okay if it acts up again.
 usage = "latest"
 
 # ===================================================
-# Runtimes in which tools run.
+# Runtimes/compilers for tooling.
 # ===================================================
 bun = "latest" # Bitwarden-cli
 python = "latest" # Hyfetch
-
+rust = { version = "1.87.0", components = "rust-analyzer" } # All cargo: packages.
 
 # ===================================================
 # Language tooling (should normally not be in global config)
