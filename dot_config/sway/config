@@ -1,0 +1,23 @@
+# Autostarts
+include conf/autostart.conf
+
+# Binds
+include conf/binds.conf
+
+# Display
+include conf/displays.conf
+
+# General Settings
+include conf/general.conf
+
+# Modes
+include conf/modes.conf
+
+# Visual
+include conf/visual.conf
+
+# Input
+include conf/input.conf
+
+# Built-in
+include /etc/sway/config.d/*

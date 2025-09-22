@@ -1,0 +1,9 @@
+{{- if eq .chezmoi.arch "arm64" }}
+firefox $*
+# librewolf $*
+# zen-browser $*
+{{- else }}
+firefox $*
+# librewolf $*
+zen-browser $*
+{{- end }}

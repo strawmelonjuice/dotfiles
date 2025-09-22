@@ -1,0 +1,3 @@
+
+# The distinction between mise.toml and .mise.toml is important.
+/.mise.toml

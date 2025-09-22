@@ -1,0 +1,61 @@
+encryption = "age"
+
+{{- if eq .chezmoi.os "windows" }}
+[edit]
+command = "nvim"
+{{- end }}
+
+[git]
+autoPush = true
+
+[age]
+    passphrase = true
+    command = "rage"
+
+[diff]
+    command = "difft"
+
+[data]
+work = {{- if eq .chezmoi.hostname "VD013336" }} true # Because hostname matches VDI. {{- else -}} {{- if eq .chezmoi.os "windows" -}}{{- if eq .chezmoi.windowsVersion.editionID "Enterprise" -}} true # Because Windows Enterprise {{- else -}} false {{- end -}}{{- else -}} false {{- end}}{{- end}}
+
+[data.stylings.fonts.UI]
+family = "Atkinson Hyperlegible Next"
+size = 11
+
+[data.stylings.fonts.Mono]
+family = "Lotion Black"
+size = 11
+
+[data.stylings.hoverOvers]
+# Backgrounds -----------------------------------------------------
+# redo: Originally: "rgba(233, 179, 0, 0.3)"
+background1 = "#fa8071"
+# redo: Originally: "#FFFFFF"
+background2 = "#f4cccc"
+# redo: Originally: "#CCCCCC"
+background3 = "#f4cccc"
+background4 = "#e06666"
+background5 = "#9b4457"
+# background6- equals new targetted colorsheme
+background7 = "rgba(250, 128, 113, 0.3)"
+
+# Text ------------------------------------------------------------
+text1 = "#00e600"
+text2 = "#000000"
+
+# Borders ---------------------------------------------------------
+border1 = "rgb(255,204,255)" # Used for: Waybar bottom border, inactive windows (hypr)
+border2 = "rgb(255,77,77)"   # Used for: Workspaces border, active window border (hypr)
+border3 = "rgb(0,153,51)"    # Used for: Active window border (hypr)
+
+# Border-ratios ---------------------------------------------------
+# redo: Originally: "15px"
+bradius1 = "5px"
+
+[data.stylings.hoverOvers.background6]
+one = "#fa8071"   # same as background1 now.
+two = "#ffa07a"
+three = "#fab28a"
+four = "#f9d098"
+five = "#fadfb0"
+

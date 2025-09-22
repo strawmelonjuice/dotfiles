@@ -1,0 +1,260 @@
+{
+  // Workspaces
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "active-only": false,
+    "all-outputs": true,
+   	"format": "{icon}",
+    "format-icons": {
+      "1":  "1 ",
+      "2": "2 ",
+      "3": "3 ",
+      "4": "4 #"
+    },
+    "persistent-workspaces": {
+      "*": 4
+    }
+  },
+  "sway/workspaces": {
+    "on-click": "activate",
+    "active-only": false,
+    "all-outputs": true,
+    "disable-scroll": true,
+    "format-icons": {
+      "1": "1 ",
+      "2": "2 ",
+      "3": "3 ",
+      "4": "4 #"
+    },
+    "persistent-workspaces": {
+      // "1": "1",
+      // "2": "2",
+      // "3": "3"
+    }
+  },
+  "sway/mode": {
+    "format": "<span style=\"italic\">{}</span>"
+  },
+  // Hyprland Window
+  "hyprland/window": {
+    "rewrite": {
+      "(.*) - Discord": "# Discord: $1", 
+      "Element \\| (.*)": "# Element: $1",
+      "(.*) - ArmCord": "# Discord: $1",
+      "Revolt": "# Revolt",
+      "(.*) — LibreWolf": "$1",
+      "(.*) — Mozilla Firefox": "$1",
+      "(.*) — Zen Browser": "$1",
+      "(.*) - Chromium": "$1",
+      "(.*) - Vivaldi": "$1",
+      "Spotify (.*)": "Spotify",
+      "(.*) - Tidal": "Tidal",
+      "(.*) - TIDAL": "Tidal",
+    },
+    "separate-outputs": true
+  },
+  "sway/window": {
+    "rewrite": {
+      "(.*) - Discord": "# Discord: $1",
+      "Element \\| (.*)": "# Element: $1",
+      "(.*) - ArmCord": "# Discord: $1",
+      "Revolt": "# Revolt",
+      "(.*) — LibreWolf": "$1",
+      "(.*) — Mozilla Firefox": "$1",
+      "(.*) — Zen Browser": "$1",
+      "(.*) - Chromium": "$1",
+      "(.*) - Vivaldi": "$1",
+      "Spotify (.*)": "Spotify",
+      "(.*) - Tidal": "Tidal",
+      "(.*) - TIDAL": "Tidal",
+    },
+    "separate-outputs": true
+  },
+  "cffi/niri-taskbar": {
+      "rewrite": {
+     "(.*) - Discord": "# Discord: $1",
+     "Element \\| (.*)": "# Element: $1",
+     "(.*) - ArmCord": "# Discord: $1",
+    "Revolt": "# Revolt",
+     "(.*) — LibreWolf": "$1",
+     "(.*) — Mozilla Firefox": "$1",
+     "(.*) — Zen Browser": "$1",
+     "(.*) - Chromium": "$1",
+     "(.*) - Vivaldi": "$1",
+      "Spotify (.*)": "Spotify",
+      "(.*) - Tidal": "Tidal",
+       "(.*) - TIDAL": "Tidal",
+     },
+     "separate-outputs": true
+   },
+  
+  // Wofi Application Launcher
+  "custom/appmenu": {
+    "format": "Launch",
+    "tooltip-format": "Left: Open the application launcher\nRight: Show all keybindings",
+    "on-click": "anyrun",
+    "on-click-right": "alacritty -e bat ~/.config/hypr/conf/binds.conf",
+    "tooltip": true
+  },
+{{- if eq .chezmoi.hostname "Fennekin" }}
+  "custom/osktoggle": {
+    "format": " 󰌌 ",
+    "on-click": "~/.config/hypr/scripts/keyboard-relaunch.sh",
+    "tooltip-format": "Toggle the on-screen keyboard (restarts the keyboard if needed.)"
+  },
+{{- end }}
+  // Power Menu
+  "custom/exit": {
+    "format": "",
+    "tooltip-format": "Powermenu",
+    "on-click": "wlogout -b 4",
+    "tooltip": false
+  },
+  // Keyboard State
+  "keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": "{name} {icon}",
+    "format-icons": {
+      "locked": "",
+      "unlocked": ""
+    }
+  },
+  // System tray
+  "tray": {
+    // "icon-size": 21,
+    "spacing": 10
+  },
+  // Clock
+  "clock": {
+    "timezone": "Europe/Berlin",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%Y-%m-%d}"
+  },
+  // System
+  "custom/system": {
+    "format": "",
+    "tooltip": false
+  },
+  // CPU
+  "cpu": {
+    "format": " {usage}% ",
+    "on-click": "alacritty -e htop"
+  },
+  // Memory
+  "memory": {
+    "format": " {}% ",
+    "on-click": "alacritty -e btop"
+  },
+  // Harddisc space used
+  "disk": {
+    "interval": 30,
+    "format": "D {percentage_used}% ",
+    "path": "/",
+    "on-click": "alacritty -e htop"
+  },
+  "hyprland/language": {
+    "format": "/ K {short}"
+  },
+  // Group Hardware
+  "group/hardware": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 300,
+      "children-class": "not-memory",
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "custom/system",
+      "disk",
+      "cpu",
+      "memory",
+      "hyprland/language"
+    ]
+  },
+  // Network
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": " ",
+    "format-ethernet": "  ",
+    "format-disconnected": "Not connected",
+    "tooltip-format": " {ifname} via {gwaddri}",
+    "tooltip-format-wifi": "   {essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50,
+    "on-click": "alacritty -e nmtui connect"
+  },
+  // Battery
+  "battery": {
+    "states": {
+      "good": 80,
+      "warning": 30,
+      "critical": 15
+    },
+    "format-alt": "{icon} {capacity}%",
+    "format": "{icon}  {time}",
+    "format-charging": "  {capacity}%",
+    "format-plugged": "  {capacity}%",
+    // "format-good": " ",
+    "format-full": "",
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ]
+  },
+  // Pulseaudio
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "format": "{icon}  {volume}%",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon}",
+    "format-muted": " ",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        " ",
+        " "
+      ]
+    },
+    "on-click": "pavucontrol"
+  },
+  // Bluetooth
+  "bluetooth": {
+    "format-disabled": "",
+    "format-off": "",
+    "interval": 30,
+    "on-click": "blueman-manager",
+    "format-no-controller": ""
+  },
+  // Other
+  "user": {
+    "format": "{user}",
+    "interval": 60,
+    "icon": false
+  },
+  "cffi/niri-taskbar": {
+    "module_path": "/home/mar/.local/share/chezmoi/.dotfiles/deps/niri-taskbar/target/release/libniri_taskbar.so",
+  },
+  // Idle Inhibator
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "tooltip": true,
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    },
+    "on-click-right": "hyprlock"
+  }
+}

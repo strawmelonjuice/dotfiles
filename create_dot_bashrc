@@ -1,0 +1,7 @@
+# Bash is just using a minimal profile.
+# Only activating shims
+if [ -f $HOME/.local/bin/mise ]; then
+	# Activate mise shims
+	eval "$(~/.local/bin/mise activate --shims)"
+fi
+

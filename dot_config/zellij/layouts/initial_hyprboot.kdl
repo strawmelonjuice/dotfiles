@@ -1,0 +1,17 @@
+
+layout {
+      pane {
+          command "hyfetch"
+          borderless true
+        } 
+        pane {
+            start_suspended true
+            size "5%"         
+            command "zellij"
+            args "--layout" "1"
+            focus true
+            borderless true
+          }
+
+}
+

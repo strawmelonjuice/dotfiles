@@ -1,0 +1,41 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 0, // Gaps between modules in pixels
+    // Choose the order of the modules
+    // Load Modules
+    "include": [
+        "~/.config/waybar/quicklinks.jsonc",
+        "~/.config/waybar/modules.jsonc"
+    ],
+    "cffi/niri-taskbar": {
+        "module_path": "/home/mar/.local/share/chezmoi/.dotfiles/deps/niri-taskbar/target/release/libniri_taskbar.so",
+    },
+    "modules-left": [
+        // "custom/appmenu",
+        // "group/quicklinks",
+        "hyprland/workspaces",
+        "sway/workspaces",
+        "sway/mode",
+        "hyprland/window",
+        "sway/window"
+//       , "cffi/niri-taskbar"
+    ],
+    "modules-center": [
+        "custom/osktoggle",
+        "battery",
+        "clock",
+        "custom/exit"
+    ],
+    "modules-right": [
+        "tray",
+        "mpd",
+        "pulseaudio",
+        "network",
+        "cpu",
+        "memory",
+        "keyboard-state"
+    ]
+}

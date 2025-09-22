@@ -1,0 +1,71 @@
+[tools]
+# ===================================================
+# For mise
+# ===================================================
+cargo-binstall = "latest" # Cargo binstall makes crate:-packages install faster.
+usage = "latest"
+
+# ===================================================
+# Runtimes in which tools run.
+# ===================================================
+bun = "latest" # Bitwarden-cli
+python = "latest" # Hyfetch
+
+
+# ===================================================
+# Language tooling (should normally not be in global config)
+# ===================================================
+zig = "latest" # Compiles some plugins for neovim
+
+# ===================================================
+# Editors
+# ===================================================
+helix = "latest"
+neovim = "0.11.2"
+
+# ===================================================
+# Development tools
+# ===================================================
+podman = "latest"
+bombardier = "latest"
+"cargo:bananen" = "latest"
+"cargo:tree-sitter-cli" = "latest"
+"cargo:cargo-clean-all" = "latest"
+"cargo:jj-cli" = "latest"
+"cargo:lazyjj" = "latest"
+lazygit = "latest"
+github-cli = "latest"
+
+# ===================================================
+# Shell tooling
+# ===================================================
+"cargo:eza" = "latest"
+"cargo:bat" = { version = "latest", locked = false }
+"cargo:kc" = "latest"
+"cargo:starship" = "latest"
+"cargo:zoxide" = "latest"
+"cargo:rage" = "latest"
+fastfetch = "latest"
+fzf = "latest"
+ripgrep = "latest"
+difftastic = "latest"
+
+
+{{ if eq .chezmoi.os "linux" }}
+# ===================================================
+# Linux specific tooling
+# ===================================================
+pipx = "latest" # Used to install hyfetch
+"pipx:hyfetch" = "latest" # Used for landing
+zellij="latest" # Terminal multiplexor
+# End Linux specific
+{{- end }}
+
+[env]
+GIT_EXTERNAL_DIFF = 'difft'
+
+[alias]
+[settings]
+
+[settings.npm]
+bun = true

@@ -1,0 +1,95 @@
+# -----------------------------------------------------
+# Aliases
+# -----------------------------------------------------
+
+# General aliases
+alias c 'clear'
+alias cls 'clear'
+{{ if .work }}
+alias nf 'fastfetch'
+alias pf 'fastfetch'
+alias hf 'fastfetch'
+{{ else }}
+alias nf 'hyfetch'
+alias pf 'hyfetch'
+alias hf 'hyfetch'
+{{ end }}
+
+alias ff 'fastfetch'
+alias ls 'eza --icons'
+alias la 'eza -a --icons'
+alias ll 'eza -al --icons'
+alias lt 'eza -a --tree --level=1 --icons'
+alias shutdown 'systemctl poweroff'
+alias v '$EDITOR'
+alias bat 'bat --ignored-suffix .tmpl'
+alias cat 'bat -p'
+alias wifi 'nmtui'
+alias yay 'paru'
+
+# Update grub alias
+alias update-grub 'sudo grub-mkconfig -o /boot/grub/grub.cfg'
+
+# Zellij aliases and completion
+zellij setup --generate-completion fish | source
+alias ide 'zellij --layout ide'
+alias strider 'zellij plugin --in-place -- zellij:strider'
+
+# Cargo-related aliases
+alias cargock 'cargo-clean-all --keep-days 21 ~ -i'
+
+
+# if flatpak-spawn is available, use it to run certain commands in the host environment
+if command -v flatpak-spawn &> /dev/null
+    echo "to-host aliasing: active"
+    alias podman='flatpak-spawn --host podman'
+    alias docker='flatpak-spawn --host docker'
+end
+
+# -----------------------------------------------------
+# Directory navigation and aliases
+# -----------------------------------------------------
+
+zoxide init fish --cmd bang | source
+
+function zap
+    if test -d .git -a -d .jj
+        clear
+        echo "Opened Git-colocated Jujutsu repository: $(pwd)"
+        git fetch
+        kc
+        jj status
+        eza --icons -L 2 -R --tree --git-ignore
+    else if test -d .jj
+        clear
+        echo "Opened Jujutsu repository: $(pwd)"
+        kc
+        jj status
+        mise set GIT_DIR=".jj/repo/store/git" --file .mise.toml
+        grep -Fxq ".mise.toml" .gitignore; or begin
+            echo -e "\n# Ignore hidden Mise configuration file, use mise.toml for public config\n.mise.toml" >> .gitignore
+        end
+        eza --icons -L 2 -R --tree
+    else if test -d .git
+        clear
+        echo "Opened git repository: $(pwd)"
+        git fetch
+        kc
+        eza --icons -L 2 -R --tree --git-ignore
+        git status
+    end
+    if test -f mise.toml
+        mise completion fish | source
+    end
+end
+
+function banger
+    bang $argv; and zap
+end
+
+function bangeri
+    bangi $argv; and zap
+end
+
+alias cd 'banger'
+alias cdi 'bangeri'

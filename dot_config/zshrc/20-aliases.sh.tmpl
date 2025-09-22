@@ -1,0 +1,36 @@
+# -----------------------------------------------------
+# ALIASES
+# -----------------------------------------------------
+
+# -----------------------------------------------------
+# General
+# -----------------------------------------------------
+alias c='clear'
+alias cls='clear'
+{{ if .work }}
+alias nf='fastfetch'
+alias pf='fastfetch'
+{{ else }}
+alias nf='hyfetch'
+alias pf='hyfetch'
+{{ end }}
+alias ff='fastfetch'
+alias hf='hyfetch'
+alias ls='eza --icons'
+alias la='eza -a --icons'
+alias ll='eza -al --icons'
+alias lt='eza -a --tree --level=1 --icons'
+alias shutdown='systemctl poweroff'
+alias v='$EDITOR'
+alias cat='bat'
+alias wifi='nmtui'
+alias yay='paru'
+
+
+alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+
+# I'm lazy and don't want to type the full command
+alias ide='zellij --layout ide'
+alias strider='zellij plugin --in-place -- zellij:strider'
+# Cleans up the cargo caches interactively. -- This name? Haha.
+alias cargock='cargo-clean-all --keep-days 21 ~ -i'

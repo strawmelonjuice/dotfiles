@@ -1,0 +1,39 @@
+
+layout {
+   pane size=1 borderless=true {
+        plugin location="tab-bar"
+    }
+    pane split_direction="horizontal" size="100%" {
+        pane size="85%" {
+          split_direction "vertical"
+          // The editor pane, but I won't set nvim as command, because that'll disable it from using LSP's
+          pane size="80%" {
+            // stacked true 
+            pane borderless=true command="~/.config/zellij/scripts/ide.sh"  focus=true
+            // pane borderless=true
+          }
+          // pane size="15%" borderless=false {
+          //   borderless true
+          //      plugin location="zellij:strider"
+          //      focus true
+          // }
+        }
+        pane {
+            split_direction "vertical"
+             pane size="60%" 
+             children
+             pane
+        }
+    }
+    pane borderless=true size=1 {
+        plugin location="zellij:status-bar"
+    }
+}
+
+keybinds {
+  unbind "Ctrl q"
+  shared {
+    bind "Ctrl q" { CloseTab; SwitchToMode "Normal"; }
+  }
+}
+

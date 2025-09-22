@@ -1,0 +1,11 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+# Load modular zsh configuration files
+for f in ~/.config/zshrc/*.sh; do 
+    if [ ! -d $f ] ;then
+        c=`echo $f | sed -e "s=.config/zshrc=.config/zshrc/custom="`
+        [[ -f $c ]] && source $c || source $f
+    fi
+done
+

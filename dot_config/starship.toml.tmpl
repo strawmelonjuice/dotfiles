@@ -1,0 +1,321 @@
+{{ $arrow_point:="" }}
+{{ $last_colour:=" bg" }}
+{{ $next_colour:=" fg" }}
+
+{{- if eq .chezmoi.os "windows" -}}
+
+# Set command timeout to 3 seconds for the ridiculous delay that powershell embodies
+
+command_timeout = 3000
+{{ end }}
+
+{{- if eq .chezmoi.os "linux" -}}
+
+{{/* Reverses the colours, so that the arrows point to their right colour. */}}
+{{ $last_colour = " fg" }} 
+{{ $next_colour = " bg" }}
+
+format = """
+[](fg:#9A348E)\
+$os\
+[](fg:#9A348E) \
+"""
+
+{{/* Since we use a right-line on linux, the line points completely in the other direction, including these arrows! */}}
+{{ $arrow_point = "" }}
+right_format = """
+[](#9A348E)\
+{{ else -}}
+{{ $arrow_point = "" }}
+
+format = """
+[](#9A348E)\
+{{- end }}
+$username\
+[{{ $arrow_point -}}]({{- $last_colour -}}:#C1E1C1 {{- $next_colour -}}:#9A348E)\
+$shell\
+[{{- $arrow_point -}}]({{- $last_colour -}}:#DA627D {{- $next_colour -}}:#C1E1C1)\
+$directory\
+[{{- $arrow_point -}}]({{- $next_colour -}}:#DA627D {{- $last_colour -}}:#e7d1ff)\
+$mise\
+[{{- $arrow_point -}}]({{- $last_colour -}}:#FCA17D {{- $next_colour -}}:#e7d1ff)\
+${custom.vcs_branch}\
+${custom.vcs_status}\
+[{{- $arrow_point -}}]({{- $next_colour -}}:#FCA17D {{- $last_colour -}}:#86BBD8)\
+$c\
+$cpp\
+$elixir\
+$elm\
+$golang\
+$gradle\
+$haskell\
+$java\
+$julia\
+$nodejs\
+$bun\
+$erlang\
+$nim\
+$gleam\
+$rust\
+$scala\
+$php\
+$zig\
+[{{- $arrow_point -}} ]({{- $next_colour -}}:#86BBD8 {{- $last_colour -}}:#06969A)\
+$docker_context\
+$cmd_duration\
+[{{- $arrow_point -}}]({{- $next_colour -}}:#06969A {{- $last_colour -}}:#33658A)\
+$status\
+$time\
+{{ if eq .chezmoi.os "linux" }}
+[ ](fg:#33658A)\
+{{ else -}}
+[ ](fg:#33658A)\
+{{ end }}
+"""
+# Disable the blank line at the start of the prompt
+# add_newline = false
+
+# You can also replace your username with a neat symbol like   or disable this
+# and use the os module below
+[username]
+show_always = true
+style_user = "bg:#9A348E fg:#FFD6E0"
+style_root = "bg:#9A348E fg:#FFD6E0"
+format = '[$user ]($style)'
+disabled = false
+
+[shell]
+# The shell module displays the current shell name
+# It is disabled by default, but you can enable it if you want
+disabled = false # Disabled by default
+# Make it a bit like a pastel pistachio green color, like #C1E1C1.
+style = "bg:#C1E1C1 fg:#9A348E"
+# format = '[$shell ]($style)'
+# The shell module can also display the shell symbol only, for powershell, zsh, bash, etc.
+# Uncomment the line below to enable it
+format = "[$indicator]($style)"
+powershell_indicator = "Powershell"
+pwsh_indicator = "   PWSH"
+zsh_indicator = "🐚 Zsh"
+fish_indicator = "🐟 Fish"
+
+# An alternative to the username module which displays a symbol that
+# represents the current operating system
+[os]
+style = "bg:#9A348E fg:#FFD6E0"
+disabled = false      # Disabled by default
+
+[directory]
+style = "bg:#DA627D"
+format = "[ $path ]($style)"
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+"source" = "󰒋 "
+# Keep in mind that the order matters. For example:
+# "Important Documents" = " 󰈙 "
+# will not be replaced, because "Documents" was already substituted before.
+# So either put "Important Documents" before "Documents" or use the substituted version:
+# "Important 󰈙 " = " 󰈙 "
+
+[c]
+symbol = " "
+style = "bg:#86BBD8 fg:#FF6B6B"
+format = '[ $symbol ($version) ]($style)'
+
+[cpp]
+symbol = " "
+style = "bg:#86BBD8 fg:#FF6B6B"
+format = '[ $symbol ($version) ]($style)'
+
+[docker_context]
+symbol = " "
+style = "bg:#06969A"
+format = '[ $symbol $context ]($style)'
+
+[elixir]
+symbol = " "
+style = "bg:#86BBD8 fg:#FF6B6B"
+format = '[ $symbol ($version) ]($style)'
+
+[elm]
+symbol = " "
+style = "bg:#86BBD8 fg:#FF6B6B"
+format = '[ $symbol ($version) ]($style)'
+
+[git_branch]
+format = '$symbol $branch'
+
+[git_status]
+format = '$all_status$ahead_behind '
+
+[golang]
+symbol = " "
+style = "bg:#86BBD8 fg:#FF6B6B"
+format = '[ $symbol ($version) ]($style)'
+
+[gradle]
+style = "bg:#86BBD8 fg:#FF6B6B"
+format = '[ $symbol ($version) ]($style)'
+
+[haskell]
+symbol = " "
+style = "bg:#86BBD8 fg:#FF6B6B"
+format = '[ $symbol ($version) ]($style)'
+
+[java]
+symbol = " "
+style = "bg:#86BBD8 fg:#FF6B6B"
+format = '[ $symbol ($version) ]($style)'
+
+[nodejs]
+symbol = " "
+style = "bg:#86BBD8 fg:#FF6B6B"
+format = '[ $symbol ($version) ]($style)'
+
+[bun]
+disabled = false
+symbol = "🧅 "
+format = '[ $symbol ($version) ]($style)'
+detect_files = [
+    'bun.lock',
+    'bun.lockb',
+    'bunfig.toml',
+    'package.json',
+    "gleam.toml",
+]
+style = "bg:#86BBD8 fg:#FF6B6B"
+
+[lua]
+symbol = " "
+style = "bg:#86BBD8 fg:#FF6B6B"
+format = '[ $symbol ($version) ]($style)'
+
+
+[php]
+symbol = " "
+style = "bg:#86BBD8 fg:#FF6B6B"
+format = '[ $symbol ($version) ]($style)'
+
+
+[nim]
+symbol = "󰆥 "
+style = "bg:#86BBD8 fg:#FF6B6B"
+format = '[ $symbol ($version) ]($style)'
+
+[rust]
+symbol = " "
+style = "bg:#86BBD8 fg:#FF6B6B"
+format = '[ $symbol ($version) ]($style)'
+
+[scala]
+symbol = " "
+style = "bg:#86BBD8 fg:#FF6B6B"
+format = '[ $symbol ($version) ]($style)'
+
+[erlang]
+symbol = " "
+format = "[$symbol ($version) ]($style)"
+style = "bg:#86BBD8 fg:#FF6B6B"
+detect_files = ['rebar.config', 'elang.mk', "gleam.toml"]
+
+[gleam]
+symbol = " "
+format = "[$symbol ($version) ]($style)"
+style = "bg:#86BBD8 fg:#FF6B6B"
+disabled = false
+
+
+[zig]
+symbol = "↯ "
+style = "bg:#86BBD8 fg:#FF6B6B"
+format = '[ $symbol ($version) ]($style)'
+
+[status]
+disabled = false
+style = "bg:#33658A" # Like time.
+# Heart symbol for success, broken heart for failure.
+success_symbol = "💖"
+symbol = "💔"
+format = "[ $symbol]($style)"
+map_symbol =true
+
+
+[time]
+disabled = false
+time_format = "%R"             # Hour:Minute Format
+style = "bg:#33658A"
+format = '[ $time ]($style)'
+
+[cmd_duration]
+format = '[ ⏱️  $duration ]($style)'
+style = "bg:#06969A fg:#33658A"
+min_time = 500
+
+
+[mise]
+symbol = "🐭"
+style = "bg:#e7d1ff fg:#00008b"
+format = '[ $symbol $health ]($style)'
+detect_files = [ "mise.toml", "mise.local.toml", ".mise.toml", ".mise.local.toml"]
+disabled = false
+
+[custom.vcs_status]
+detect_folders = [".git", ".jj"]
+description = "Show git or jj status, styled the same"
+{{- if ne .chezmoi.os "windows"}}
+shell = ["bash", "--noprofile"]
+command = '''
+if [ "$GIT_DIR" == "" ]; then
+    starship module git_status
+else
+jj log --revisions @ --no-graph --ignore-working-copy --color never --limit 1 --template '
+separate(" ",
+    change_id.shortest(1),
+    bookmarks,
+
+    concat(
+    if(conflict, "💥"),
+    if(divergent, "🚧"),
+    if(hidden, "👻"),
+    if(immutable, "🔒"),
+    ),
+    raw_escape_sequence("") ++ if(empty, "(empty)"),
+    raw_escape_sequence("") ++ coalesce(
+    truncate_end(29, description.first_line(), "…"),
+    "(no description set)",
+    ) ++ raw_escape_sequence(""),
+)
+'
+fi
+'''
+{{- else}}
+command = "starship module git_status"
+{{ end }}
+
+format = '[($output)]($style)'
+style = "bg:#FCA17D fg:#2A4D69"
+
+[custom.vcs_branch]
+description = "Show git or jj branch, styled the same"
+{{- if ne .chezmoi.os "windows"}}
+shell = ["bash", "-noprofile"]
+command = '''
+if [ "$GIT_DIR" == "" ]; then
+    starship module git_branch
+else
+    # JJ bookmark should show up here but idk how to yet.
+    echo "jj"
+fi
+'''
+{{- else}}
+command = "starship module git_branch"
+{{ end }}
+detect_folders = [".git", ".jj"]
+format = '[$symbol($output )]($style)'
+symbol = ""
+style = "bg:#FCA17D fg:#2A4D69"

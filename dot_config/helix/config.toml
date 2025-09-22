@@ -1,0 +1,29 @@
+theme = "flatwhite"
+[editor]
+line-number = "relative"
+mouse = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[keys.normal]
+C-s = ":write"
+# Enter = "move_visual_line_down"
+
+[keys.normal.space.M]
+l=":theme flatwhite"
+L=":theme bogster_light"
+g=":theme github_dark_high_contrast"
+G=":theme rose_pine_moon"
+d=":theme iroaseta"
+D=":theme tokyonight_moon"
+
+[keys.insert]
+C-s = [":write","normal_mode"]
+down = ["move_visual_line_down","normal_mode"]
+up = ["move_visual_line_up","normal_mode"]

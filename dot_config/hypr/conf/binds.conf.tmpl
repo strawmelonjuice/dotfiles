@@ -1,0 +1,126 @@
+# Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
+# Actions
+bind = SUPER, RETURN, exec, $primary_term # Open primary terminal
+bind = SUPER SHIFT, RETURN, exec, $secondary_term # Open secondary terminal
+bind = SUPER SHIFT, L, exit # Exit Hyprland
+bind = SUPER, L, exec, hyprlock # Lock Hyprland
+bind = SUPER SHIFT, S, exec, ~/shellscripts/screenshot.sh  # Take a screenshot
+bind =, Print, exec, ~/shellscripts/screenshot.sh  # Take a screenshot
+bind = SUPER, T, togglefloating # Toggle between tiling and floating window
+bind = SUPER SHIFT, T, pin # Pin floating window
+bind = SUPER, F, fullscreen # Open the window in fullscreen
+bind = SUPER, SPACE, exec, /home/mar/.cargo/bin/anyrun # Open Anyrun
+bind = SUPER, D, exec, /home/mar/.cargo/bin/anyrun --show-results-immediately true# Open Anyrun
+bind = SUPER CTRL, RETURN, exec, /home/mar/.cargo/bin/anyrun # Open Anyrun
+bind = SUPER, P, pseudo, # dwindle
+bind = SUPER, B, exec, ~/shellscripts/browser.sh # Opens the browser
+bind = SUPER SHIFT, E, exec, rofi -show window
+bind = SUPER, E, exec, ~/shellscripts/filemanager.sh # Opens file manager
+bind = SHIFT, F1, exec, obs --startrecording # Start recording with OBS
+bind = SUPER, Z, exec, ~/.config/hypr/scripts/perftoggle.sh # Perf mode toggle, based on whatever Hypr docs call game mode
+bind = SUPER, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy # Open clipboard history
+# bindr = SUPER ALT, Alt_L, overview:toggle # Toggle overview
+bind = SUPER, PERIOD, exec, [float] gnome-characters # Open the character map
+bindl=,switch:off:Lid Switch, exec, hyprlock --immediate # Lock Hyprland when the lid is closed
+bind = , XF86PowerOff, exec, wlogout -b 4 # Open the power menu
+
+# Window actions
+bind = SUPER, Q, killactive # Close current window
+bind = SUPER, J, togglesplit, # dwindle
+bind = SUPER SHIFT, B, exec, ~/.config/hypr/scripts/reload-waybar.sh # Reload Waybar
+bind = SUPER SHIFT, R, exec, ~/.config/hypr/scripts/fullres.sh # Reload all (including re-init of chezmoi)
+bind = SUPER SHIFT, W, exec, ~/.config/hypr/scripts/reload-hyprpaper.sh # Reload hyprpaper after a changing the wallpaper
+bind = SUPER, R, togglegroup # Toggle grouping
+bind = SUPER, TAB, changegroupactive # Change active window in group
+
+{{- if eq .chezmoi.hostname "Fennekin" }}
+# Touchscreen adaptments
+hyprgrass-bind = , edge:d:u, exec, kill -34 $(ps -C wvkbd-mobintl) # Toggle the virtual keyboard
+hyprgrass-bind = , edge:l:r, workspace, -1 # Swipe workspace
+hyprgrass-bind = , edge:r:l, workspace, +1 # Swipe workspace
+hyprgrass-bind = , edge:l:u, exec, brightnessctl s +10% # Increase brightness
+hyprgrass-bind = , edge:l:d, exec, brightnessctl s 10%- # Decrease brightness
+hyprgrass-bind = , edge:r:u, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 10%+ # Increase volume
+hyprgrass-bind = , edge:r:d, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 10%- # Decrease volume
+# hyprgrass-bind = , edge:u:d, overview:toggle # Toggle overview
+{{- end }}
+
+
+# Audio control
+binde =, XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%+
+binde =, XF86AudioLowerVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%-
+bind =, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle 
+
+# Media control
+bindl=,XF86AudioPlay,exec,playerctl play-pause
+bindl=,XF86AudioPause,exec,playerctl pause
+bindl=,XF86AudioStop,exec,playerctl stop
+bind = SUPER CTRL, N, exec, playerctl previous
+bindl=,XF86AudioNext,exec,playerctl next
+bind = SUPER CTRL, X, exec, playerctl next
+bindl=,XF86AudioPrev,exec,playerctl previous
+
+# Brightness control
+bindl =, XF86MonBrightnessUp, exec, brightnessctl s +2%
+bindl =, XF86MonBrightnessDown, exec, brightnessctl s 2%-
+
+# Resize windows with mainMod + ALT + arrow keys
+binde = SUPER ALT, left, resizeactive, -10 0 # Resize window left
+binde = SUPER ALT, right, resizeactive, 10 0 # Resize window right
+binde = SUPER ALT, up, resizeactive, 0 -10 # Resize window up
+binde = SUPER ALT, down, resizeactive, 0 10 # Resize window down
+
+# Move current window or group with mainMod + SHIFT + arrow keys
+bind = SUPER SHIFT, left, movewindoworgroup, l # Move window left
+bind = SUPER SHIFT, right, movewindoworgroup, r # Move window right
+bind = SUPER SHIFT, up, movewindoworgroup, u # Move window up
+bind = SUPER SHIFT, down, movewindoworgroup, d # Move window down
+
+# Move focus with mainMod + arrow keys
+bind = SUPER, left, movefocus, l # Move focus left
+bind = SUPER, right, movefocus, r # Move focus right
+bind = SUPER, up, movefocus, u # Move focus up
+bind = SUPER, down, movefocus, d # Move focus down
+
+# Switch workspaces with mainMod + [0-9]
+bind = SUPER, 1, workspace, 1 # Switch to workspace 1
+bind = SUPER, 2, workspace, 2 # Switch to workspace 2
+bind = SUPER, 3, workspace, 3 # Switch to workspace 3
+bind = SUPER, 4, workspace, 4 # Switch to workspace 4
+bind = SUPER, 5, workspace, 5 # Switch to workspace 5
+bind = SUPER, 6, workspace, 6 # Switch to workspace 6
+bind = SUPER, 7, workspace, 7 # Switch to workspace 7
+bind = SUPER, 8, workspace, 8 # Switch to workspace 8
+bind = SUPER, 9, workspace, 9 # Switch to workspace 9
+bind = SUPER, 0, workspace, 10 # Switch to workspace 10
+
+# Move active window to a workspace with mainMod + SHIFT + [0-9]
+bind = SUPER SHIFT, 1, movetoworkspace, 1 #  Move window to workspace 1
+bind = SUPER SHIFT, 2, movetoworkspace, 2 #  Move window to workspace 2
+bind = SUPER SHIFT, 3, movetoworkspace, 3 #  Move window to workspace 3
+bind = SUPER SHIFT, 4, movetoworkspace, 4 #  Move window to workspace 4
+bind = SUPER SHIFT, 5, movetoworkspace, 5 #  Move window to workspace 5
+bind = SUPER SHIFT, 6, movetoworkspace, 6 #  Move window to workspace 6
+bind = SUPER SHIFT, 7, movetoworkspace, 7 #  Move window to workspace 7
+bind = SUPER SHIFT, 8, movetoworkspace, 8 #  Move window to workspace 8
+bind = SUPER SHIFT, 9, movetoworkspace, 9 #  Move window to workspace 9
+bind = SUPER SHIFT, 0, movetoworkspace, 10 #  Move window to workspace 10
+
+# Scroll through existing workspaces with mainMod + scroll or slide through them with mainMod + CTRL + arrow keys
+bind = SUPER, mouse_up, workspace, e+1 # Scroll active workspaces
+bind = SUPER CTRL, mouse_up, workspace, +1 # Scroll all workspaces 
+bind = SUPER CTRL, right, workspace, +1 # Slide workspaces
+bind = SUPER, mouse_down, workspace, e-1 # Scroll active workspaces
+bind = SUPER CTRL, mouse_down, workspace, -1 # Scroll all workspaces
+bind = SUPER CTRL, left, workspace, -1 # Slide workspaces
+bind = SUPER CTRL, up, changegroupactive, f # Slide groupped windows
+bind = SUPER CTRL, down, changegroupactive, b # Slide groupped windows
+
+
+# Move/resize windows with mainMod + LMB/RMB and dragging
+bindm = SUPER, mouse:272, movewindow # Move window
+bindm = SUPER, mouse:273, resizewindow # Resize window
+bindm = SUPER CTRL, mouse:272, resizewindow # Resize window
+
+
+
