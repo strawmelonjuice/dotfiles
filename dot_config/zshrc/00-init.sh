@@ -78,6 +78,8 @@ zap() {
     kc
     eza --icons -L 2 -R --tree --git-ignore
     git status
+  else
+    eza -a --icons
   fi
   if [ -f mise.toml ]; then
     eval "$(mise completion zsh)"
