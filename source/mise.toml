@@ -1,3 +1,0 @@
-[tools]
-node = "23"
-"cargo:kdl-lsp" = "latest"
