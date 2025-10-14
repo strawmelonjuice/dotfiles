@@ -1,7 +1,7 @@
 vim.opt.termguicolors = true
-local default_light = "gruvbox"
+-- local default_light = "gruvbox"
 -- local default_light = "dayfox"
--- local default_light = "carbonized-light"
+local default_light = "rose-pine-dawn"
 local default_dark = "tokyonight-night"
 -- local default_dark = "kanagawa-wave"
 -- local default_dark = "rose-pine-main"
