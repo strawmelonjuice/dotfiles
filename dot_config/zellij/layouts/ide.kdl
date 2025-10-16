@@ -11,7 +11,7 @@ layout {
             // stacked true 
             pane borderless=true command="~/.config/zellij/scripts/ide.sh"  focus=true
           }
-          pane size="10%" borderless=false {
+          pane size="10%" {
                 borderless true
                command "bun"
                args "x" "@google/gemini-cli"
