@@ -8,26 +8,28 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
 	// Whether to enable vim modes and key bindings.
-		// Since Zed feels very graphically I usually start with it disabled.
+	// Since Zed feels very graphically I usually start with it disabled.
 	"vim_mode": false,
-	
-	"ui_font_family": "Atkinson Hyperlegible Next",
-	"ui_font_size": 15,
-	"buffer_font_size": 11,
-	"buffer_font_family": "Lilex Nerd Font Mono",
-	"theme": {
-		"mode": "system",
-		"light": "Dayfox",
-		"dark": "Carbonfox"
-	},
+
 	// The name of the Zed theme to use for the UI.
 	//
 	// `mode` is one of:
 	// - "system": Use the theme that corresponds to the system's appearance
 	// - "light": Use the theme indicated by the "light" field
 	// - "dark": Use the theme indicated by the "dark" field
-
-	"icon_theme": "Zed (Default)",
+	"icon_theme": {
+		"light": "Catppuccin Latte",
+		"dark": "Catppuccin Frappé"
+	},
+	"ui_font_size": 16,
+	"ui_font_family": "Atkinson Hyperlegible Next",
+	"buffer_font_family": "Lotion",
+	"buffer_font_size": 15,
+	"theme": {
+		"mode": "system",
+		"light": "Rosé Pine Dawn",
+		"dark": "Catppuccin Macchiato"
+	},
 	// The name of a base set of key bindings to use.
 	// This setting can take six values, each named after another
 	// text editor:
@@ -42,7 +44,7 @@
 	// Features that can be globally enabled or disabled
 	"features": {
 		// Which edit prediction provider to use.
-		"edit_prediction_provider": "zed"
+		"edit_prediction_provider": "copilot"
 	},
 	// Set the buffer text's font fallbacks, this will be merged with
 	// the platform's default fallbacks.
@@ -611,7 +613,6 @@
 	},
 	"agent": {
 		// Version of this setting.
-		"version": "2",
 		// Whether the assistant is enabled.
 		"enabled": true,
 		// Whether to show the assistant panel button in the status bar.
@@ -1150,7 +1151,6 @@
 		// Existing terminals will not pick up this change until they are recreated.
 		// "max_scroll_history_lines": 10000,
 	},
-	"code_actions_on_format": {},
 	// Settings related to running tasks.
 	"tasks": {
 		"variables": {},
@@ -1296,10 +1296,10 @@
 			"allow_rewrap": "anywhere"
 		},
 		"Go": {
-			"code_actions_on_format": {
-				"source.organizeImports": true
-			}
-		},
+            "code_actions_on_format": {
+                "source.organizeImports": true
+            }
+        },
 		"GraphQL": {
 			"prettier": {
 				"allowed": true
@@ -1428,7 +1428,6 @@
 	// Different settings for specific language models.
 	"language_models": {
 		"anthropic": {
-			"version": "1",
 			"api_url": "https://api.anthropic.com"
 		},
 		"google": {
@@ -1438,7 +1437,6 @@
 			"api_url": "http://localhost:11434"
 		},
 		"openai": {
-			"version": "1",
 			"api_url": "https://api.openai.com/v1"
 		},
 		"lmstudio": {
@@ -1549,8 +1547,6 @@
 	//   "W": "workspace::Save"
 	// }
 	"command_aliases": {},
-	// Whether to show user picture in titlebar.
-	"show_user_picture": true,
 	// ssh_connections is an array of ssh connections.
 	// You can configure these from `project: Open Remote` in the command palette.
 	// Zed's ssh support will pull configuration from your ~/.ssh too.
@@ -1575,3 +1571,4 @@
 		"button": true
 	}
 }
+
