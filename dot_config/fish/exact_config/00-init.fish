@@ -40,7 +40,7 @@ end
 set -x EDITOR nvim
 set -x VISUAL nvim
 
-if status is-interactive
+if status is-interactive and not set -q TOOLBOX_NAME
   # Configure auto-attach/exit to your likings (default is off).
   # set ZELLIJ_AUTO_ATTACH true
   set ZELLIJ_AUTO_EXIT true
