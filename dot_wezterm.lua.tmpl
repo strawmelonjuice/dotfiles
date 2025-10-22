@@ -11,6 +11,7 @@ config.color_scheme = 'Grey-green'
 config.enable_tab_bar = false
 config.font = wezterm.font("{{ .stylings.fonts.Mono.family }}")
 config.font_size = {{ .stylings.fonts.Mono.size }}
+config.window_close_confirmation = 'NeverPrompt'
 
 {{- if eq .chezmoi.os "windows" }}
 -- Set default shell to PowerShell on Windows
