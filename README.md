@@ -97,7 +97,7 @@ rm -rf ./paru
 #### For Fedora Silverblue
 ```bash 
 # Add the terra repo, useful in case we ever install Zed, for example.
-# Also installs phosh and squeekboard, as Fedora Silverblue is mained on my convertible.
+# Also installs phosh and squeekboard, as Fedora Silverblue is my 
 curl -fsSL https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo | pkexec tee /etc/yum.repos.d/terra.repo
 rpm-ostree install terra-release fish phosh squeekboard gcc cmake 'g++' 'gcc-c++'
 ```
