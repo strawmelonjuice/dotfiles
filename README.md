@@ -94,12 +94,14 @@ cd
 rm -rf ./paru
 ```
 
-#### For Fedora Silverblue
+#### For Fedora 42 Silverblue
 ```bash 
-# Add the terra repo, useful in case we ever install Zed, for example.
-# Also installs phosh and squeekboard, as Fedora Silverblue is my 
+# Add the terra repo
 curl -fsSL https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo | pkexec tee /etc/yum.repos.d/terra.repo
-rpm-ostree install terra-release fish phosh squeekboard gcc cmake 'g++' 'gcc-c++'
+# Add the WezTerm nightly repo
+sudo curl -o /etc/yum.repos.d/wezfurlong-wezterm-nightly.repo https://copr.fedorainfracloud.org/coprs/wezfurlong/wezterm-nightly/repo/fedora-42/wezfurlong-wezterm-nightly-fedora-42.repo
+# Also installs phosh and squeekboard, as Fedora Silverblue is my 
+rpm-ostree install terra-release fish phosh squeekboard gcc cmake 'g++' 'gcc-c++' zed wezterm
 ```
 
 ## Old dotfiles
