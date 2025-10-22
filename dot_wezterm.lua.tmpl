@@ -1,14 +1,10 @@
--- Pull in the wezterm API
 local wezterm = require("wezterm")
 
--- This will hold the configuration.
 local config = wezterm.config_builder()
 
--- This is where you actually apply your config choices
-config.skip_close_confirmation_for_processes_named = { 'flatpak-spawn' }
--- For example, changing the color scheme:
 config.color_scheme = 'Grey-green'
 config.enable_tab_bar = false
+config.window_background_opacity = 0.8
 config.font = wezterm.font("{{ .stylings.fonts.Mono.family }}")
 config.font_size = {{ .stylings.fonts.Mono.size }}
 config.window_close_confirmation = 'NeverPrompt'
@@ -16,7 +12,8 @@ config.window_close_confirmation = 'NeverPrompt'
 {{- if eq .chezmoi.os "windows" }}
 -- Set default shell to PowerShell on Windows
 config.default_prog = { 'pwsh.exe' }
-config.window_close_confirmation = 'NeverPrompt'
+-- We do this on linux too now.
+-- config.window_close_confirmation = 'NeverPrompt'
 {{- end }}
 -- and finally, return the configuration to wezterm
 return config
