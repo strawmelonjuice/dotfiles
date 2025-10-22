@@ -96,7 +96,7 @@ rm -rf ./paru
 
 #### For Fedora Silverblue
 ```bash 
-rpm-ostree install fish phosh squeekboard gcc cmake
+rpm-ostree install fish phosh squeekboard gcc cmake 'g++' 'gcc-c++'
 ```
 
 ## Old dotfiles
