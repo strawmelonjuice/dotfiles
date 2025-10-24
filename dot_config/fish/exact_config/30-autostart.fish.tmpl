@@ -10,7 +10,16 @@ if string match -q "*/dev/pts/*" "$(tty)"
         {{ if .work }}
         fastfetch
         {{ else }}
-        hyfetch
+
+        if test -f /etc/os-release; and grep -q '^VARIANT_ID=silverblue$' /etc/os-release
+          # Hyfetch incorrectly sees silverblue as normal Fedora
+          hyfetch --distro=silverblue
+        else
+          # On all other systems (Fedora Workstation, Ubuntu, macOS, etc.)
+          # or if the file doesn't exist, run the default.
+          hyfetch
+        end
+
         {{ end }}
     # end
 end
