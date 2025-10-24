@@ -104,6 +104,35 @@ sudo curl -o /etc/yum.repos.d/wezfurlong-wezterm-nightly.repo https://copr.fedor
 rpm-ostree install terra-release fish phosh squeekboard gcc cmake 'g++' 'gcc-c++' zed wezterm
 ```
 
+#### If Spotify doesn't do what it should
+Assuming I have toolbox installed:
+```sh
+toolbox create --distro ubuntu --release 24.04 spotify-box
+curl -o /home/mar/.local/share/icons/spotify.png https://storage.googleapis.com/pr-newsroom-wp/1/2023/05/Spotify_Primary_Logo_RGB_Green.png
+toolbox enter spotify-box
+```
+
+Then inside the spotify box:
+```bash
+curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt-get update && sudo apt-get install spotify-client
+```
+
+And write the .desktop file `/home/mar/.local/share/applications/spotify-toolbox.desktop`
+```desktop
+[Desktop Entry]
+Name=Spotify (Toolbox)
+Comment=Music streaming service
+Exec=toolbox run -c spotify-box spotify
+Icon=/home/mar/.local/share/icons/spotify.png
+Terminal=false
+Type=Application
+Categories=AudioVideo;Audio;Music;
+Keywords=music;audio;stream;
+StartupWMClass=spotify
+```
+
 ## Old dotfiles
 
 The dotfiles from before my move off github and this cleanup can be found in `.dotfiles-old.tar.xz`. Unpack that and git clone it and you're able to see the full history of the old dotfiles. They're messy.
