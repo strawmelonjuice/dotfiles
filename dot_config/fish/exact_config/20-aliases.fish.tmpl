@@ -33,6 +33,8 @@ alias update-grub 'sudo grub-mkconfig -o /boot/grub/grub.cfg'
 # Zellij aliases and completion
 zellij setup --generate-completion fish | source
 alias ide 'zellij --layout ide'
+# IDE but without the editor.
+alias id-e 'zellij --layout id-e'
 alias strider 'zellij plugin --in-place -- zellij:strider'
 
 # Cargo-related aliases
