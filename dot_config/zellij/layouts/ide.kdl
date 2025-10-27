@@ -11,11 +11,11 @@ layout {
             // stacked true
             pane borderless=true command="~/.config/zellij/scripts/ide.sh"  focus=true
           }
-          // pane size="10%" {
-          //       borderless true
-          //      command "bun"
-          //      args "x" "@google/gemini-cli"
-          // }
+          pane size="10%" {
+                borderless true
+               command "bun"
+               args "x" "@google/gemini-cli"
+          }
         }
         pane {
             split_direction "vertical"
