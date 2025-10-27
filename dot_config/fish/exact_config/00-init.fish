@@ -37,15 +37,14 @@ else
     "$HOME/.local/bin/mise" install
 end
 
-set -x EDITOR nvim
-set -x VISUAL nvim
+set -x EDITOR hx
+set -x VISUAL hx
 if status is-interactive; and not set -q TOOLBOX_NAME
-  # Configure auto-attach/exit to your likings (default is off).
-  # set ZELLIJ_AUTO_ATTACH true
-  set ZELLIJ_AUTO_EXIT true
-  eval (zellij setup --generate-auto-start fish | string collect)
+    # Configure auto-attach/exit to your likings (default is off).
+    # set ZELLIJ_AUTO_ATTACH true
+    set ZELLIJ_AUTO_EXIT true
+    eval (zellij setup --generate-auto-start fish | string collect)
 end
-
 
 # Initialize Starship prompt
 starship init fish | source

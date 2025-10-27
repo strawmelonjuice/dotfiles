@@ -33,8 +33,8 @@ else
   ~/.local/bin/mise install
 fi
 
-export EDITOR=nvim
-export VISUAL=nvim
+export EDITOR=hx
+export VISUAL=hx
 
 # Zellij if on any of my main terminals
 # Zellij needs to start first, because otherwise we'll be going through the entire zshrc twice.
