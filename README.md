@@ -94,12 +94,12 @@ cd
 rm -rf ./paru
 ```
 
-#### For Fedora 42 Silverblue
+#### For Fedora 43 Silverblue
 ```bash 
 # Add the terra repo
 curl -fsSL https://github.com/terrapkg/subatomic-repos/raw/main/terra.repo | pkexec tee /etc/yum.repos.d/terra.repo
 # Add the WezTerm nightly repo
-sudo curl -o /etc/yum.repos.d/wezfurlong-wezterm-nightly.repo https://copr.fedorainfracloud.org/coprs/wezfurlong/wezterm-nightly/repo/fedora-42/wezfurlong-wezterm-nightly-fedora-42.repo
+sudo curl -o /etc/yum.repos.d/wezfurlong-wezterm-nightly.repo https://copr.fedorainfracloud.org/coprs/wezfurlong/wezterm-nightly/repo/fedora-43/wezfurlong-wezterm-nightly-fedora-43.repo
 # Also installs phosh and squeekboard, as Fedora Silverblue is my 
 rpm-ostree install terra-release fish phosh squeekboard gcc cmake 'g++' 'gcc-c++' zed wezterm
 ```
