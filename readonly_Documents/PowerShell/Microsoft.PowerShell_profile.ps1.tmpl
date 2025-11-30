@@ -1,13 +1,3 @@
-# Check powershell version
-if (!$PSVersionTable.PSVersion.toString().startsWith("7"))
-{
-  Write-Host "Powershell version" $PSVersionTable.PSVersion "was detected. Running pwsh instead."
-  pwsh
-  Write-Host "Exiting Powershell..."
-  Stop-Process -Id $PID -Force -PassThru
-}
-
-
 # Initialise mise
 [Console]::WriteLine("Initialising mise-en-place...")
 (&mise activate pwsh) | Out-String | Invoke-Expression
@@ -26,43 +16,11 @@ if (Get-Command starship -ErrorAction SilentlyContinue) {
     }
 }
 
-# -----------------------------------------------------
-# POWERSHELL AUTOCOMPLETION SETUP
-# -----------------------------------------------------
-
-[Console]::WriteLine("Setting up PowerShell autocompletion...")
-
-# Enhanced completion options
-Set-PSReadLineOption -PredictionSource History
-Set-PSReadLineOption -PredictionViewStyle ListView
-Set-PSReadLineOption -EditMode Vi
+[Console]::WriteLine("Setting up PowerShell...")
 Set-PSReadLineOption -BellStyle None
 
-# Key bindings for better completion experience
-Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
-Set-PSReadLineKeyHandler -Key Shift+Tab -Function MenuComplete
-Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
-Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
-Set-PSReadLineKeyHandler -Key Ctrl+f -Function ForwardWord
 
-# Enable menu navigation with Tab/Shift+Tab
-Set-PSReadLineOption -ShowToolTips
-
-# Install and import CompletionPredictor module for enhanced completions
-if (-not(Get-Module -ListAvailable -Name CompletionPredictor)) {
-    Write-Host "Installing CompletionPredictor module..."
-    Install-Module -Name CompletionPredictor -Scope CurrentUser -Force -AllowClobber
-}
-Import-Module CompletionPredictor
-
-# Install and configure Terminal-Icons for better file listings
-if (-not(Get-Module -ListAvailable -Name Terminal-Icons)) {
-    Write-Host "Installing Terminal-Icons module..."
-    Install-Module -Name Terminal-Icons -Scope CurrentUser -Force -AllowClobber
-}
-Import-Module Terminal-Icons
-
-# Install PSFzf for fuzzy finding (similar to oh-my-zsh functionality)
+# Install PSFzf for fuzzy finding
 if (-not(Get-Module -ListAvailable -Name PSFzf)) {
     Write-Host "Installing PSFzf module..."
     Install-Module -Name PSFzf -Scope CurrentUser -Force -AllowClobber
@@ -173,10 +131,6 @@ New-Alias hyfetch fastfetch -Option AllScope -Force
 {{ else }}
 New-Alias hyfetch hyfet -Option AllScope -Force
 {{ end }}
-New-Alias nf hyfetch -Option AllScope -Force
-New-Alias pf hyfetch -Option AllScope -Force
-New-Alias ff fastfetch -Option AllScope -Force
-New-Alias hf hyfetch -Option AllScope -Force
 New-Alias cat bat -Option AllScope -Force
 function els { eza --icons ${args} }
 New-Alias ls els -Option AllScope -Force
@@ -246,28 +200,3 @@ if($args.Count -eq 0) {
 }
 New-Alias cd banger -Option AllScope -Force
 New-Alias cdi bangeri -Option AllScope -Force
-
-if (-not(Get-Command hyfetch -ErrorAction SilentlyContinue)) {
- python -m pip install wheel
- python -m pip install -U pipx
- python -m pip install -U hyfetch
-}
-
-# Initialize Bitwarden session
-[Console]::WriteLine("Initializing Bitwarden...")
-if (Test-Path "$PSScriptRoot\Bitwarden-Helper.ps1") {
-    . "$PSScriptRoot\Bitwarden-Helper.ps1" init
-    
-    # Create convenient aliases for Bitwarden
-    function bw-get { 
-        param([string]$Item, [string]$Field = "password")
-        . "$PSScriptRoot\Bitwarden-Helper.ps1" get $Item $Field
-    }
-    function bw-unlock { . "$PSScriptRoot\Bitwarden-Helper.ps1" unlock }
-    function bw-status { . "$PSScriptRoot\Bitwarden-Helper.ps1" status }
-    function bw-setup { . "$PSScriptRoot\Bitwarden-Helper.ps1" setup-password }
-}
-
-clear
-hyfetch
-
