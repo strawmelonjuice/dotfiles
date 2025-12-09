@@ -39,7 +39,7 @@ end
 
 set -x EDITOR hx
 set -x VISUAL hx
-if status is-interactive; and not set -q TOOLBOX_NAME
+if status is-interactive; and not set -q TOOLBOX_NAME; and not set -q NIRI_SOCKET
     # Configure auto-attach/exit to your likings (default is off).
     # set ZELLIJ_AUTO_ATTACH true
     set ZELLIJ_AUTO_EXIT true
