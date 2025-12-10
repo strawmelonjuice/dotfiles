@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# fuzzel.ini hash: {{ include "dot_config/fuzzel/fuzzel.ini-uncorrected.tmpl" | sha256sum }}
+
+# This script replaces all occurences of "=#" followed by six hexadecimal digits to "=" followed by six hexadecimal digits to
+# correct the hex color codes in fuzzel configuration file, fuzzel is special :)
+
+TEMP_FILE="$(mktemp)"
+sed 's/=\(#\([0-9a-fA-F]\{6\}\)\)/=\2/g' "fuzzel.ini-uncorrected" > "$TEMP_FILE"
+mv "$TEMP_FILE" "fuzzel.ini"
+# Clean up temporary file if it still exists
+# [ -f "$TEMP_FILE" ] && rm "$TEMP_FILE"

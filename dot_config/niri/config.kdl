@@ -134,7 +134,7 @@ layout {
 
     }
 
-    preset-window-heights { 
+    preset-window-heights {
         proportion 0.4
         proportion 0.74
         proportion 1.0
@@ -219,13 +219,13 @@ layout {
         // radius. It has to assume that windows have square corners, leading to
         // shadow artifacts inside the CSD rounded corners. This setting fixes
         // those artifacts.
-        // 
+        //
         // However, instead you may want to set prefer-no-csd and/or
         // geometry-corner-radius. Then, niri will know the corner radius and
         // draw the shadow correctly, without having to draw it behind the
         // window. These will also remove client-side shadows if the window
         // draws any.
-        // 
+        //
         // draw-behind-window true
 
         // You can change how shadows look. The values below are in logical
@@ -354,8 +354,9 @@ binds {
     Mod+Return hotkey-overlay-title="Open a Terminal: wezterm" { spawn "wezterm"; }
     Mod+Shift+Return hotkey-overlay-title="Open backup terminal: alacritty" { spawn "alacritty"; }
     Mod+B hotkey-overlay-title="Open a Firefox" { spawn "firefox"; }
-    Mod+D hotkey-overlay-title="Open (any)runner" { spawn "anyrun"; }
+    Mod+D hotkey-overlay-title="Open (any)runner" { spawn "fuzzel"; }
     Mod+Shift+D hotkey-overlay-title="Open (k)runner (backup runner)" { spawn "krunner"; }
+    Alt+Space hotkey-overlay-title="Open Krun" { spawn "krunner"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -367,6 +368,10 @@ binds {
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
     XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+
+    // Other  media keys, brightness:
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "1%-"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "set" "+1%"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,

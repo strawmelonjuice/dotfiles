@@ -11,17 +11,15 @@
         "~/.config/waybar/modules.jsonc"
     ],
     "cffi/niri-taskbar": {
-        "module_path": "/home/mar/.local/share/chezmoi/.dotfiles/deps/niri-taskbar/target/release/libniri_taskbar.so",
+        "module_path": "/home/mar/.local/bin/libs/libniri_taskbar.so",
     },
     "modules-left": [
         // "custom/appmenu",
         // "group/quicklinks",
-        "hyprland/workspaces",
         "sway/workspaces",
         "sway/mode",
-        "hyprland/window",
-        "sway/window"
-//       , "cffi/niri-taskbar"
+        "sway/window",
+        "cffi/niri-taskbar"
     ],
     "modules-center": [
         "custom/osktoggle",
